@@ -1,0 +1,9 @@
+{
+  "name": "Ayla Summers",
+  "email": "ayla@example.com",
+  "role": "Faith Healer",
+  "flags": ["VIP"],
+  "tags": ["healing", "long-term"],
+  "ritual_ids": ["ritual_gold_path"],
+  "energy_notes": "Prefers moon rituals. Has shown strong intuitive abilities."
+}
