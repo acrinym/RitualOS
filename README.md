@@ -19,6 +19,14 @@ See the `/src` folder for code and `/samples` for example JSON files.
 This project targets **.NET 8** and uses **Avalonia UI** for its interface.
 A minimal project file is provided.
 
+## Documentation
+Schema references live in the `docs` folder:
+- [Ritual Schema](docs/ritual_schema.md)
+- [Inventory Schema](docs/inventory_schema.md)
+- [Client CRM Schema](docs/crm_schema.md)
+- [Dream Schema](docs/dream_schema.md)
+
+
 ## Pitch Deck
 A markdown pitch deck summarizing the vision can be found in `docs/pitch_deck.md`.
 
