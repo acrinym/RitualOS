@@ -15,9 +15,18 @@ inventory of magical ingredients, log dreams, and manage clients.
 ## Project Structure
 See the `/src` folder for code and `/samples` for example JSON files.
 
-## Building
-This project targets **.NET 8** and uses **Avalonia UI** for its interface.
-A minimal project file is provided.
+## Building and Running
+Prerequisite: install the **.NET 8 SDK**.
+
+Restore dependencies, build the project, and run it with:
+
+```bash
+dotnet restore
+dotnet build
+dotnet run
+```
+
+Launching the project will open the Avalonia UI and create a local `ritualos.json` data file.
 
 ## Documentation
 Schema references live in the `docs` folder:
