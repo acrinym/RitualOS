@@ -13,6 +13,7 @@ namespace RitualOS.Models
         public string Notes { get; set; }
 
         public List<RitualEntry> RitualHistory { get; set; } = new();
+        public List<InteractionLogEntry> History { get; set; } = new();
         public List<string> Tags { get; set; } = new();
         public string EnergyNotes { get; set; }
 
