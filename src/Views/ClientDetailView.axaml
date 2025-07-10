@@ -9,7 +9,7 @@
       </StackPanel>
     </TabItem>
     <TabItem Header="Ritual History">
-      <ListBox Items="{Binding Rituals}">
+      <ListBox ItemsSource="{Binding Rituals}">
         <ListBox.ItemTemplate>
           <DataTemplate>
             <TextBlock Text="{Binding Title}"/>
