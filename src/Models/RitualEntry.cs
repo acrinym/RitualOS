@@ -11,11 +11,11 @@ namespace RitualOS.Models
         public DateTime DatePerformed { get; set; }
         public string Intention { get; set; }
         public string MoonPhase { get; set; }
-        public List<string> SpiritsInvoked { get; set; }
-        public List<string> Ingredients { get; set; }
-        public List<string> RitualSteps { get; set; }
+        public List<string> SpiritsInvoked { get; set; } = new();
+        public List<string> Ingredients { get; set; } = new();
+        public List<string> RitualSteps { get; set; } = new();
         public string OutcomeStatus { get; set; }
-        public List<string> Tags { get; set; }
+        public List<string> Tags { get; set; } = new();
         public string Notes { get; set; }
     }
 }
