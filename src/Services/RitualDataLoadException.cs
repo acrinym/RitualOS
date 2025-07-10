@@ -17,9 +17,4 @@ namespace RitualOS.Services
         {
         }
     }
-        public RitualDataLoadException(string message, Exception? innerException = null)
-            : base(message, innerException)
-        {
-        }
-    }
 }
