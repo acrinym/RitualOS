@@ -44,7 +44,7 @@ namespace RitualOS.ViewModels
         {
             ritual.ClientId = Client.Id;
             Rituals.Add(ritual);
-            Client.RitualHistory.Add(ritual);
+            Client.RitualsPerformed.Add(ritual);
             Client.LastUpdated = DateTime.Now;
         }
 
@@ -76,7 +76,7 @@ namespace RitualOS.ViewModels
 
             if (!string.IsNullOrWhiteSpace(outcome))
             {
-                query = query.Where(r => string.Equals(r.OutcomeStatus, outcome, StringComparison.OrdinalIgnoreCase));
+                query = query.Where(r => string.Equals(r.Outcome, outcome, StringComparison.OrdinalIgnoreCase));
             }
 
             if (!string.IsNullOrWhiteSpace(moonPhase))
@@ -85,6 +85,15 @@ namespace RitualOS.ViewModels
             }
 
             return query.OrderByDescending(r => r.DatePerformed);
+        }
+
+        /// <summary>
+        /// Returns rituals affecting the specified chakra.
+        /// </summary>
+        public IEnumerable<RitualEntry> GetRitualsByChakra(Chakra chakra)
+        {
+            return Rituals.Where(r => r.AffectedChakras.Contains(chakra))
+                          .OrderByDescending(r => r.DatePerformed);
         }
     }
 }
