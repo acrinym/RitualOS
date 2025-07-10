@@ -12,10 +12,11 @@ namespace RitualOS.Models
         public string Phone { get; set; }
         public string Notes { get; set; }
 
-        public List<RitualEntry> RitualHistory { get; set; } = new();
+        public List<RitualEntry> RitualsPerformed { get; set; } = new();
         public List<InteractionLogEntry> History { get; set; } = new();
         public List<string> Tags { get; set; } = new();
         public string EnergyNotes { get; set; }
+        public Dictionary<Chakra, string> ChakraNotes { get; set; } = new();
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime LastUpdated { get; set; } = DateTime.Now;
