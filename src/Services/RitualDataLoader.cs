@@ -5,6 +5,9 @@ using RitualOS.Models;
 
 namespace RitualOS.Services
 {
+    /// <summary>
+    /// Provides helper methods for loading and saving ritual data to disk.
+    /// </summary>
     public static class RitualDataLoader
     {
         /// <summary>
@@ -15,7 +18,7 @@ namespace RitualOS.Services
         /// <exception cref="RitualDataLoadException">
         /// Thrown when the file cannot be read or the JSON is invalid.
         /// </exception>
-        public static RitualEntry? LoadRitualFromJson(string filePath)
+    public static RitualEntry LoadRitualFromJson(string filePath)
         {
             if (!File.Exists(filePath))
             {
