@@ -13,8 +13,9 @@ namespace RitualOS.Models
         public string MoonPhase { get; set; }
         public List<string> SpiritsInvoked { get; set; } = new();
         public List<string> Ingredients { get; set; } = new();
+        public List<Chakra> AffectedChakras { get; set; } = new();
         public List<string> RitualSteps { get; set; } = new();
-        public string OutcomeStatus { get; set; }
+        public string Outcome { get; set; }
         public List<string> Tags { get; set; } = new();
         public string Notes { get; set; }
         public Dictionary<string, string> CustomMetadata { get; set; } = new();
