@@ -2,12 +2,18 @@
 
 ```json
 {
+  "id": "string",
   "name": "string",
-  "email": "string",
   "role": "string",
-  "flags": ["string"],
+  "email": "string",
+  "phone": "string",
+  "notes": "string",
+  "ritual_history": [
+    { "id": "ritual_id" }
+  ],
   "tags": ["string"],
-  "ritual_ids": ["string"],
-  "energy_notes": "string"
+  "energy_notes": "string",
+  "created_at": "yyyy-mm-dd",
+  "last_updated": "yyyy-mm-dd"
 }
 ```

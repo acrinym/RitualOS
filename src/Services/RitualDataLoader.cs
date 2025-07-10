@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text.Json;
+using System.Collections.Generic;
 using RitualOS.Models;
 
 namespace RitualOS.Services
@@ -45,6 +46,40 @@ namespace RitualOS.Services
         {
             var json = JsonSerializer.Serialize(entry, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(filePath, json);
+        }
+
+        /// <summary>
+        /// Loads all ritual entries for a specific client from a directory of JSON files.
+        /// </summary>
+        /// <param name="directory">Directory containing ritual JSON files.</param>
+        /// <param name="clientId">ID of the client to filter by.</param>
+        /// <returns>List of rituals associated with the client.</returns>
+        public static List<RitualEntry> LoadRitualsForClient(string directory, string clientId)
+        {
+            var results = new List<RitualEntry>();
+
+            if (!Directory.Exists(directory))
+            {
+                return results;
+            }
+
+            foreach (var file in Directory.GetFiles(directory, "*.json"))
+            {
+                try
+                {
+                    var ritual = LoadRitualFromJson(file);
+                    if (ritual?.ClientId == clientId)
+                    {
+                        results.Add(ritual);
+                    }
+                }
+                catch (RitualDataLoadException)
+                {
+                    // ignore invalid files
+                }
+            }
+
+            return results;
         }
     }
 }

@@ -17,5 +17,6 @@ namespace RitualOS.Models
         public string OutcomeStatus { get; set; }
         public List<string> Tags { get; set; } = new();
         public string Notes { get; set; }
+        public string ClientId { get; set; }
     }
 }
