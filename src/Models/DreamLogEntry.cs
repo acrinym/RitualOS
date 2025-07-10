@@ -9,8 +9,8 @@ namespace RitualOS.Models
         public DateTime Date { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<string> Symbols { get; set; }
-        public List<string> Tags { get; set; }
+        public List<string> Symbols { get; set; } = new();
+        public List<string> Tags { get; set; } = new();
         public string Interpretations { get; set; }
     }
 }
