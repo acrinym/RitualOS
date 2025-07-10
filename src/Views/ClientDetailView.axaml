@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TabControl>
+    <TabItem Header="Profile Info">
+      <StackPanel Margin="10" Spacing="4">
+        <TextBlock Text="{Binding Client.Name}"/>
+        <TextBlock Text="{Binding Client.Email}"/>
+        <TextBlock Text="{Binding Client.Phone}"/>
+        <TextBlock Text="{Binding Client.Role}"/>
+      </StackPanel>
+    </TabItem>
+    <TabItem Header="Ritual History">
+      <ListBox Items="{Binding Rituals}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Title}"/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </TabItem>
+    <TabItem Header="Energy Notes">
+      <TextBox Text="{Binding Client.EnergyNotes}" AcceptsReturn="True" Height="100"/>
+    </TabItem>
+  </TabControl>
+</UserControl>

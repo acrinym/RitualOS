@@ -13,6 +13,7 @@
   "ritual_steps": ["string"],
   "outcome_status": "pending|successful|failed|recurring",
   "tags": ["string"],
-  "notes": "string"
+  "notes": "string",
+  "client_id": "string"
 }
 ```
