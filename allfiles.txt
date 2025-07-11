@@ -1,0 +1,522 @@
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Converters\ChakraToEmojiConverter.cs ========================================
+>> 
+using System;
+using System.Globalization;
+using Avalonia.Data.Converters;
+using RitualOS.Helpers;
+using RitualOS.Models;
+
+namespace RitualOS.Converters
+{
+    public class ChakraToEmojiConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            if (value is Chakra chakra)
+            {
+                return $"{ChakraHelper.GetEmoji(chakra)} {ChakraHelper.GetDisplayName(chakra)}";
+            }
+            return string.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Helpers\ChakraHelper.cs ========================================
+>> 
+using System.Collections.Generic;
+using RitualOS.Models;
+
+namespace RitualOS.Helpers
+{
+    public static class ChakraHelper
+    {
+        public static string GetEmoji(Chakra chakra) => chakra switch
+        {
+            Chakra.Root => "🔴",
+            Chakra.Sacral => "🟠",
+            Chakra.SolarPlexus => "🟡",
+            Chakra.Heart => "💚",
+            Chakra.Throat => "🔵",
+            Chakra.ThirdEye => "🟣",
+            Chakra.Crown => "⚪",
+            _ => string.Empty
+        };
+
+        public static string GetDisplayName(Chakra chakra) => chakra switch
+        {
+            Chakra.SolarPlexus => "Solar Plexus",
+            _ => chakra.ToString()
+        };
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Models\Chakra.cs ========================================
+>> 
+namespace RitualOS.Models
+{
+    public enum Chakra
+    {
+        Root,           // 🔴
+        Sacral,         // 🟠
+        SolarPlexus,    // 🟡
+        Heart,          // 💚
+        Throat,         // 🔵
+        ThirdEye,       // 🟣
+        Crown           // ⚪
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Models\ClientProfile.cs ========================================
+>> 
+using System;
+using System.Collections.Generic;
+
+namespace RitualOS.Models
+{
+    public class ClientProfile
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Role { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Notes { get; set; }
+
+        public List<RitualEntry> RitualsPerformed { get; set; } = new();
+        public List<InteractionLogEntry> History { get; set; } = new();
+        public List<string> Tags { get; set; } = new();
+        public string EnergyNotes { get; set; }
+        public Dictionary<Chakra, string> ChakraNotes { get; set; } = new();
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime LastUpdated { get; set; } = DateTime.Now;
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Models\DreamEntry.cs ========================================
+>> 
+using System;
+using System.Collections.Generic;
+
+namespace RitualOS.Models
+{
+    public class DreamEntry
+    {
+        public string Id { get; set; }
+        public DateTime Date { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public List<string> Symbols { get; set; } = new();
+        public List<Chakra> ChakraTags { get; set; } = new();
+        public List<string> Tags { get; set; } = new();
+        public string Interpretation { get; set; }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Models\IngredientItem.cs ========================================
+>> 
+using System;
+
+namespace RitualOS.Models
+{
+    public class IngredientItem
+    {
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public int Quantity { get; set; }
+        public DateTime? ExpirationDate { get; set; }
+        public string Location { get; set; }
+        public bool ReorderFlag { get; set; }
+        public string MarketplaceLink { get; set; }
+        public string Notes { get; set; }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Models\InteractionLogEntry.cs ========================================
+>> 
+using System;
+
+namespace RitualOS.Models
+{
+    public class InteractionLogEntry
+    {
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public DateTime Timestamp { get; set; } = DateTime.Now;
+        public string Type { get; set; }
+        public string Summary { get; set; }
+        public string Details { get; set; }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Models\InventoryItem.cs ========================================
+>> 
+using System;
+using System.Collections.Generic;
+
+namespace RitualOS.Models
+{
+    public class InventoryItem
+    {
+        public string Name { get; set; }
+        public string Category { get; set; }  // Herb, Oil, etc.
+        public int Quantity { get; set; }
+        public bool ChakraTrackingEnabled { get; set; } = false;
+        public List<Chakra> AssociatedChakras { get; set; } = new();
+        public DateTime? ExpirationDate { get; set; }
+        public string StorageLocation { get; set; }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Models\RitualEntry.cs ========================================
+>> 
+using System;
+using System.Collections.Generic;
+
+namespace RitualOS.Models
+{
+    public class RitualEntry
+    {
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DatePerformed { get; set; }
+        public string Intention { get; set; }
+        public string MoonPhase { get; set; }
+        public List<string> SpiritsInvoked { get; set; } = new();
+        public List<string> Ingredients { get; set; } = new();
+        public List<Chakra> AffectedChakras { get; set; } = new();
+        public List<string> RitualSteps { get; set; } = new();
+        public string Outcome { get; set; }
+        public List<string> Tags { get; set; } = new();
+        public string Notes { get; set; }
+        public Dictionary<string, string> CustomMetadata { get; set; } = new();
+        public string ClientId { get; set; }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Services\RitualDataLoader.cs ========================================
+>> 
+using System;
+using System.IO;
+using System.Text.Json;
+using System.Collections.Generic;
+using RitualOS.Models;
+
+namespace RitualOS.Services
+{
+    /// <summary>
+    /// Provides helper methods for loading and saving ritual data to disk.
+    /// </summary>
+    public static class RitualDataLoader
+    {
+        /// <summary>
+        /// Loads a ritual entry from a JSON file on disk.
+        /// </summary>
+        /// <param name="filePath">Path to the JSON file.</param>
+        /// <returns>The deserialized <see cref="RitualEntry"/>.</returns>
+        /// <exception cref="RitualDataLoadException">
+        /// Thrown when the file cannot be read or the JSON is invalid.
+        /// </exception>
+    public static RitualEntry LoadRitualFromJson(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                throw new RitualDataLoadException($"File not found: {filePath}");
+            }
+
+            try
+            {
+                var json = File.ReadAllText(filePath);
+                return JsonSerializer.Deserialize<RitualEntry>(json);
+            }
+            catch (Exception ex) when (ex is IOException || ex is JsonException)
+            {
+                throw new RitualDataLoadException("Failed to deserialize ritual data.", ex);
+            }
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="RitualEntry"/> to the specified path in a pretty printed JSON format.
+        /// </summary>
+        /// <param name="entry">The ritual entry to save.</param>
+        /// <param name="filePath">File path where the JSON should be written.</param>
+        public static void SaveRitualToJson(RitualEntry entry, string filePath)
+        {
+            var json = JsonSerializer.Serialize(entry, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, json);
+        }
+
+        /// <summary>
+        /// Loads all ritual entries for a specific client from a directory of JSON files.
+        /// </summary>
+        /// <param name="directory">Directory containing ritual JSON files.</param>
+        /// <param name="clientId">ID of the client to filter by.</param>
+        /// <returns>List of rituals associated with the client.</returns>
+        public static List<RitualEntry> LoadRitualsForClient(string directory, string clientId)
+        {
+            var results = new List<RitualEntry>();
+
+            if (!Directory.Exists(directory))
+            {
+                return results;
+            }
+
+            foreach (var file in Directory.GetFiles(directory, "*.json"))
+            {
+                try
+                {
+                    var ritual = LoadRitualFromJson(file);
+                    if (ritual?.ClientId == clientId)
+                    {
+                        results.Add(ritual);
+                    }
+                }
+                catch (RitualDataLoadException)
+                {
+                    // ignore invalid files
+                }
+            }
+
+            return results;
+        }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Services\RitualDataLoadException.cs ========================================
+>> 
+using System;
+
+namespace RitualOS.Services
+{
+    /// <summary>
+    /// Represents errors that occur while reading or deserializing ritual data.
+    /// </summary>
+    public class RitualDataLoadException : Exception
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RitualDataLoadException"/> class.
+        /// </summary>
+        /// <param name="message">Description of the error.</param>
+        /// <param name="innerException">Optional underlying exception that caused the failure.</param>
+        public RitualDataLoadException(string message, Exception? innerException = null)
+            : base(message, innerException)
+        {
+        }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\ViewModels\ClientViewModel.cs ========================================
+>> 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using RitualOS.Models;
+
+namespace RitualOS.ViewModels
+{
+    /// <summary>
+    /// View model representing a client profile and their ritual history.
+    /// </summary>
+    public class ClientViewModel
+    {
+        public ClientProfile Client { get; }
+        public ObservableCollection<RitualEntry> Rituals { get; }
+
+        public ClientViewModel(ClientProfile client, IEnumerable<RitualEntry> rituals)
+        {
+            Client = client;
+            Rituals = new ObservableCollection<RitualEntry>(rituals.OrderByDescending(r => r.DatePerformed));
+        }
+
+        /// <summary>
+        /// Creates a new ritual pre-populated for this client and adds it to the history.
+        /// </summary>
+        public RitualEntry CreateNewRitual()
+        {
+            var ritual = new RitualEntry
+            {
+                Id = Guid.NewGuid().ToString(),
+                DateCreated = DateTime.Now,
+                DatePerformed = DateTime.Now,
+                ClientId = Client.Id
+            };
+
+            AddRitual(ritual);
+            return ritual;
+        }
+
+        /// <summary>
+        /// Adds a new ritual to this client and updates metadata.
+        /// </summary>
+        public void AddRitual(RitualEntry ritual)
+        {
+            ritual.ClientId = Client.Id;
+            Rituals.Add(ritual);
+            Client.RitualsPerformed.Add(ritual);
+            Client.LastUpdated = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Updates the notes field of the client.
+        /// </summary>
+        public void UpdateNotes(string notes)
+        {
+            Client.Notes = notes;
+            Client.LastUpdated = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Replace the client's tags with the provided set.
+        /// </summary>
+        public void UpdateTags(IEnumerable<string> tags)
+        {
+            Client.Tags = tags.ToList();
+            Client.LastUpdated = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Returns rituals optionally filtered by outcome or moon phase.
+        /// Results are sorted by performed date descending.
+        /// </summary>
+        public IEnumerable<RitualEntry> GetRituals(string? outcome = null, string? moonPhase = null)
+        {
+            var query = Rituals.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(outcome))
+            {
+                query = query.Where(r => string.Equals(r.Outcome, outcome, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(moonPhase))
+            {
+                query = query.Where(r => string.Equals(r.MoonPhase, moonPhase, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return query.OrderByDescending(r => r.DatePerformed);
+        }
+
+        /// <summary>
+        /// Returns rituals affecting the specified chakra.
+        /// </summary>
+        public IEnumerable<RitualEntry> GetRitualsByChakra(Chakra chakra)
+        {
+            return Rituals.Where(r => r.AffectedChakras.Contains(chakra))
+                          .OrderByDescending(r => r.DatePerformed);
+        }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Views\ChakraSelector.axaml ========================================
+>> 
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:RitualOS.Converters">
+    <UserControl.Resources>
+        <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal" Spacing="6">
+        <CheckBox Content="🔴 Root"/>
+        <CheckBox Content="🟠 Sacral"/>
+        <CheckBox Content="🟡 Solar Plexus"/>
+        <CheckBox Content="💚 Heart"/>
+        <CheckBox Content="🔵 Throat"/>
+        <CheckBox Content="🟣 Third Eye"/>
+        <CheckBox Content="⚪ Crown"/>
+    </StackPanel>
+</UserControl>
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Views\ClientDetailView.axaml ========================================
+>> 
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:RitualOS.Converters">
+  <UserControl.Resources>
+    <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
+  </UserControl.Resources>
+  <TabControl>
+    <TabItem Header="Profile Info">
+      <StackPanel Margin="10" Spacing="4">
+        <TextBlock Text="{Binding Client.Name}"/>
+        <TextBlock Text="{Binding Client.Email}"/>
+        <TextBlock Text="{Binding Client.Phone}"/>
+        <TextBlock Text="{Binding Client.Role}"/>
+      </StackPanel>
+    </TabItem>
+    <TabItem Header="Ritual History">
+      <ListBox ItemsSource="{Binding Rituals}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <StackPanel>
+              <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
+              <ItemsControl Items="{Binding AffectedChakras}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource ChakraToEmoji}}"/>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </TabItem>
+    <TabItem Header="Energy Notes">
+      <TextBox Text="{Binding Client.EnergyNotes}" AcceptsReturn="True" Height="100"/>
+    </TabItem>
+  </TabControl>
+</UserControl>
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Views\RitualEditor.axaml ========================================
+>> 
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="clr-namespace:RitualOS.Views">
+  <StackPanel Margin="20" Spacing="10">
+    <TextBox Watermark="Title" Width="200"/>
+    <DatePicker />
+    <TextBox Watermark="Intention" Width="300"/>
+    <views:ChakraSelector />
+    <ComboBox>
+      <ComboBoxItem Content="New Moon" />
+      <ComboBoxItem Content="Full Moon" />
+    </ComboBox>
+    <TextBox Watermark="Tags" Width="200"/>
+    <TextBox Watermark="Ritual Steps" AcceptsReturn="True" Height="100"/>
+    <TextBox Watermark="Notes" AcceptsReturn="True" Height="80"/>
+    <Button Content="Save" Width="80"/>
+  </StackPanel>
+</UserControl>
+
+>> ======================================== FILE: D:\GitHub\RitualOS\src\Program.cs ========================================
+>> 
+using System;
+
+namespace RitualOS
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("RitualOS data models library");
+        }
+    }
+}
+
+>> ======================================== FILE: D:\GitHub\RitualOS\RitualOS.csproj ========================================
+>> 
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>false</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.0" />
+  </ItemGroup>
+</Project>
