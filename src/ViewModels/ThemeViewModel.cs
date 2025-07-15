@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using Avalonia;
+using RitualOS.Services;
 
 namespace RitualOS.ViewModels
 {
@@ -8,6 +9,7 @@ namespace RitualOS.ViewModels
     /// </summary>
     public class ThemeViewModel : ViewModelBase
     {
+        private readonly ThemeLoader _loader = new();
         private string _selectedTheme = "Theme.Dark.xaml";
 
         public ObservableCollection<string> AvailableThemes { get; } = new()
@@ -34,12 +36,7 @@ namespace RitualOS.ViewModels
 
         private void ApplyTheme()
         {
-            Application.Current?.Styles.Clear();
-            var uri = $"avares://RitualOS/Styles/Themes/{SelectedTheme}";
-            Application.Current?.Styles.Add(new Avalonia.Markup.Xaml.Styling.StyleInclude(new System.Uri(uri))
-            {
-                Source = new System.Uri(uri)
-            });
+            _loader.ApplyTheme(SelectedTheme);
         }
     }
 }

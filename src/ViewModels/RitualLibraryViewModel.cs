@@ -1,21 +1,35 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using RitualOS.Models;
 
 namespace RitualOS.ViewModels
 {
     /// <summary>
-    /// Provides filtering of available rituals.
+    /// ViewModel providing filtering and selection for the ritual library view.
     /// </summary>
     public class RitualLibraryViewModel : ViewModelBase
     {
-        private Chakra? _selectedChakra;
-        private string? _selectedSpirit;
-
+        public ObservableCollection<RitualEntry> AllRituals { get; } = new();
+        public ObservableCollection<string> ChakraFilters { get; } = new();
         public ObservableCollection<string> SpiritFilters { get; } = new();
-        public ObservableCollection<Chakra> ChakraFilters { get; } = new();
         public ObservableCollection<RitualEntry> FilteredRituals { get; } = new();
 
-        public Chakra? SelectedChakra
+        private RitualEntry? _selectedRitual;
+        public RitualEntry? SelectedRitual
+        {
+            get => _selectedRitual!;
+            set
+            {
+                if (_selectedRitual != value)
+                {
+                    _selectedRitual = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _selectedChakra = string.Empty;
+        public string SelectedChakra
         {
             get => _selectedChakra;
             set
@@ -24,12 +38,13 @@ namespace RitualOS.ViewModels
                 {
                     _selectedChakra = value;
                     OnPropertyChanged();
-                    ApplyFilter();
+                    UpdateFilter();
                 }
             }
         }
 
-        public string? SelectedSpirit
+        private string _selectedSpirit = string.Empty;
+        public string SelectedSpirit
         {
             get => _selectedSpirit;
             set
@@ -38,26 +53,46 @@ namespace RitualOS.ViewModels
                 {
                     _selectedSpirit = value;
                     OnPropertyChanged();
-                    ApplyFilter();
+                    UpdateFilter();
                 }
             }
         }
 
         public RitualLibraryViewModel()
         {
-            // seed
-            ChakraFilters.Add(Chakra.Root);
-            ChakraFilters.Add(Chakra.Heart);
-            SpiritFilters.Add("Gabriel");
-            SpiritFilters.Add("Uriel");
-            // sample ritual
-            FilteredRituals.Add(new RitualEntry { Title = "Sample", Intention = "Demo" });
+            // placeholder data until wired to backend
+            ChakraFilters.Add("All");
+            ChakraFilters.Add("Root");
+            ChakraFilters.Add("Sacral");
+            ChakraFilters.Add("Solar Plexus");
+            ChakraFilters.Add("Heart");
+            ChakraFilters.Add("Throat");
+            ChakraFilters.Add("Third Eye");
+            ChakraFilters.Add("Crown");
+
+            SpiritFilters.Add("All");
+            SpiritFilters.Add("Seere");
+            SpiritFilters.Add("Balam");
+            SpiritFilters.Add("Zepar");
+            SpiritFilters.Add("Lucifer");
+
+            SelectedChakra = "All";
+            SelectedSpirit = "All";
+            UpdateFilter();
         }
 
-        private void ApplyFilter()
+        private void UpdateFilter()
         {
-            // Filtering logic placeholder
-            // Here we would refresh FilteredRituals from a data source
+            var filtered = AllRituals.Where(r =>
+                (SelectedChakra == "All" || r.AffectedChakras.Any(c => c.ToString().Replace("SolarPlexus", "Solar Plexus").Replace("ThirdEye", "Third Eye") == SelectedChakra)) &&
+                (SelectedSpirit == "All" || r.SpiritsInvoked.Contains(SelectedSpirit)))
+                .ToList();
+
+            FilteredRituals.Clear();
+            foreach (var r in filtered)
+            {
+                FilteredRituals.Add(r);
+            }
         }
     }
 }
