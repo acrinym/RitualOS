@@ -1,7 +1,9 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using RitualOS.Helpers;
 using RitualOS.Models;
+using RitualOS.Services;
 
 namespace RitualOS.ViewModels.Wizards
 {
@@ -29,6 +31,8 @@ namespace RitualOS.ViewModels.Wizards
         public ICommand NextCommand { get; }
         public ICommand PrevCommand { get; }
         public ICommand SaveCommand { get; }
+        public ICommand AddSpiritCommand { get; }
+        public ICommand AddIngredientCommand { get; }
 
         public ObservableCollection<string> Spirits { get; } = new();
         public ObservableCollection<string> Ingredients { get; } = new();
@@ -37,7 +41,9 @@ namespace RitualOS.ViewModels.Wizards
         {
             NextCommand = new RelayCommand(_ => MoveNext(), _ => Step != RitualWizardStep.Review);
             PrevCommand = new RelayCommand(_ => MovePrev(), _ => Step != RitualWizardStep.Tools);
-            SaveCommand = new RelayCommand(_ => {/* hook up persistence */});
+            SaveCommand = new RelayCommand(_ => Save());
+            AddSpiritCommand = new RelayCommand(_ => Spirits.Add(string.Empty));
+            AddIngredientCommand = new RelayCommand(_ => Ingredients.Add(string.Empty));
         }
 
         private void MoveNext()
@@ -54,6 +60,13 @@ namespace RitualOS.ViewModels.Wizards
             {
                 Step--;
             }
+        }
+
+        private void Save()
+        {
+            Ritual.SpiritsInvoked = Spirits.ToList();
+            Ritual.Ingredients = Ingredients.ToList();
+            RitualDataLoader.SaveRitualToJson(Ritual, $"{Ritual.Id}.json");
         }
     }
 }

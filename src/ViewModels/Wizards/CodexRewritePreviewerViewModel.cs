@@ -1,5 +1,8 @@
+using System.Linq;
 using System.Windows.Input;
 using RitualOS.Helpers;
+using RitualOS.Models;
+using RitualOS.Services;
 
 namespace RitualOS.ViewModels.Wizards
 {
@@ -11,6 +14,25 @@ namespace RitualOS.ViewModels.Wizards
         private string _original = string.Empty;
         private string _rewrite = string.Empty;
         private string _analysis = string.Empty;
+        private Symbol? _symbol;
+
+        public Symbol? Symbol
+        {
+            get => _symbol;
+            set
+            {
+                if (_symbol != value)
+                {
+                    _symbol = value;
+                    if (_symbol != null)
+                    {
+                        Original = _symbol.Original;
+                        Rewrite = _symbol.Rewritten;
+                    }
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public string Original
         {
@@ -55,7 +77,26 @@ namespace RitualOS.ViewModels.Wizards
 
         public CodexRewritePreviewerViewModel()
         {
-            SaveCommand = new RelayCommand(_ => {/* save codex entry */});
+            SaveCommand = new RelayCommand(_ => Save(), _ => Symbol != null);
+        }
+
+        private void Save()
+        {
+            if (Symbol == null)
+                return;
+
+            Symbol.Original = Original;
+            Symbol.Rewritten = Rewrite;
+            Symbol.RitualText = ChakraAnalysis;
+
+            var symbols = SymbolIndexService.Load();
+            var existing = symbols.FirstOrDefault(s => s.Name == Symbol.Name);
+            if (existing != null)
+            {
+                symbols.Remove(existing);
+            }
+            symbols.Add(Symbol);
+            SymbolIndexService.Save(symbols);
         }
     }
 }

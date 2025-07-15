@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using RitualOS.Services;
+using RitualOS.Models;
 using RitualOS.ViewModels;
 
 namespace RitualOS.ViewModels.Wizards
@@ -9,5 +11,14 @@ namespace RitualOS.ViewModels.Wizards
     public class ClientProfileDashboardViewModel : ViewModelBase
     {
         public ObservableCollection<ClientViewModel> Clients { get; } = new();
+
+        public ClientProfileDashboardViewModel()
+        {
+            foreach (var client in ClientProfileLoader.LoadClients("clients"))
+            {
+                var rituals = RitualDataLoader.LoadRitualsForClient("rituals", client.Id);
+                Clients.Add(new ClientViewModel(client, rituals));
+            }
+        }
     }
 }

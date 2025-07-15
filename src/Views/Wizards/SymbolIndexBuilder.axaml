@@ -8,6 +8,9 @@
         </DataTemplate>
       </ListBox.ItemTemplate>
     </ListBox>
-    <Button Content="Save" Command="{Binding SaveCommand}"/>
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Button Content="Add" Command="{Binding AddCommand}"/>
+      <Button Content="Save" Command="{Binding SaveCommand}"/>
+    </StackPanel>
   </StackPanel>
 </UserControl>
