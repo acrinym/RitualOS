@@ -81,5 +81,38 @@ namespace RitualOS.Services
 
             return results;
         }
+
+        /// <summary>
+        /// Loads all ritual entries from a directory of JSON files.
+        /// </summary>
+        /// <param name="directory">Directory containing ritual JSON files.</param>
+        /// <returns>List of all successfully loaded rituals.</returns>
+        public static List<RitualEntry> LoadAllRituals(string directory)
+        {
+            var results = new List<RitualEntry>();
+
+            if (!Directory.Exists(directory))
+            {
+                return results;
+            }
+
+            foreach (var file in Directory.GetFiles(directory, "*.json"))
+            {
+                try
+                {
+                    var ritual = LoadRitualFromJson(file);
+                    if (ritual != null)
+                    {
+                        results.Add(ritual);
+                    }
+                }
+                catch (RitualDataLoadException)
+                {
+                    // ignore invalid files
+                }
+            }
+
+            return results;
+        }
     }
 }

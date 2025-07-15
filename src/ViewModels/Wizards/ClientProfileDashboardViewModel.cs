@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using RitualOS.Services;
 using RitualOS.Models;
+using RitualOS.ViewModels;
 
 namespace RitualOS.ViewModels.Wizards
 {

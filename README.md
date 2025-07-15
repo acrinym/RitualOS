@@ -38,6 +38,7 @@ Schema references live in the `docs` folder:
 - [Inventory Schema](docs/inventory_schema.md)
 - [Client CRM Schema](docs/crm_schema.md)
 - [Dream Schema](docs/dream_schema.md)
+- [Dream Dictionary](docs/DreamDictionary/RitualOS_Dream_Dictionary.md)
 
 
 ## Pitch Deck
