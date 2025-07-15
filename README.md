@@ -11,6 +11,10 @@ inventory of magical ingredients, log dreams, and manage clients.
 - Basic client CRM for session notes and ritual history
 - Calendar timeline to review past rituals
 - Offline-first JSON storage with simple import/export
+- Ritual creation wizard for step-by-step template building
+- Symbol index editor with chakra tagging
+- Codex rewrite preview tool
+- Dashboard view for client profiles
 
 ## Project Structure
 See the `/src` folder for code and `/samples` for example JSON files.

@@ -1,0 +1,13 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StackPanel Margin="20" Spacing="8">
+    <TextBlock Text="Symbol Index Builder" FontWeight="Bold"/>
+    <ListBox ItemsSource="{Binding Symbols}" Height="100">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <TextBox Text="{Binding Name}" Width="120"/>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <Button Content="Save" Command="{Binding SaveCommand}"/>
+  </StackPanel>
+</UserControl>
