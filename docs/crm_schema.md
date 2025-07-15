@@ -17,3 +17,6 @@
   "last_updated": "yyyy-mm-dd"
 }
 ```
+
+Client records are stored as individual JSON files. They can be looked up by `id` and linked to
+rituals using the `ClientDatabase` service which manages persistence and beneficiary assignment.
