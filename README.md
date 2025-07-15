@@ -16,6 +16,7 @@ inventory of magical ingredients, log dreams, and manage clients.
 - Symbol index editor with chakra tagging
 - Codex rewrite preview tool
 - Dashboard view for client profiles
+- Embedded document viewer for common formats (PDF, Markdown, JSON, EPUB, HTML)
 
 ## Project Structure
 See the `/src` folder for code and `/samples` for example JSON files.
