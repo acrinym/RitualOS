@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StackPanel Margin="20" Spacing="8">
+    <TextBlock Text="{Binding Step}" FontWeight="Bold"/>
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <StackPanel>
+        <ListBox ItemsSource="{Binding Spirits}" Width="120" Height="80"/>
+        <Button Content="Add Spirit" Command="{Binding AddSpiritCommand}"/>
+      </StackPanel>
+      <StackPanel>
+        <ListBox ItemsSource="{Binding Ingredients}" Width="120" Height="80"/>
+        <Button Content="Add Ingredient" Command="{Binding AddIngredientCommand}"/>
+      </StackPanel>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <Button Content="Prev" Command="{Binding PrevCommand}"/>
+      <Button Content="Next" Command="{Binding NextCommand}"/>
+      <Button Content="Save" Command="{Binding SaveCommand}"/>
+    </StackPanel>
+  </StackPanel>
+</UserControl>
