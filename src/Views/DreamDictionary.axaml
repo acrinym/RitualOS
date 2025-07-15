@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels">
+    <UserControl.DataContext>
+        <vm:DreamDictionaryViewModel />
+    </UserControl.DataContext>
+
+    <DockPanel>
+        <TextBox DockPanel.Dock="Top"
+                 Margin="4"
+                 Watermark="Search dream terms..."
+                 Text="{Binding SearchText, Mode=TwoWay}" />
+
+        <TabControl>
+            <TabItem Header="{Binding SelectedEntry.Term}">
+                <ScrollViewer>
+                    <TextBlock Text="{Binding SelectedEntry.Content}"
+                               TextWrapping="Wrap"
+                               Margin="10" />
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <ListBox ItemsSource="{Binding FilteredEntries}"
+                 SelectedItem="{Binding SelectedEntry}"
+                 Width="200"
+                 DockPanel.Dock="Left"
+                 Margin="4">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <TextBlock Text="{Binding Emoji}" />
+                        <TextBlock Text="{Binding Term}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>
