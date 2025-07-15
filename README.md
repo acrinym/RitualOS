@@ -9,6 +9,7 @@ inventory of magical ingredients, log dreams, and manage clients.
 - Inventory tracking with expiration and reorder alerts
 - Dream journal with symbolic tagging
 - Basic client CRM for session notes and ritual history
+- File-backed **ClientDatabase** service for storing and searching clients
 - Calendar timeline to review past rituals
 - Offline-first JSON storage with simple import/export
 
