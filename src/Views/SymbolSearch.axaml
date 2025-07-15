@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels">
+    <UserControl.DataContext>
+        <vm:SymbolSearchViewModel />
+    </UserControl.DataContext>
+
+    <StackPanel Margin="12">
+        <TextBox Watermark="Enter symbol keyword..." 
+                 Text="{Binding SearchText, Mode=TwoWay}" />
+
+        <ListBox ItemsSource="{Binding SearchResults}" 
+                 SelectedItem="{Binding SelectedResult}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <TextBlock Text="{Binding SelectedResult.Description}" TextWrapping="Wrap" Margin="10"/>
+        <Button Content="Generate Ritual" Command="{Binding GenerateRitualCommand}" />
+    </StackPanel>
+</UserControl>
