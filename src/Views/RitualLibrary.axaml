@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels">
+    <UserControl.DataContext>
+        <vm:RitualLibraryViewModel />
+    </UserControl.DataContext>
+
+    <StackPanel Margin="10" Spacing="6">
+        <ComboBox ItemsSource="{Binding ChakraFilters}" 
+                  SelectedItem="{Binding SelectedChakra}" />
+        <ComboBox ItemsSource="{Binding SpiritFilters}" 
+                  SelectedItem="{Binding SelectedSpirit}" />
+
+        <ListBox ItemsSource="{Binding FilteredRituals}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Intention}" FontStyle="Italic" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</UserControl>

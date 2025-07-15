@@ -18,7 +18,7 @@
           <DataTemplate>
             <StackPanel>
               <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
-              <ItemsControl Items="{Binding AffectedChakras}">
+              <ItemsControl ItemsSource="{Binding AffectedChakras}">
                 <ItemsControl.ItemTemplate>
                   <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource ChakraToEmoji}}"/>

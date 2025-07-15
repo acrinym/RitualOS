@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:RitualOS.Converters"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels">
+    <UserControl.DataContext>
+        <vm:SymbolViewerViewModel />
+    </UserControl.DataContext>
+
+    <DockPanel>
+        <TextBox Watermark="Filter symbols..." 
+                 DockPanel.Dock="Top" 
+                 Margin="4"
+                 Text="{Binding SearchText, Mode=TwoWay}" />
+
+        <TabControl>
+            <TabItem Header="Original">
+                <TextBlock Text="{Binding SelectedSymbol.Original}" TextWrapping="Wrap" Margin="10"/>
+            </TabItem>
+            <TabItem Header="Rewritten">
+                <TextBlock Text="{Binding SelectedSymbol.Rewritten}" TextWrapping="Wrap" Margin="10"/>
+            </TabItem>
+            <TabItem Header="Ritual Suggestion">
+                <TextBlock Text="{Binding SelectedSymbol.RitualText}" TextWrapping="Wrap" Margin="10"/>
+            </TabItem>
+        </TabControl>
+
+        <ListBox ItemsSource="{Binding FilteredSymbols}" 
+                 SelectedItem="{Binding SelectedSymbol}" 
+                 DockPanel.Dock="Left"
+                 Width="200"
+                 Margin="4">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>
