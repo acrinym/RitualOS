@@ -1,0 +1,9 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StackPanel Margin="20" Spacing="6">
+    <TextBlock Text="Codex Rewrite Preview" FontWeight="Bold"/>
+    <TextBox Text="{Binding Original}" AcceptsReturn="True" Watermark="Original" Height="80"/>
+    <TextBox Text="{Binding Rewrite}" AcceptsReturn="True" Watermark="Rewrite" Height="80"/>
+    <TextBox Text="{Binding ChakraAnalysis}" AcceptsReturn="True" Watermark="Chakra Analysis" Height="60"/>
+    <Button Content="Save" Command="{Binding SaveCommand}"/>
+  </StackPanel>
+</UserControl>

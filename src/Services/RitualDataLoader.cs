@@ -60,6 +60,7 @@ namespace RitualOS.Services
 
             if (!Directory.Exists(directory))
             {
+                Directory.CreateDirectory(directory);
                 return results;
             }
 
