@@ -25,6 +25,22 @@ RitualOS supports multiple visual themes to match different aesthetics:
 - **Parchment** for a premium, old-world feel
 
 ## Project Structure
+Key folders you will find in RitualOS:
+
+```
+/rituals/         -> JSON ritual templates
+/codex/           -> Markdown + rewritten entries
+/themes/          -> ThemeResource.xaml, colors
+/viewmodels/      -> Builder, SymbolViewer, Theme
+/components/      -> UI Elements (modular)
+/services/        -> ThemeLoader, TemplateSaver, SigilLock
+/assets/          -> Images, icons, elemental symbols
+/settings/        -> user preferences
+/plugins/         -> rewrite engine modules
+/logs/            -> Application logs
+/docs/user_guide/ -> User manual and quick-start guide
+```
+Example ritual files are stored using the pattern `ritual_<timestamp>.json`.
 See the `/src` folder for code and `/samples` for example JSON files.
 
 ## Building and Running
