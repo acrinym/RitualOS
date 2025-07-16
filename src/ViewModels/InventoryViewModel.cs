@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -90,9 +91,17 @@ namespace RitualOS.ViewModels
 
         private void AddItem()
         {
-            var newItem = new InventoryItem { Name = "New Item", Category = "Herb", Quantity = 1, StorageLocation = "" };
+            var newItem = new InventoryItem 
+            { 
+                Name = $"New Item {Items.Count + 1}", 
+                Category = "Herb", 
+                Quantity = 1, 
+                StorageLocation = "",
+                ChakraTags = new List<Chakra>()
+            };
             Items.Add(newItem);
             SelectedItem = newItem;
+            Message = "New item added. Edit the details and click Save.";
         }
 
         private void SaveItem()

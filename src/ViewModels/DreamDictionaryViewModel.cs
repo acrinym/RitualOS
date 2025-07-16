@@ -47,7 +47,7 @@ namespace RitualOS.ViewModels
 
         public DreamDictionaryViewModel()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "docs", "DreamDictionary", "RitualOS_Dream_Dictionary.md");
+            var path = Path.Combine("docs", "DreamDictionary", "RitualOS_Dream_Dictionary.md");
             foreach (var entry in DreamDictionaryLoader.LoadFromMarkdown(path))
             {
                 _allEntries.Add(entry);

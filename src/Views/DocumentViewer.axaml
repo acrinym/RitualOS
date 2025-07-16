@@ -7,10 +7,17 @@
     </UserControl.DataContext>
 
     <DockPanel>
-        <TextBox DockPanel.Dock="Top"
-                 Margin="4"
-                 Watermark="Enter path to document..."
-                 Text="{Binding DocumentPath, Mode=TwoWay}" />
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="4">
+            <TextBox Width="300"
+                     Margin="0,0,4,0"
+                     Watermark="Enter path to document..."
+                     Text="{Binding DocumentPath, Mode=TwoWay}" />
+            <Button Content="Browse..." 
+                    Command="{Binding BrowseCommand}" />
+            <Button Content="Load" 
+                    Command="{Binding LoadDocumentCommand}" 
+                    Margin="4,0,0,0" />
+        </StackPanel>
 
         <ScrollViewer>
             <TextBlock Text="{Binding DocumentContent}"

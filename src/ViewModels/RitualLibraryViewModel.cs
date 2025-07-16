@@ -65,7 +65,7 @@ namespace RitualOS.ViewModels
         public RitualLibraryViewModel()
         {
             // Load rituals from disk using the data loader 😄
-            var dataDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "samples");
+            var dataDir = Path.Combine("samples");
             foreach (var ritual in RitualDataLoader.LoadAllRituals(dataDir))
             {
                 AllRituals.Add(ritual);

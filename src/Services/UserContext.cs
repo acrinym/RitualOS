@@ -8,6 +8,6 @@ namespace RitualOS.Services
     /// </summary>
     public static class UserContext
     {
-        public static Role CurrentRole { get; set; } = Role.Ritualist;
+        public static Role CurrentRole { get; set; } = Role.Admin;
     }
 }

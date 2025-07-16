@@ -1,6 +1,11 @@
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using Avalonia.Controls;
+using Avalonia.Platform.Storage;
 using RitualOS.Models;
 using RitualOS.Services;
+using RitualOS.Helpers;
 
 namespace RitualOS.ViewModels
 {
@@ -12,6 +17,12 @@ namespace RitualOS.ViewModels
         private string _documentPath = string.Empty;
         private string _documentContent = "Select a document.";
 
+        public DocumentViewerViewModel()
+        {
+            BrowseCommand = new RelayCommand(async (param) => await BrowseForFile());
+            LoadDocumentCommand = new RelayCommand((param) => LoadDocument());
+        }
+
         public string DocumentPath
         {
             get => _documentPath;
@@ -21,7 +32,6 @@ namespace RitualOS.ViewModels
                 {
                     _documentPath = value;
                     OnPropertyChanged();
-                    LoadDocument();
                 }
             }
         }
@@ -36,6 +46,36 @@ namespace RitualOS.ViewModels
                     _documentContent = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        public RelayCommand BrowseCommand { get; }
+        public RelayCommand LoadDocumentCommand { get; }
+
+        private async Task BrowseForFile()
+        {
+            var options = new FilePickerOpenOptions
+            {
+                Title = "Select Document",
+                AllowMultiple = false,
+                FileTypeFilter = new List<FilePickerFileType>
+                {
+                    new FilePickerFileType("All Files") { Patterns = new[] { "*" } },
+                    new FilePickerFileType("Text Files") { Patterns = new[] { "*.txt", "*.md" } },
+                    new FilePickerFileType("PDF Files") { Patterns = new[] { "*.pdf" } }
+                }
+            };
+
+            Window? mainWindow = null;
+            if (Avalonia.Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                mainWindow = desktop.MainWindow;
+            }
+
+            var result = await TopLevel.GetTopLevel(mainWindow)?.StorageProvider.OpenFilePickerAsync(options);
+            if (result != null && result.Count > 0)
+            {
+                DocumentPath = result[0].Path.LocalPath;
             }
         }
 

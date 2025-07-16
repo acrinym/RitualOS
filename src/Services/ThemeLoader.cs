@@ -1,6 +1,7 @@
 using System;
 using Avalonia;
 using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Themes.Fluent;
 
 namespace RitualOS.Services
 {
@@ -9,17 +10,28 @@ namespace RitualOS.Services
     /// </summary>
     public class ThemeLoader
     {
+        private StyleInclude? _currentTheme;
+
         /// <summary>
-        /// Clears existing styles and loads the given theme file.
+        /// Clears existing theme styles and loads the given theme file.
         /// </summary>
         /// <param name="themeFile">Name of the theme XAML file.</param>
         public void ApplyTheme(string themeFile)
         {
-            var uri = new Uri($"avares://RitualOS/Styles/Themes/{themeFile}");
-            var rd = new StyleInclude(uri) { Source = uri };
+            if (Application.Current == null) return;
 
-            Application.Current?.Styles.Clear();
-            Application.Current?.Styles.Add(rd);
+            var uri = new Uri($"avares://RitualOS/Styles/Themes/{themeFile}");
+            var newTheme = new StyleInclude(uri) { Source = uri };
+
+            // Remove the current theme if it exists
+            if (_currentTheme != null)
+            {
+                Application.Current.Styles.Remove(_currentTheme);
+            }
+
+            // Add the new theme
+            Application.Current.Styles.Add(newTheme);
+            _currentTheme = newTheme;
         }
     }
 }

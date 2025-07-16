@@ -1,5 +1,5 @@
 {
-  "CodexRewrite": ["Technomage", "Guide"],
+  "CodexRewrite": ["Technomage", "Guide", "Admin"],
   "RitualBuilder": ["Ritualist", "Technomage", "Guide", "Admin", "Adept"],
   "AppAccess": ["Adept", "Ritualist", "Dreamworker", "Technomage", "Guide", "Admin"]
 }

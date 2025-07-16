@@ -49,13 +49,17 @@
         <DockPanel Grid.Column="0" Margin="10">
             <StackPanel DockPanel.Dock="Top" Margin="10" Spacing="10">
                 <TextBlock Text="Inventory Management" FontWeight="Bold" FontSize="16"/>
-                <Button Content="Add Item" Command="{Binding AddItemCommand}"/>
+                <Button Content="➕ Add New Item" Command="{Binding AddItemCommand}" FontWeight="Bold"/>
                 <TextBlock Text="{Binding Message}" Foreground="{Binding Message, Converter={StaticResource MessageColorConverter}}" Margin="10"/>
             </StackPanel>
-            <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" DockPanel.Dock="Left" Width="200" Background="#2A1B3D">
+            <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" DockPanel.Dock="Left" Width="250" Background="#2A1B3D">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}" FontWeight="{Binding Quantity, Converter={StaticResource LowQuantityConverter}}"/>
+                        <StackPanel Margin="5" Spacing="2">
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="12"/>
+                            <TextBlock Text="{Binding Category}" FontSize="10" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Quantity, StringFormat='Qty: {0}'}" FontSize="10" Opacity="0.7"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
