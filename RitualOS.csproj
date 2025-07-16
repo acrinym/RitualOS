@@ -3,8 +3,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWindowsForms>false</UseWindowsForms>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,14 +10,16 @@
     <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
+    
     <PackageReference Include="Avalonia.Headless" Version="11.0.10" />
     <PackageReference Include="Markdig" Version="0.37.0" />
-    <PackageReference Include="UglyToad.PdfPig" Version="0.1.8" />
+    <!-- Use Docnet.Core for PDF text extraction -->
+    <PackageReference Include="Docnet.Core" Version="2.6.0" />
     <PackageReference Include="VersOne.Epub" Version="3.3.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.62" />
-    <PackageReference Include="sumy" Version="0.11.0" />
   </ItemGroup>
-  
+ 
   <ItemGroup>
     <AvaloniaXaml Include="src\App.axaml" />
     <AvaloniaXaml Include="src\Views\ChakraSelector.axaml" />
@@ -111,3 +111,4 @@
     <Compile Include="src\Views\Wizards\RitualTemplateBuilder.axaml.cs" />
   </ItemGroup>
 </Project>
+

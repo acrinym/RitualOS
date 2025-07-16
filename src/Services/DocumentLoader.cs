@@ -4,7 +4,9 @@ using System.Text;
 using System.Text.Json;
 using HtmlAgilityPack;
 using Markdig;
-using UglyToad.PdfPig;
+using Docnet.Core;
+using Docnet.Core.Models;
+using Docnet.Core.Readers;
 using VersOne.Epub;
 using RitualOS.Models;
 
@@ -61,11 +63,18 @@ namespace RitualOS.Services
             try
             {
                 var sb = new StringBuilder();
-                using var pdf = PdfDocument.Open(filePath);
-                foreach (var page in pdf.GetPages())
+
+                // Docnet requires a singleton library instance
+                var library = DocLib.Instance;
+
+                using var docReader = library.GetDocReader(filePath, new PageDimensions(1080, 1920));
+                var pageCount = docReader.GetPageCount();
+                for (var i = 0; i < pageCount; i++)
                 {
-                    sb.AppendLine(page.Text);
+                    using var page = docReader.GetPageReader(i);
+                    sb.AppendLine(page.GetText());
                 }
+
                 return sb.ToString();
             }
             catch (Exception ex)
