@@ -60,24 +60,7 @@
     <Compile Include="src\ViewModels\Wizards\RitualTemplateBuilderViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\SymbolIndexBuilderViewModel.cs" />
     <Compile Include="src\Views\ChakraSelector.axaml.cs" />
+    <Compile Include="src\Views\InventoryView.axaml.cs" />
     <Compile Include="src\Program.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <AvaloniaResource Include="src\Views\Wizards\ClientProfileDashboard.axaml" />
-    <AvaloniaResource Include="src\Views\Wizards\CodexRewritePreviewer.axaml" />
-    <AvaloniaResource Include="src\Views\Wizards\RitualTemplateBuilder.axaml" />
-    <AvaloniaResource Include="src\Views\Wizards\SymbolIndexBuilder.axaml" />
-    <AvaloniaResource Include="src\Views\ChakraSelector.axaml" />
-    <AvaloniaResource Include="src\Views\ClientDetailView.axaml" />
-    <AvaloniaResource Include="src\Views\CodexSymbolViewer.axaml" />
-    <AvaloniaResource Include="src\Views\DocumentViewer.axaml" />
-    <AvaloniaResource Include="src\Views\DreamDictionary.axaml" />
-    <AvaloniaResource Include="src\Views\DreamEntryView.axaml" />
-    <AvaloniaResource Include="src\Views\InventoryView.axaml" />
-    <AvaloniaResource Include="src\Views\RitualDetailView.axaml" />
-    <AvaloniaResource Include="src\Views\RitualEditor.axaml" />
-    <AvaloniaResource Include="src\Views\RitualLibrary.axaml" />
-    <AvaloniaResource Include="src\Views\SymbolSearch.axaml" />
-    <AvaloniaResource Include="src\Views\ThemeSwitcher.axaml" />
   </ItemGroup>
 </Project>
