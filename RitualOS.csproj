@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AvaloniaXaml Include="src\**\*.axaml" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.0" />
     <PackageReference Include="Avalonia.Desktop" Version="11.0.0" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0" />
@@ -18,13 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaXaml Include="src\**\*.axaml" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="src\App.axaml.cs" />
-    <Compile Include="src\Program.cs" />
-    
     <Compile Include="src\Converters\ChakraCheckConverter.cs" />
     <Compile Include="src\Converters\ChakraToEmojiConverter.cs" />
     <Compile Include="src\Converters\LowQuantityConverter.cs" />
