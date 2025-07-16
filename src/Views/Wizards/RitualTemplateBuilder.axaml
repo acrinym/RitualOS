@@ -1,45 +1,274 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:views="clr-namespace:RitualOS.Views">
+             xmlns:vm="clr-namespace:RitualOS.ViewModels.Wizards"
+             xmlns:views="clr-namespace:RitualOS.Views"
+             xmlns:conv="clr-namespace:RitualOS.Converters"
+             x:Class="RitualOS.Views.Wizards.RitualTemplateBuilder">
+    
+    <UserControl.DataContext>
+        <vm:RitualTemplateBuilderViewModel />
+    </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
+        <conv:ElementToEmojiConverter x:Key="ElementToEmoji" />
+    </UserControl.Resources>
+    
+    <UserControl.Styles>
+        <Style Selector="TextBox.error">
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style Selector="TextBlock.error">
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style Selector="Button.toolbar">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style Selector="ListBox.steps">
+            <Setter Property="Background" Value="#2A1B3D"/>
+            <Setter Property="BorderBrush" Value="#4A3F5E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style Selector="ListBoxItem.step">
+            <Setter Property="Background" Value="#3A2B4D"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style Selector="ListBoxItem.step:selected">
+            <Setter Property="Background" Value="#5A4F6E"/>
+        </Style>
+    </UserControl.Styles>
+    
     <Grid ColumnDefinitions="2*,*" RowDefinitions="Auto,*" Margin="10">
-        <StackPanel Grid.Column="0" Spacing="6" IsEnabled="{Binding CanEdit}">
-            <TextBlock Text="Ritual Template" FontSize="18" FontWeight="Bold"/>
-            <TextBox Watermark="Name" Text="{Binding Template.Name}"/>
-            <TextBox Watermark="Intention" Text="{Binding Template.Intention}" AcceptsReturn="True" Height="60"/>
-            
-            <TextBlock Text="Spirits" FontWeight="Bold"/>
-            <ListBox ItemsSource="{Binding Spirits}" Height="80"/>
-            <Button Content="Add Spirit" Command="{Binding AddSpiritCommand}"/>
-            
-            <TextBlock Text="Tools" FontWeight="Bold" Margin="0,10,0,0"/>
-            <ListBox ItemsSource="{Binding Tools}" Height="80"/>
-            <Button Content="Add Tool" Command="{Binding AddToolCommand}"/>
-            
-            <TextBlock Text="Chakras" FontWeight="Bold" Margin="0,10,0,0"/>
-            <ListBox ItemsSource="{Binding Chakras}" Height="80"/>
-            <Button Content="Add Chakra" Command="{Binding AddChakraCommand}"/>
-            
-            <TextBlock Text="Elements" FontWeight="Bold" Margin="0,10,0,0"/>
-            <views:ElementSelector />
-            
-            <TextBlock Text="Steps" FontWeight="Bold" Margin="0,10,0,0"/>
-            <ListBox ItemsSource="{Binding Steps}" Height="80"/>
-            <Button Content="Add Step" Command="{Binding AddStepCommand}"/>
-            
-            <ComboBox ItemsSource="{Binding MoonPhases}" SelectedItem="{Binding Template.MoonPhase}" Margin="0,10,0,0"/>
-            <TextBox Watermark="Outcome" Text="{Binding Template.OutcomeField}"/>
-            <TextBox Watermark="Notes" Text="{Binding Template.Notes}" AcceptsReturn="True" Height="60"/>
-            
-            <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,10,0,0">
-                <Button Content="Prev" Command="{Binding PrevCommand}"/>
-                <Button Content="Next" Command="{Binding NextCommand}"/>
-                <Button Content="Save" Command="{Binding SaveCommand}"/>
-                <Button Content="Load" Command="{Binding LoadCommand}"/>
-            </StackPanel>
+        
+        <!-- Toolbar -->
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,10" Spacing="5">
+            <Button Content="💾 Save Template" Command="{Binding SaveTemplateCommand}" Classes="toolbar"/>
+            <Button Content="📂 Load Template" Command="{Binding LoadTemplateCommand}" Classes="toolbar"/>
+            <Button Content="🗑️ Clear" Command="{Binding ClearTemplateCommand}" Classes="toolbar"/>
+            <Separator/>
+            <ToggleButton IsChecked="{Binding ShowRawMarkdown}" Classes="toolbar">
+                <ToggleButton.Content>
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <TextBlock Text="📄"/>
+                        <TextBlock Text="Raw Markdown"/>
+                    </StackPanel>
+                </ToggleButton.Content>
+            </ToggleButton>
         </StackPanel>
-
-        <ScrollViewer Grid.Column="1" Margin="10">
-            <TextBox Text="{Binding Preview}" AcceptsReturn="True" IsReadOnly="True"/>
+        
+        <!-- Left Panel: Ritual Form -->
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,0,5,0">
+            <StackPanel Spacing="10" IsEnabled="{Binding CanEdit}">
+                
+                <!-- Basic Information -->
+                <Border Background="#2A1B3D" CornerRadius="8" Padding="15">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="🔮 Ritual Template" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                        
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Name *" FontWeight="Bold"/>
+                            <TextBox Watermark="Enter ritual name..." 
+                                     Text="{Binding Template.Name}" 
+                                     Classes="{Binding HasErrors, Converter={x:Static BoolConverters.Not}, StringFormat='{0}'}"/>
+                            <TextBlock Text="Name is required" 
+                                       Classes="error" 
+                                       IsVisible="{Binding HasErrors}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Intention *" FontWeight="Bold"/>
+                            <TextBox Watermark="Describe the ritual's purpose..." 
+                                     Text="{Binding Template.Intention}" 
+                                     AcceptsReturn="True" 
+                                     Height="60"
+                                     Classes="{Binding HasErrors, Converter={x:Static BoolConverters.Not}, StringFormat='{0}'}"/>
+                            <TextBlock Text="Intention is required" 
+                                       Classes="error" 
+                                       IsVisible="{Binding HasErrors}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Tools Section -->
+                <Border Background="#2A1B3D" CornerRadius="8" Padding="15">
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="🛠️ Tools" FontWeight="Bold"/>
+                            <Button Content="+" Command="{Binding AddToolCommand}" Width="24" Height="24"/>
+                        </StackPanel>
+                        
+                        <ListBox ItemsSource="{Binding Tools}" Height="100" Background="#1E1B2E">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBox Text="{Binding}" Grid.Column="0" Margin="2"/>
+                                        <Button Content="×" Grid.Column="1" Width="24" Height="24" 
+                                                Command="{Binding DataContext.RemoveToolCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                CommandParameter="{Binding}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Spirits Section -->
+                <Border Background="#2A1B3D" CornerRadius="8" Padding="15">
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="👻 Spirits Invoked" FontWeight="Bold"/>
+                            <Button Content="+" Command="{Binding AddSpiritCommand}" Width="24" Height="24"/>
+                        </StackPanel>
+                        
+                        <ListBox ItemsSource="{Binding SpiritsInvoked}" Height="100" Background="#1E1B2E">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBox Text="{Binding}" Grid.Column="0" Margin="2"/>
+                                        <Button Content="×" Grid.Column="1" Width="24" Height="24" 
+                                                Command="{Binding DataContext.RemoveSpiritCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                CommandParameter="{Binding}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Chakras Section -->
+                <Border Background="#2A1B3D" CornerRadius="8" Padding="15">
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="🌀 Chakras Affected" FontWeight="Bold"/>
+                            <Button Content="+" Command="{Binding AddChakraCommand}" Width="24" Height="24"/>
+                        </StackPanel>
+                        
+                        <ListBox ItemsSource="{Binding ChakrasAffected}" Height="100" Background="#1E1B2E">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <ComboBox ItemsSource="{Binding DataContext.ChakraOptions, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                  SelectedItem="{Binding}" Grid.Column="0" Margin="2"/>
+                                        <Button Content="×" Grid.Column="1" Width="24" Height="24" 
+                                                Command="{Binding DataContext.RemoveChakraCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                CommandParameter="{Binding}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Elements Section -->
+                <Border Background="#2A1B3D" CornerRadius="8" Padding="15">
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="🌪️ Elements Aligned" FontWeight="Bold"/>
+                            <Button Content="+" Command="{Binding AddElementCommand}" Width="24" Height="24"/>
+                        </StackPanel>
+                        
+                        <ListBox ItemsSource="{Binding ElementsAligned}" Height="100" Background="#1E1B2E">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <ComboBox ItemsSource="{Binding DataContext.ElementOptions, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                  SelectedItem="{Binding}" Grid.Column="0" Margin="2"/>
+                                        <Button Content="×" Grid.Column="1" Width="24" Height="24" 
+                                                Command="{Binding DataContext.RemoveElementCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                CommandParameter="{Binding}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Moon Phase -->
+                <Border Background="#2A1B3D" CornerRadius="8" Padding="15">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="🌙 Moon Phase" FontWeight="Bold"/>
+                        <ComboBox ItemsSource="{Binding MoonPhaseOptions}" 
+                                  SelectedItem="{Binding Template.MoonPhase}" 
+                                  Watermark="Select moon phase..."/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Ritual Steps -->
+                <Border Background="#2A1B3D" CornerRadius="8" Padding="15">
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="📜 Ritual Steps *" FontWeight="Bold"/>
+                            <Button Content="+" Command="{Binding AddStepCommand}" Width="24" Height="24"/>
+                        </StackPanel>
+                        
+                        <TextBlock Text="At least one step is required" 
+                                   Classes="error" 
+                                   IsVisible="{Binding HasErrors}"/>
+                        
+                        <ListBox ItemsSource="{Binding RitualSteps}" 
+                                 SelectedIndex="{Binding SelectedStepIndex}"
+                                 Height="200" 
+                                 Classes="steps">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+                                        <TextBlock Text="{Binding DataContext.SelectedStepIndex, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat='{0}'}" 
+                                                   Grid.Column="0" 
+                                                   VerticalAlignment="Center" 
+                                                   Margin="0,0,8,0" 
+                                                   FontWeight="Bold"/>
+                                        <TextBox Text="{Binding}" Grid.Column="1" Margin="2"/>
+                                        <Button Content="↑" Grid.Column="2" Width="24" Height="24" 
+                                                Command="{Binding DataContext.MoveStepUpCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                        <Button Content="↓" Grid.Column="3" Width="24" Height="24" 
+                                                Command="{Binding DataContext.MoveStepDownCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                        <Button Content="×" Grid.Column="4" Width="24" Height="24" 
+                                                Command="{Binding DataContext.RemoveStepCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Outcome & Notes -->
+                <Border Background="#2A1B3D" CornerRadius="8" Padding="15">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="🎯 Expected Outcome" FontWeight="Bold"/>
+                        <TextBox Watermark="What should this ritual achieve?" 
+                                 Text="{Binding Template.OutcomeField}" 
+                                 AcceptsReturn="True" 
+                                 Height="60"/>
+                        
+                        <TextBlock Text="📝 Notes" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBox Watermark="Additional notes and observations..." 
+                                 Text="{Binding Template.Notes}" 
+                                 AcceptsReturn="True" 
+                                 Height="80"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </ScrollViewer>
+        
+        <!-- Right Panel: Preview -->
+        <Border Grid.Column="1" Grid.Row="1" Background="#2A1B3D" CornerRadius="8" Margin="5,0,0,0">
+            <StackPanel Margin="15">
+                <TextBlock Text="👁️ Preview" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <TextBox Text="{Binding Preview}" 
+                             AcceptsReturn="True" 
+                             IsReadOnly="True" 
+                             Background="#1E1B2E"
+                             FontFamily="Consolas, Courier New, monospace"
+                             FontSize="12"/>
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
