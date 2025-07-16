@@ -18,6 +18,10 @@ namespace RitualOS.Models
 
         public string Id { get; set; }
         public string Name { get; set; }
+        /// <summary>
+        /// Role determines which features the client can access.
+        /// Possible values: Apprentice, Adept, Ritualist, Dreamworker, Technomage, Guide, Admin.
+        /// </summary>
         public Role Role { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }

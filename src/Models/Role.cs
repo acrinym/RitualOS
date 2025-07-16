@@ -5,9 +5,12 @@ namespace RitualOS.Models
     /// </summary>
     public enum Role
     {
+        Apprentice,
+        Adept,
         Ritualist,
         Dreamworker,
         Technomage,
-        Guide
+        Guide,
+        Admin
     }
 }
