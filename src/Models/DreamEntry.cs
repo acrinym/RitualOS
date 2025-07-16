@@ -14,7 +14,7 @@ namespace RitualOS.Models
         }
 
         public string Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTimeOffset Date { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public List<string> Symbols { get; set; } = new();

@@ -29,7 +29,7 @@ namespace RitualOS.ViewModels
                     if (_selectedItem != null)
                     {
                         SelectedChakras.Clear();
-                        foreach (var chakra in _selectedItem.AssociatedChakras)
+                        foreach (var chakra in _selectedItem.ChakraTags)
                         {
                             SelectedChakras.Add(chakra);
                         }
@@ -71,7 +71,7 @@ namespace RitualOS.ViewModels
                         Message = $"Low quantity for {item.Name} ({item.Quantity} left)."
                     });
                 }
-                if (item.ExpirationDate.HasValue && item.ExpirationDate.Value < DateTime.Now)
+                if (item.ExpirationDate.HasValue && item.ExpirationDate.Value < DateTimeOffset.Now)
                 {
                     Alerts.Add(new InventoryAlert
                     {
@@ -105,7 +105,7 @@ namespace RitualOS.ViewModels
 
             try
             {
-                SelectedItem.AssociatedChakras = SelectedChakras.ToList();
+                SelectedItem.ChakraTags = SelectedChakras.ToList();
                 InventoryDataLoader.SaveItemToJson(SelectedItem, $"inventory/{SelectedItem.Name}.json");
                 Message = $"Item '{SelectedItem.Name}' saved successfully!";
                 UpdateAlerts();
@@ -159,7 +159,7 @@ namespace RitualOS.ViewModels
                         Message = $"Low quantity for {item.Name} ({item.Quantity} left)."
                     });
                 }
-                if (item.ExpirationDate.HasValue && item.ExpirationDate.Value < DateTime.Now)
+                if (item.ExpirationDate.HasValue && item.ExpirationDate.Value < DateTimeOffset.Now)
                 {
                     Alerts.Add(new InventoryAlert
                     {
