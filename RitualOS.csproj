@@ -24,6 +24,7 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Converters\ChakraCheckConverter.cs" />
     <Compile Include="src\Converters\ChakraToEmojiConverter.cs" />
+    <Compile Include="src\Converters\ElementToEmojiConverter.cs" />
     <Compile Include="src\Converters\ElementCheckConverter.cs" />
     <Compile Include="src\Converters\LowQuantityConverter.cs" />
     <Compile Include="src\Converters\MessageColorConverter.cs" />
