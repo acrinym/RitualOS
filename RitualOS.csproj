@@ -7,18 +7,37 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.0" />
-    <PackageReference Include="Avalonia.Controls" Version="11.0.0" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.0" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\StringListConverter.cs" />
-    <Compile Include="Converters\MessageColorConverter.cs" />
-    <Compile Include="Converters\ChakraCheckConverter.cs" />
-    <Compile Include="Converters\LowQuantityConverter.cs" />
-    <Compile Include="Services\DreamDataLoader.cs" />
-    <Compile Include="Services\InventoryDataLoader.cs" />
-    <Compile Include="ViewModels\DreamEntryViewModel.cs" />
-    <Compile Include="ViewModels\InventoryViewModel.cs" />
-    <Compile Include="Views\DreamEntryView.axaml" />
-    <Compile Include="Views\InventoryView.axaml" />
+    <Compile Include="src\Converters\StringListConverter.cs" />
+    <Compile Include="src\Converters\MessageColorConverter.cs" />
+    <Compile Include="src\Converters\ChakraCheckConverter.cs" />
+    <Compile Include="src\Converters\LowQuantityConverter.cs" />
+    <Compile Include="src\Services\DreamDataLoader.cs" />
+    <Compile Include="src\Services\InventoryDataLoader.cs" />
+    <Compile Include="src\ViewModels\DreamEntryViewModel.cs" />
+    <Compile Include="src\ViewModels\InventoryViewModel.cs" />
+    <Compile Include="src\Converters\ChakraToEmojiConverter.cs" />
+    <Compile Include="src\Helpers\ChakraHelper.cs" />
+    <Compile Include="src\Models\Chakra.cs" />
+    <Compile Include="src\Models\ClientProfile.cs" />
+    <Compile Include="src\Models\DreamEntry.cs" />
+    <Compile Include="src\Models\IngredientItem.cs" />
+    <Compile Include="src\Models\InteractionLogEntry.cs" />
+    <Compile Include="src\Models\InventoryItem.cs" />
+    <Compile Include="src\Models\RitualEntry.cs" />
+    <Compile Include="src\Services\RitualDataLoader.cs" />
+    <Compile Include="src\Services\RitualDataLoadException.cs" />
+    <Compile Include="src\ViewModels\ClientViewModel.cs" />
+    <Compile Include="src\Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="src\Views\DreamEntryView.axaml" />
+    <AvaloniaResource Include="src\Views\InventoryView.axaml" />
+    <AvaloniaResource Include="src\Views\ChakraSelector.axaml" />
+    <AvaloniaResource Include="src\Views\ClientDetailView.axaml" />
+    <AvaloniaResource Include="src\Views\RitualEditor.axaml" />
   </ItemGroup>
 </Project>
