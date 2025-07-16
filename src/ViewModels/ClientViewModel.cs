@@ -9,7 +9,7 @@ namespace RitualOS.ViewModels
     /// <summary>
     /// View model representing a client profile and their ritual history.
     /// </summary>
-    public class ClientViewModel
+    public class ClientViewModel : ViewModelBase
     {
         public ClientProfile Client { get; }
         public ObservableCollection<RitualEntry> Rituals { get; }

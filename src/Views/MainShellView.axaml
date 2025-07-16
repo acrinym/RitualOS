@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels"
+             xmlns:views="clr-namespace:RitualOS.Views"
+             x:Class="RitualOS.Views.MainShellView">
+    <UserControl.DataContext>
+        <vm:MainShellViewModel />
+    </UserControl.DataContext>
+    <UserControl.Styles>
+        <Style Selector="TabControl">
+            <Setter Property="Background" Value="#1E1B2E"/> <!-- Deep indigo -->
+        </Style>
+        <Style Selector="TabItem">
+            <Setter Property="Background" Value="#2A1B3D"/> <!-- Moonlit indigo -->
+            <Setter Property="Foreground" Value="#C0C0C0"/> <!-- Silver -->
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style Selector="TabItem:selected">
+            <Setter Property="Background" Value="#4A3F5E"/> <!-- Lighter indigo for selected -->
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#C0C0C0"/> <!-- Silver -->
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#4A3F5E"/> <!-- Button indigo -->
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="8"/>
+        </Style>
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#6B5B95"/> <!-- Hover glow -->
+        </Style>
+    </UserControl.Styles>
+    
+    <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+        <TabItem Header="Inventory">
+            <views:InventoryView DataContext="{Binding InventoryViewModel}"/>
+        </TabItem>
+        <TabItem Header="Dream Dictionary">
+            <views:DreamDictionary DataContext="{Binding DreamDictionaryViewModel}"/>
+        </TabItem>
+        <TabItem Header="Ritual Library">
+            <views:RitualLibrary DataContext="{Binding RitualLibraryViewModel}"/>
+        </TabItem>
+        <TabItem Header="Clients">
+            <views:ClientDetailView DataContext="{Binding ClientViewModel}"/>
+        </TabItem>
+        <TabItem Header="Symbol Search">
+            <views:SymbolSearch DataContext="{Binding SymbolSearchViewModel}"/>
+        </TabItem>
+        <TabItem Header="Documents">
+            <views:DocumentViewer DataContext="{Binding DocumentViewerViewModel}"/>
+        </TabItem>
+        <TabItem Header="Ritual Timeline">
+            <views:RitualTimeline DataContext="{Binding RitualTimelineViewModel}"/>
+        </TabItem>
+        <TabItem Header="Theme">
+            <views:ThemeSwitcher DataContext="{Binding ThemeViewModel}"/>
+        </TabItem>
+    </TabControl>
+</UserControl> 

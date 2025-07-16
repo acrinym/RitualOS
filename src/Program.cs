@@ -29,7 +29,10 @@ namespace RitualOS
 
                 desktop.MainWindow = new Window
                 {
-                    Content = new InventoryView() // Fixed: Use InventoryView (UserControl), not InventoryViewModel
+                    Title = "RitualOS",
+                    Width = 1200,
+                    Height = 800,
+                    Content = new MainShellView()
                 };
             }
             base.OnFrameworkInitializationCompleted();

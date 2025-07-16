@@ -89,5 +89,13 @@
     <Compile Include="src\Views\Wizards\ClientProfileDashboard.axaml.cs" />
     <Compile Include="src\Views\Wizards\CodexRewritePreviewer.axaml.cs" />
     <Compile Include="src\Views\Wizards\RitualTemplateBuilder.axaml.cs" />
+    <Compile Include="src\ViewModels\MainShellViewModel.cs" />
+    <Compile Include="src\Views\MainShellView.axaml.cs" />
+    <Compile Include="src\Views\DreamDictionary.axaml.cs" />
+    <Compile Include="src\Views\RitualLibrary.axaml.cs" />
+    <Compile Include="src\Views\ClientDetailView.axaml.cs" />
+    <Compile Include="src\Views\SymbolSearch.axaml.cs" />
+    <Compile Include="src\Views\DocumentViewer.axaml.cs" />
+    <Compile Include="src\Views\ThemeSwitcher.axaml.cs" />
   </ItemGroup>
 </Project>

@@ -77,7 +77,7 @@ namespace RitualOS.ViewModels
                     {
                         ItemName = item.Name,
                         AlertType = "Expired",
-                        Message = $"{item.Name} expired on {item.ExpirationDate.Value.ToShortDateString()}."
+                        Message = $"{item.Name} expired on {item.ExpirationDate.Value.Date.ToShortDateString()}."
                     });
                 }
             }
@@ -165,7 +165,7 @@ namespace RitualOS.ViewModels
                     {
                         ItemName = item.Name,
                         AlertType = "Expired",
-                        Message = $"{item.Name} expired on {item.ExpirationDate.Value.ToShortDateString()}."
+                        Message = $"{item.Name} expired on {item.ExpirationDate.Value.Date.ToShortDateString()}."
                     });
                 }
             }

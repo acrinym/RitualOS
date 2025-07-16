@@ -1,4 +1,6 @@
-<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="RitualOS.Views.ClientDetailView"
              xmlns:conv="clr-namespace:RitualOS.Converters">
   <UserControl.Resources>
     <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
