@@ -15,6 +15,7 @@ namespace RitualOS.ViewModels.Wizards
         private string _rewrite = string.Empty;
         private string _analysis = string.Empty;
         private Symbol? _symbol;
+        private bool _showOriginal = true;
 
         public Symbol? Symbol
         {
@@ -75,9 +76,47 @@ namespace RitualOS.ViewModels.Wizards
 
         public ICommand SaveCommand { get; }
 
+        /// <summary>
+        /// True if editing the original text, false for the rewritten version.
+        /// </summary>
+        public bool ShowOriginal
+        {
+            get => _showOriginal;
+            set
+            {
+                if (_showOriginal != value)
+                {
+                    _showOriginal = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(EditText));
+                }
+            }
+        }
+
+        /// <summary>
+        /// The text currently being edited based on <see cref="ShowOriginal"/>.
+        /// </summary>
+        public string EditText
+        {
+            get => ShowOriginal ? Original : Rewrite;
+            set
+            {
+                if (ShowOriginal)
+                    Original = value;
+                else
+                    Rewrite = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether the current user can modify codex entries.
+        /// </summary>
+        public bool CanEdit => SigilLock.HasAccess(UserContext.CurrentRole, "CodexRewrite");
+
         public CodexRewritePreviewerViewModel()
         {
-            SaveCommand = new RelayCommand(_ => Save(), _ => Symbol != null);
+            SaveCommand = new RelayCommand(_ => Save(), _ => Symbol != null && CanEdit);
         }
 
         private void Save()

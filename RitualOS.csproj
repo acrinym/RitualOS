@@ -3,7 +3,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <!-- Prevent duplicate compile items since we list them explicitly -->
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
@@ -16,12 +15,10 @@
     
     <PackageReference Include="Avalonia.Headless" Version="11.0.10" />
     <PackageReference Include="Markdig" Version="0.37.0" />
-    <!-- Use Docnet.Core for PDF text extraction -->
     <PackageReference Include="Docnet.Core" Version="2.6.0" />
     <PackageReference Include="VersOne.Epub" Version="3.3.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.62" />
   </ItemGroup>
- 
   
   <ItemGroup>
     <Compile Include="src\Program.cs" />
@@ -46,6 +43,7 @@
     <Compile Include="src\Models\RitualEntry.cs" />
     <Compile Include="src\Models\RitualTemplate.cs" />
     <Compile Include="src\Models\Element.cs" />
+    <Compile Include="src\Models\MoonPhase.cs" />
     <Compile Include="src\Models\Role.cs" />
     <Compile Include="src\Models\RitualWizardStep.cs" />
     <Compile Include="src\Models\Symbol.cs" />
@@ -88,4 +86,3 @@
     <Compile Include="src\Views\Wizards\RitualTemplateBuilder.axaml.cs" />
   </ItemGroup>
 </Project>
-

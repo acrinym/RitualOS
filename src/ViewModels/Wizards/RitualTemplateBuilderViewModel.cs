@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -61,6 +62,7 @@ namespace RitualOS.ViewModels.Wizards
         public ObservableCollection<Chakra> Chakras { get; } = new();
         public ObservableCollection<Element> Elements { get; } = new();
         public ObservableCollection<string> Steps { get; } = new();
+        public Array MoonPhases { get; } = Enum.GetValues(typeof(MoonPhase));
 
         public RitualTemplateBuilderViewModel()
         {
@@ -112,22 +114,26 @@ namespace RitualOS.ViewModels.Wizards
                 Template.MoonPhase = loaded.MoonPhase;
                 Template.OutcomeField = loaded.OutcomeField;
                 Template.Notes = loaded.Notes;
+                
                 Tools.Clear();
                 foreach (var t in loaded.Tools)
                     Tools.Add(t);
+                
                 Spirits.Clear();
                 foreach (var s in loaded.SpiritsInvoked)
                     Spirits.Add(s);
+
                 Chakras.Clear();
                 foreach (var c in loaded.ChakrasAffected)
                     Chakras.Add(c);
+
                 Elements.Clear();
                 foreach (var e in loaded.Elements)
                     Elements.Add(e);
+
                 Steps.Clear();
                 foreach (var step in loaded.Steps)
                     Steps.Add(step);
-                Template.Steps = loaded.Steps;
 
                 UpdatePreview();
             }
@@ -139,7 +145,6 @@ namespace RitualOS.ViewModels.Wizards
 
         private void UpdatePreview()
         {
-            // Correction is here: a single 'options' object is created, configured, and then used.
             var options = new JsonSerializerOptions 
             { 
                 WriteIndented = true 
