@@ -19,6 +19,14 @@ namespace RitualOS
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                // check SigilLock before allowing main window to appear
+                if (!Services.SigilLock.HasAccess(Services.UserContext.CurrentRole, "AppAccess"))
+                {
+                    Console.WriteLine("Access denied: insufficient role for main UI.");
+                    desktop.Shutdown();
+                    return;
+                }
+
                 desktop.MainWindow = new Window
                 {
                     Content = new InventoryView() // Fixed: Use InventoryView (UserControl), not InventoryViewModel

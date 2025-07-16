@@ -46,11 +46,18 @@ namespace RitualOS.Services
         /// Serializes a <see cref="RitualEntry"/> to the specified path in a pretty printed JSON format.
         /// </summary>
         /// <param name="entry">The ritual entry to save.</param>
-        /// <param name="filePath">File path where the JSON should be written.</param>
+        /// <param name="filePath">File path where the JSON should be written. If null or empty, a file
+        /// name will be generated using the pattern ritual_&lt;timestamp&gt;.json.</param>
         public static void SaveRitualToJson(RitualEntry entry, string filePath)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    var timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                    filePath = $"ritual_{timestamp}.json";
+                }
+
                 var json = JsonSerializer.Serialize(entry, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(filePath, json);
             }

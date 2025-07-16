@@ -8,6 +8,9 @@
         <TextBox Text="{Binding EditText, Mode=TwoWay}" AcceptsReturn="True" Height="120" IsEnabled="{Binding CanEdit}"/>
         <TextBlock Text="Chakra Analysis" FontWeight="Bold"/>
         <TextBox Text="{Binding ChakraAnalysis, Mode=TwoWay}" AcceptsReturn="True" Height="80" IsEnabled="{Binding CanEdit}"/>
-        <Button Content="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding CanEdit}" HorizontalAlignment="Left"/>
+        <StackPanel Orientation="Horizontal" Spacing="6">
+            <Button Content="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding CanEdit}"/>
+            <Button Content="Export" Command="{Binding ExportCommand}"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>
