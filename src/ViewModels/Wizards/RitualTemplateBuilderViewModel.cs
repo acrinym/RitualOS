@@ -4,6 +4,8 @@ using System.Windows.Input;
 using RitualOS.Helpers;
 using RitualOS.Models;
 using RitualOS.Services;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace RitualOS.ViewModels.Wizards
 {
@@ -34,6 +36,10 @@ namespace RitualOS.ViewModels.Wizards
         public ICommand LoadCommand { get; }
         public ICommand AddSpiritCommand { get; }
         public ICommand AddToolCommand { get; }
+        public ICommand AddChakraCommand { get; }
+        public ICommand AddElementCommand { get; }
+        public ICommand AddStepCommand { get; }
+
         public bool CanEdit => SigilLock.HasAccess(UserContext.CurrentRole, "RitualBuilder");
 
         private string _preview = string.Empty;
@@ -52,6 +58,9 @@ namespace RitualOS.ViewModels.Wizards
 
         public ObservableCollection<string> Spirits { get; } = new();
         public ObservableCollection<string> Tools { get; } = new();
+        public ObservableCollection<Chakra> Chakras { get; } = new();
+        public ObservableCollection<Element> Elements { get; } = new();
+        public ObservableCollection<string> Steps { get; } = new();
 
         public RitualTemplateBuilderViewModel()
         {
@@ -61,7 +70,10 @@ namespace RitualOS.ViewModels.Wizards
             LoadCommand = new RelayCommand(_ => Load());
             AddSpiritCommand = new RelayCommand(_ => Spirits.Add(string.Empty));
             AddToolCommand = new RelayCommand(_ => Tools.Add(string.Empty));
-            }
+            AddChakraCommand = new RelayCommand(_ => Chakras.Add(Chakra.Root));
+            AddElementCommand = new RelayCommand(_ => Elements.Add(Element.Earth));
+            AddStepCommand = new RelayCommand(_ => Steps.Add(string.Empty));
+        }
 
         private void MoveNext()
         {
@@ -83,6 +95,9 @@ namespace RitualOS.ViewModels.Wizards
         {
             Template.SpiritsInvoked = Spirits.ToList();
             Template.Tools = Tools.ToList();
+            Template.ChakrasAffected = Chakras.ToList();
+            Template.Elements = Elements.ToList();
+            Template.Steps = Steps.ToList();
             RitualTemplateSerializer.Save(Template, $"{Template.Name}.json");
             UpdatePreview();
         }
@@ -103,7 +118,17 @@ namespace RitualOS.ViewModels.Wizards
                 Spirits.Clear();
                 foreach (var s in loaded.SpiritsInvoked)
                     Spirits.Add(s);
+                Chakras.Clear();
+                foreach (var c in loaded.ChakrasAffected)
+                    Chakras.Add(c);
+                Elements.Clear();
+                foreach (var e in loaded.Elements)
+                    Elements.Add(e);
+                Steps.Clear();
+                foreach (var step in loaded.Steps)
+                    Steps.Add(step);
                 Template.Steps = loaded.Steps;
+
                 UpdatePreview();
             }
             catch
@@ -114,7 +139,13 @@ namespace RitualOS.ViewModels.Wizards
 
         private void UpdatePreview()
         {
-            Preview = System.Text.Json.JsonSerializer.Serialize(Template, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            // Correction is here: a single 'options' object is created, configured, and then used.
+            var options = new JsonSerializerOptions 
+            { 
+                WriteIndented = true 
+            };
+            options.Converters.Add(new JsonStringEnumConverter());
+            Preview = JsonSerializer.Serialize(Template, options);
         }
     }
 }

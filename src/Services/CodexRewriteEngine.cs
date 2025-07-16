@@ -69,8 +69,9 @@ namespace RitualOS.Services
                         var raw = elementRegex.Match(line).Groups[1].Value;
                         foreach (var part in raw.Split(',', StringSplitOptions.RemoveEmptyEntries))
                         {
-                            var element = part.Trim().Split(' ')[0];
-                            if (!string.IsNullOrWhiteSpace(element))
+                            var elementName = part.Trim().Split(' ')[0];
+                            if (Enum.TryParse<Element>(elementName, true, out var element))
+
                                 current.ElementTags.Add(element);
                         }
                         continue;
