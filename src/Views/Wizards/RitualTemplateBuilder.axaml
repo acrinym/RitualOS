@@ -74,8 +74,7 @@
                         <StackPanel Spacing="4">
                             <TextBlock Text="Name *" FontWeight="Bold"/>
                             <TextBox Watermark="Enter ritual name..." 
-                                     Text="{Binding Template.Name}" 
-                                     Classes="{Binding HasErrors, Converter={x:Static BoolConverters.Not}, StringFormat='{0}'}"/>
+                                     Text="{Binding Template.Name}" />
                             <TextBlock Text="Name is required" 
                                        Classes="error" 
                                        IsVisible="{Binding HasErrors}"/>
@@ -86,8 +85,7 @@
                             <TextBox Watermark="Describe the ritual's purpose..." 
                                      Text="{Binding Template.Intention}" 
                                      AcceptsReturn="True" 
-                                     Height="60"
-                                     Classes="{Binding HasErrors, Converter={x:Static BoolConverters.Not}, StringFormat='{0}'}"/>
+                                     Height="60" />
                             <TextBlock Text="Intention is required" 
                                        Classes="error" 
                                        IsVisible="{Binding HasErrors}"/>
@@ -194,8 +192,7 @@
                     <StackPanel Spacing="8">
                         <TextBlock Text="🌙 Moon Phase" FontWeight="Bold"/>
                         <ComboBox ItemsSource="{Binding MoonPhaseOptions}" 
-                                  SelectedItem="{Binding Template.MoonPhase}" 
-                                  Watermark="Select moon phase..."/>
+                                  SelectedItem="{Binding Template.MoonPhase}" />
                     </StackPanel>
                 </Border>
                 
@@ -218,7 +215,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
-                                        <TextBlock Text="{Binding DataContext.SelectedStepIndex, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat='{0}'}" 
+                                        <TextBlock Text="{Binding DataContext.SelectedStepIndex, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                                                    Grid.Column="0" 
                                                    VerticalAlignment="Center" 
                                                    Margin="0,0,8,0" 

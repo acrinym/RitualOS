@@ -313,7 +313,8 @@ namespace RitualOS.ViewModels.Wizards
         {
             try
             {
-                var topLevel = TopLevel.GetTopLevel(Application.Current?.MainWindow);
+                var mainWindow = (Avalonia.Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+                var topLevel = TopLevel.GetTopLevel(mainWindow);
                 if (topLevel?.StorageProvider == null) return;
 
                 var options = new FilePickerSaveOptions
@@ -343,7 +344,8 @@ namespace RitualOS.ViewModels.Wizards
         {
             try
             {
-                var topLevel = TopLevel.GetTopLevel(Application.Current?.MainWindow);
+                var mainWindow = (Avalonia.Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+                var topLevel = TopLevel.GetTopLevel(mainWindow);
                 if (topLevel?.StorageProvider == null) return;
 
                 var options = new FilePickerOpenOptions
