@@ -51,7 +51,7 @@ namespace RitualOS.ViewModels
         public DreamEntryViewModel()
         {
             Dream.Id = Guid.NewGuid().ToString();
-            Dream.Date = DateTime.Now;
+            Dream.Date = DateTimeOffset.Now;
             SaveCommand = new RelayCommand(_ => Save(), _ => !string.IsNullOrWhiteSpace(Dream.Title));
             AddSymbolCommand = new RelayCommand(_ => Symbols.Add(string.Empty));
             AddChakraCommand = new RelayCommand(param => AddChakra(param as Chakra?));
