@@ -43,6 +43,7 @@
     <Compile Include="src\Models\InventoryItem.cs" />
     <Compile Include="src\Models\RitualEntry.cs" />
     <Compile Include="src\Models\RitualTemplate.cs" />
+    <Compile Include="src\Models\Element.cs" />
     <Compile Include="src\Models\Role.cs" />
     <Compile Include="src\Models\RitualWizardStep.cs" />
     <Compile Include="src\Models\Symbol.cs" />
@@ -56,6 +57,8 @@
     <Compile Include="src\Services\RitualDataLoadException.cs" />
     <Compile Include="src\Services\SymbolIndexService.cs" />
     <Compile Include="src\Services\SigilLock.cs" />
+    <Compile Include="src\Services\CodexRewriteEngine.cs" />
+    <Compile Include="src\Services\UserContext.cs" />
     <Compile Include="src\Services\RitualTemplateSerializer.cs" />
     <Compile Include="src\Services\ThemeLoader.cs" />
     <Compile Include="src\ViewModels\ClientViewModel.cs" />

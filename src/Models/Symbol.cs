@@ -19,6 +19,6 @@ namespace RitualOS.Models
         public string RitualText { get; set; }
         public string Description { get; set; }
         public List<Chakra> ChakraTags { get; set; } = new();
-        public List<string> ElementTags { get; set; } = new();
+        public List<Element> ElementTags { get; set; } = new();
     }
 }

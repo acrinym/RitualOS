@@ -23,7 +23,9 @@ namespace RitualOS.Services
             }
 
             var json = File.ReadAllText(FileName);
-            return JsonSerializer.Deserialize<List<Symbol>>(json) ?? new List<Symbol>();
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            return JsonSerializer.Deserialize<List<Symbol>>(json, options) ?? new List<Symbol>();
         }
 
         /// <summary>
@@ -31,7 +33,9 @@ namespace RitualOS.Services
         /// </summary>
         public static void Save(IEnumerable<Symbol> symbols)
         {
-            var json = JsonSerializer.Serialize(symbols, new JsonSerializerOptions { WriteIndented = true });
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            options.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            var json = JsonSerializer.Serialize(symbols, options);
             File.WriteAllText(FileName, json);
         }
     }
