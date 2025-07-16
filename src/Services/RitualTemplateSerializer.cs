@@ -17,7 +17,9 @@ namespace RitualOS.Services
         {
             Directory.CreateDirectory(DirectoryPath);
             var path = Path.Combine(DirectoryPath, fileName);
-            var json = JsonSerializer.Serialize(template, new JsonSerializerOptions { WriteIndented = true });
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            options.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            var json = JsonSerializer.Serialize(template, options);
             File.WriteAllText(path, json);
         }
 
@@ -28,7 +30,9 @@ namespace RitualOS.Services
                 throw new FileNotFoundException($"Template file not found: {path}");
 
             var json = File.ReadAllText(path);
-            var template = JsonSerializer.Deserialize<RitualTemplate>(json);
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            var template = JsonSerializer.Deserialize<RitualTemplate>(json, options);
             if (template == null)
                 throw new Exception($"Failed to deserialize template from {fileName}");
             return template;

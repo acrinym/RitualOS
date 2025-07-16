@@ -3,5 +3,11 @@
              xmlns:vm="clr-namespace:RitualOS.ViewModels.Wizards"
              x:DataType="vm:CodexRewritePreviewerViewModel"
              x:Class="RitualOS.Views.CodexRewritePreviewer">
-  <TextBlock>Codex Rewrite Previewer</TextBlock>
+  <StackPanel Margin="10" Spacing="6">
+    <CheckBox Content="Edit Original" IsChecked="{Binding ShowOriginal}"/>
+    <TextBox Text="{Binding EditText, Mode=TwoWay}" AcceptsReturn="True" Height="120" IsEnabled="{Binding CanEdit}"/>
+    <TextBlock Text="Chakra Analysis" FontWeight="Bold"/>
+    <TextBox Text="{Binding ChakraAnalysis, Mode=TwoWay}" AcceptsReturn="True" Height="80" IsEnabled="{Binding CanEdit}"/>
+    <Button Content="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding CanEdit}" HorizontalAlignment="Left"/>
+  </StackPanel>
 </UserControl>
