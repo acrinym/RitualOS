@@ -31,8 +31,24 @@ namespace RitualOS.ViewModels.Wizards
         public ICommand NextCommand { get; }
         public ICommand PrevCommand { get; }
         public ICommand SaveCommand { get; }
+        public ICommand LoadCommand { get; }
         public ICommand AddSpiritCommand { get; }
         public ICommand AddToolCommand { get; }
+        public bool CanEdit => SigilLock.HasAccess(UserContext.CurrentRole, "RitualBuilder");
+
+        private string _preview = string.Empty;
+        public string Preview
+        {
+            get => _preview;
+            private set
+            {
+                if (_preview != value)
+                {
+                    _preview = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public ObservableCollection<string> Spirits { get; } = new();
         public ObservableCollection<string> Tools { get; } = new();
@@ -41,10 +57,11 @@ namespace RitualOS.ViewModels.Wizards
         {
             NextCommand = new RelayCommand(_ => MoveNext(), _ => Step != RitualWizardStep.Review);
             PrevCommand = new RelayCommand(_ => MovePrev(), _ => Step != RitualWizardStep.Tools);
-            SaveCommand = new RelayCommand(_ => Save());
+            SaveCommand = new RelayCommand(_ => Save(), _ => CanEdit);
+            LoadCommand = new RelayCommand(_ => Load());
             AddSpiritCommand = new RelayCommand(_ => Spirits.Add(string.Empty));
             AddToolCommand = new RelayCommand(_ => Tools.Add(string.Empty));
-        }
+            }
 
         private void MoveNext()
         {
@@ -67,6 +84,37 @@ namespace RitualOS.ViewModels.Wizards
             Template.SpiritsInvoked = Spirits.ToList();
             Template.Tools = Tools.ToList();
             RitualTemplateSerializer.Save(Template, $"{Template.Name}.json");
+            UpdatePreview();
+        }
+
+        private void Load()
+        {
+            try
+            {
+                var loaded = RitualTemplateSerializer.Load($"{Template.Name}.json");
+                Template.Name = loaded.Name;
+                Template.Intention = loaded.Intention;
+                Template.MoonPhase = loaded.MoonPhase;
+                Template.OutcomeField = loaded.OutcomeField;
+                Template.Notes = loaded.Notes;
+                Tools.Clear();
+                foreach (var t in loaded.Tools)
+                    Tools.Add(t);
+                Spirits.Clear();
+                foreach (var s in loaded.SpiritsInvoked)
+                    Spirits.Add(s);
+                Template.Steps = loaded.Steps;
+                UpdatePreview();
+            }
+            catch
+            {
+                // ignore load failures for now
+            }
+        }
+
+        private void UpdatePreview()
+        {
+            Preview = System.Text.Json.JsonSerializer.Serialize(Template, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
         }
     }
 }
