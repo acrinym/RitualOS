@@ -37,7 +37,7 @@ Key folders you will find in RitualOS:
 /assets/          -> Images, icons, elemental symbols
 /settings/        -> user preferences
 /plugins/         -> rewrite engine modules
-/logs/            -> Application logs
+/logs/            -> Application logs for debugging and auditing
 /docs/user_guide/ -> User manual and quick-start guide
 ```
 Example ritual files are stored using the pattern `ritual_<timestamp>.json`.
