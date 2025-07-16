@@ -3,9 +3,87 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWindowsForms>false</UseWindowsForms>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.0" />
+    <PackageReference Include="Avalonia" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
+    
+    <PackageReference Include="Avalonia.Headless" Version="11.0.10" />
+    <PackageReference Include="Markdig" Version="0.37.0" />
+    <PackageReference Include="Docnet.Core" Version="2.6.0" />
+    <PackageReference Include="VersOne.Epub" Version="3.3.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.62" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="src\Program.cs" />
+    <Compile Include="src\Converters\ChakraCheckConverter.cs" />
+    <Compile Include="src\Converters\ChakraToEmojiConverter.cs" />
+    <Compile Include="src\Converters\ElementToEmojiConverter.cs" />
+    <Compile Include="src\Converters\ElementCheckConverter.cs" />
+    <Compile Include="src\Converters\LowQuantityConverter.cs" />
+    <Compile Include="src\Converters\MessageColorConverter.cs" />
+    <Compile Include="src\Converters\StringListConverter.cs" />
+    <Compile Include="src\Helpers\ChakraHelper.cs" />
+    <Compile Include="src\Helpers\ElementHelper.cs" />
+    <Compile Include="src\Helpers\RelayCommand.cs" />
+    <Compile Include="src\Models\Chakra.cs" />
+    <Compile Include="src\Models\ClientProfile.cs" />
+    <Compile Include="src\Models\DocumentFile.cs" />
+    <Compile Include="src\Models\DreamDictionaryEntry.cs" />
+    <Compile Include="src\Models\DreamEntry.cs" />
+    <Compile Include="src\Models\IngredientItem.cs" />
+    <Compile Include="src\Models\InteractionLogEntry.cs" />
+    <Compile Include="src\Models\InventoryAlert.cs" />
+    <Compile Include="src\Models\InventoryItem.cs" />
+    <Compile Include="src\Models\RitualEntry.cs" />
+    <Compile Include="src\Models\RitualTemplate.cs" />
+    <Compile Include="src\Models\Element.cs" />
+    <Compile Include="src\Models\MoonPhase.cs" />
+    <Compile Include="src\Models\Role.cs" />
+    <Compile Include="src\Models\RitualWizardStep.cs" />
+    <Compile Include="src\Models\Symbol.cs" />
+    <Compile Include="src\Services\ClientDatabase.cs" />
+    <Compile Include="src\Services\ClientProfileLoader.cs" />
+    <Compile Include="src\Services\DocumentLoader.cs" />
+    <Compile Include="src\Services\DreamDataLoader.cs" />
+    <Compile Include="src\Services\DreamDictionaryLoader.cs" />
+    <Compile Include="src\Services\InventoryDataLoader.cs" />
+    <Compile Include="src\Services\RitualDataLoader.cs" />
+    <Compile Include="src\Services\RitualDataLoadException.cs" />
+    <Compile Include="src\Services\SymbolIndexService.cs" />
+    <Compile Include="src\Services\SigilLock.cs" />
+    <Compile Include="src\Services\CodexRewriteEngine.cs" />
+    <Compile Include="src\Services\UserContext.cs" />
+    <Compile Include="src\Services\RitualTemplateSerializer.cs" />
+    <Compile Include="src\Services\ThemeLoader.cs" />
+    <Compile Include="src\ViewModels\ClientViewModel.cs" />
+    <Compile Include="src\ViewModels\DocumentViewerViewModel.cs" />
+    <Compile Include="src\ViewModels\DreamDictionaryViewModel.cs" />
+    <Compile Include="src\ViewModels\DreamEntryViewModel.cs" />
+    <Compile Include="src\ViewModels\InventoryViewModel.cs" />
+    <Compile Include="src\ViewModels\RitualLibraryViewModel.cs" />
+    <Compile Include="src\ViewModels\RitualTimelineViewModel.cs" />
+    <Compile Include="src\ViewModels\SymbolSearchViewModel.cs" />
+    <Compile Include="src\ViewModels\SymbolViewerViewModel.cs" />
+    <Compile Include="src\ViewModels\ThemeViewModel.cs" />
+    <Compile Include="src\ViewModels\ViewModelBase.cs" />
+    <Compile Include="src\Views\ChakraSelector.axaml.cs" />
+    <Compile Include="src\Views\ElementSelector.axaml.cs" />
+    
+    <Compile Include="src\Views\InventoryView.axaml.cs" />
+    <Compile Include="src\Views\RitualTimeline.axaml.cs" />
+    <Compile Include="src\ViewModels\Wizards\ClientProfileDashboardViewModel.cs" />
+    <Compile Include="src\ViewModels\Wizards\CodexRewritePreviewerViewModel.cs" />
+    <Compile Include="src\ViewModels\Wizards\RitualTemplateBuilderViewModel.cs" />
+    <Compile Include="src\ViewModels\Wizards\SymbolIndexBuilderViewModel.cs" />
+    <Compile Include="src\Views\Wizards\ClientProfileDashboard.axaml.cs" />
+    <Compile Include="src\Views\Wizards\CodexRewritePreviewer.axaml.cs" />
+    <Compile Include="src\Views\Wizards\RitualTemplateBuilder.axaml.cs" />
   </ItemGroup>
 </Project>

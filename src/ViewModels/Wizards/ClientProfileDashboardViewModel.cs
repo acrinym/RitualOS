@@ -1,6 +1,10 @@
 using System.Collections.ObjectModel;
-using RitualOS.Services;
+using System.Linq;
+using System.Windows.Input;
+using RitualOS.Helpers;
 using RitualOS.Models;
+using RitualOS.Services;
+using RitualOS.ViewModels;
 
 namespace RitualOS.ViewModels.Wizards
 {

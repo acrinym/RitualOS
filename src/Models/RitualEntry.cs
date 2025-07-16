@@ -5,6 +5,17 @@ namespace RitualOS.Models
 {
     public class RitualEntry
     {
+        public RitualEntry()
+        {
+            Id = string.Empty;
+            Title = string.Empty;
+            Intention = string.Empty;
+            MoonPhase = string.Empty;
+            Outcome = string.Empty;
+            Notes = string.Empty;
+            ClientId = string.Empty;
+        }
+
         public string Id { get; set; }
         public string Title { get; set; }
         public DateTime DateCreated { get; set; }

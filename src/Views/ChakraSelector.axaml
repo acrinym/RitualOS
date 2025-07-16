@@ -1,16 +1,19 @@
-<UserControl x:Class="RitualOS.Views.ChakraSelector" xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:conv="clr-namespace:RitualOS.Converters">
+             xmlns:conv="clr-namespace:RitualOS.Converters"
+             xmlns:models="clr-namespace:RitualOS.Models"
+             x:Class="RitualOS.Views.ChakraSelector">
     <UserControl.Resources>
         <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
+        <conv:ChakraCheckConverter x:Key="ChakraCheckConverter" />
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal" Spacing="6">
-        <CheckBox Content="🔴 Root"/>
-        <CheckBox Content="🟠 Sacral"/>
-        <CheckBox Content="🟡 Solar Plexus"/>
-        <CheckBox Content="💚 Heart"/>
-        <CheckBox Content="🔵 Throat"/>
-        <CheckBox Content="🟣 Third Eye"/>
-        <CheckBox Content="⚪ Crown"/>
+        <CheckBox Content="🔴 Root" IsChecked="{Binding ChakraTags, Converter={StaticResource ChakraCheckConverter}, ConverterParameter=Root}"/>
+        <CheckBox Content="🟠 Sacral" IsChecked="{Binding ChakraTags, Converter={StaticResource ChakraCheckConverter}, ConverterParameter=Sacral}"/>
+        <CheckBox Content="🟡 Solar Plexus" IsChecked="{Binding ChakraTags, Converter={StaticResource ChakraCheckConverter}, ConverterParameter=SolarPlexus}"/>
+        <CheckBox Content="💚 Heart" IsChecked="{Binding ChakraTags, Converter={StaticResource ChakraCheckConverter}, ConverterParameter=Heart}"/>
+        <CheckBox Content="🔵 Throat" IsChecked="{Binding ChakraTags, Converter={StaticResource ChakraCheckConverter}, ConverterParameter=Throat}"/>
+        <CheckBox Content="🟣 Third Eye" IsChecked="{Binding ChakraTags, Converter={StaticResource ChakraCheckConverter}, ConverterParameter=ThirdEye}"/>
+        <CheckBox Content="⚪ Crown" IsChecked="{Binding ChakraTags, Converter={StaticResource ChakraCheckConverter}, ConverterParameter=Crown}"/>
     </StackPanel>
 </UserControl>

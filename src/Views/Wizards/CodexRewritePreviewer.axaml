@@ -1,9 +1,13 @@
-<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <StackPanel Margin="20" Spacing="6">
-    <TextBlock Text="Codex Rewrite Preview" FontWeight="Bold"/>
-    <TextBox Text="{Binding Original}" AcceptsReturn="True" Watermark="Original" Height="80"/>
-    <TextBox Text="{Binding Rewrite}" AcceptsReturn="True" Watermark="Rewrite" Height="80"/>
-    <TextBox Text="{Binding ChakraAnalysis}" AcceptsReturn="True" Watermark="Chakra Analysis" Height="60"/>
-    <Button Content="Save" Command="{Binding SaveCommand}"/>
-  </StackPanel>
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels.Wizards"
+             x:DataType="vm:CodexRewritePreviewerViewModel"
+             x:Class="RitualOS.Views.Wizards.CodexRewritePreviewer">
+    <StackPanel Margin="10" Spacing="6">
+        <CheckBox Content="Edit Original" IsChecked="{Binding ShowOriginal}"/>
+        <TextBox Text="{Binding EditText, Mode=TwoWay}" AcceptsReturn="True" Height="120" IsEnabled="{Binding CanEdit}"/>
+        <TextBlock Text="Chakra Analysis" FontWeight="Bold"/>
+        <TextBox Text="{Binding ChakraAnalysis, Mode=TwoWay}" AcceptsReturn="True" Height="80" IsEnabled="{Binding CanEdit}"/>
+        <Button Content="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding CanEdit}" HorizontalAlignment="Left"/>
+    </StackPanel>
 </UserControl>

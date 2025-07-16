@@ -1,6 +1,9 @@
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using RitualOS.Models;
+using RitualOS.Services;
 
 namespace RitualOS.ViewModels
 {
@@ -44,9 +47,22 @@ namespace RitualOS.ViewModels
 
         public SymbolViewerViewModel()
         {
-            // Example seed data for now
-            Symbols.Add(new Symbol { Name = "Sun", Original = "Sol", Rewritten = "Sun", RitualText = "Invoke the power of the sun", Description = "Symbol of light." });
-            Symbols.Add(new Symbol { Name = "Moon", Original = "Luna", Rewritten = "Moon", RitualText = "Harness lunar energy", Description = "Symbol of intuition." });
+            var index = SymbolIndexService.Load();
+            if (index.Count == 0)
+            {
+                var docPath = Path.Combine(AppContext.BaseDirectory, "docs", "DreamDictionary", "RitualOS_Dream_Dictionary.md");
+                if (File.Exists(docPath))
+                {
+                    index = CodexRewriteEngine.ParseFile(docPath);
+                    SymbolIndexService.Save(index);
+                }
+            }
+
+            foreach (var symbol in index)
+            {
+                Symbols.Add(symbol);
+            }
+
             ApplyFilter();
             SelectedSymbol = FilteredSymbols.FirstOrDefault();
         }

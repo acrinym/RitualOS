@@ -1,6 +1,10 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.IO;
 using RitualOS.Models;
+using RitualOS.Services;
+using RitualOS.Helpers;
 
 namespace RitualOS.ViewModels
 {
@@ -60,21 +64,24 @@ namespace RitualOS.ViewModels
 
         public RitualLibraryViewModel()
         {
-            // placeholder data until wired to backend
+            // Load rituals from disk using the data loader 😄
+            var dataDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "samples");
+            foreach (var ritual in RitualDataLoader.LoadAllRituals(dataDir))
+            {
+                AllRituals.Add(ritual);
+            }
+
             ChakraFilters.Add("All");
-            ChakraFilters.Add("Root");
-            ChakraFilters.Add("Sacral");
-            ChakraFilters.Add("Solar Plexus");
-            ChakraFilters.Add("Heart");
-            ChakraFilters.Add("Throat");
-            ChakraFilters.Add("Third Eye");
-            ChakraFilters.Add("Crown");
+            foreach (var chakra in AllRituals.SelectMany(r => r.AffectedChakras).Distinct())
+            {
+                ChakraFilters.Add(ChakraHelper.GetDisplayName(chakra));
+            }
 
             SpiritFilters.Add("All");
-            SpiritFilters.Add("Seere");
-            SpiritFilters.Add("Balam");
-            SpiritFilters.Add("Zepar");
-            SpiritFilters.Add("Lucifer");
+            foreach (var spirit in AllRituals.SelectMany(r => r.SpiritsInvoked).Distinct())
+            {
+                SpiritFilters.Add(spirit);
+            }
 
             SelectedChakra = "All";
             SelectedSpirit = "All";
@@ -84,7 +91,7 @@ namespace RitualOS.ViewModels
         private void UpdateFilter()
         {
             var filtered = AllRituals.Where(r =>
-                (SelectedChakra == "All" || r.AffectedChakras.Any(c => c.ToString().Replace("SolarPlexus", "Solar Plexus").Replace("ThirdEye", "Third Eye") == SelectedChakra)) &&
+                (SelectedChakra == "All" || r.AffectedChakras.Any(c => ChakraHelper.GetDisplayName(c) == SelectedChakra)) &&
                 (SelectedSpirit == "All" || r.SpiritsInvoked.Contains(SelectedSpirit)))
                 .ToList();
 
