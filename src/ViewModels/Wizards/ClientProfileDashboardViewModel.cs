@@ -1,6 +1,9 @@
 using System.Collections.ObjectModel;
-using RitualOS.Services;
+using System.Linq;
+using System.Windows.Input;
+using RitualOS.Helpers;
 using RitualOS.Models;
+using RitualOS.Services;
 using RitualOS.ViewModels;
 
 namespace RitualOS.ViewModels.Wizards
@@ -14,9 +17,12 @@ namespace RitualOS.ViewModels.Wizards
 
         public ClientProfileDashboardViewModel()
         {
-            foreach (var client in ClientProfileLoader.LoadClients("clients"))
+            const string clientDir = "clients";
+            const string ritualDir = "rituals";
+
+            foreach (var client in ClientProfileLoader.LoadClients(clientDir))
             {
-                var rituals = RitualDataLoader.LoadRitualsForClient("rituals", client.Id);
+                var rituals = RitualDataLoader.LoadRitualsForClient(ritualDir, client.Id);
                 Clients.Add(new ClientViewModel(client, rituals));
             }
         }

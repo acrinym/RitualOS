@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Windows.Input;
 using RitualOS.Helpers;
@@ -44,6 +45,7 @@ namespace RitualOS.ViewModels.Wizards
                 {
                     _original = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(EditText));
                 }
             }
         }
@@ -57,6 +59,7 @@ namespace RitualOS.ViewModels.Wizards
                 {
                     _rewrite = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(EditText));
                 }
             }
         }
@@ -105,7 +108,6 @@ namespace RitualOS.ViewModels.Wizards
                     Original = value;
                 else
                     Rewrite = value;
-                OnPropertyChanged();
             }
         }
 
@@ -128,14 +130,21 @@ namespace RitualOS.ViewModels.Wizards
             Symbol.Rewritten = Rewrite;
             Symbol.RitualText = ChakraAnalysis;
 
-            var symbols = SymbolIndexService.Load();
-            var existing = symbols.FirstOrDefault(s => s.Name == Symbol.Name);
-            if (existing != null)
+            try
             {
-                symbols.Remove(existing);
+                var symbols = SymbolIndexService.Load();
+                var existing = symbols.FirstOrDefault(s => s.Name == Symbol.Name);
+                if (existing != null)
+                {
+                    symbols.Remove(existing);
+                }
+                symbols.Add(Symbol);
+                SymbolIndexService.Save(symbols);
             }
-            symbols.Add(Symbol);
-            SymbolIndexService.Save(symbols);
+            catch
+            {
+                // We should add user-facing error handling here later.
+            }
         }
     }
 }

@@ -20,6 +20,8 @@ namespace RitualOS.Services
             var results = new List<ClientProfile>();
             if (!Directory.Exists(directory))
             {
+                // create the directory so first time launches don't fail
+                Directory.CreateDirectory(directory);
                 return results;
             }
 
@@ -50,8 +52,16 @@ namespace RitualOS.Services
         {
             Directory.CreateDirectory(directory);
             var filePath = Path.Combine(directory, $"{profile.Id}.json");
-            var json = JsonSerializer.Serialize(profile, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filePath, json);
+
+            try
+            {
+                var json = JsonSerializer.Serialize(profile, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(filePath, json);
+            }
+            catch (Exception)
+            {
+                // swallow serialization issues for now
+            }
         }
     }
 }
