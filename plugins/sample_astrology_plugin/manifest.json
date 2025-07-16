@@ -1,0 +1,30 @@
+{
+  "name": "Astrology Integration Plugin",
+  "version": "1.0.0",
+  "description": "Provides planetary alignment calculations and astrological timing for rituals",
+  "author": "RitualOS Community",
+  "type": "integration",
+  "entryPoint": "AstrologyPlugin.PluginMain",
+  "dependencies": [],
+  "permissions": [
+    "read_rituals",
+    "write_rituals",
+    "read_settings",
+    "write_settings"
+  ],
+  "compatibility": ["1.0.0"],
+  "features": [
+    "planetary_alignments",
+    "astrological_timing",
+    "zodiac_integration",
+    "retrograde_alerts"
+  ],
+  "settings": {
+    "enable_retrograde_alerts": true,
+    "default_timezone": "UTC",
+    "planetary_aspects": ["conjunction", "opposition", "trine", "square"],
+    "zodiac_signs": ["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"]
+  },
+  "documentation": "https://github.com/ritualos/plugins/astrology-integration",
+  "license": "MIT"
+} 

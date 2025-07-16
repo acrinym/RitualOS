@@ -1,0 +1,70 @@
+{
+  "id": "ritual_sample_20241216",
+  "name": "Sample Moon Phase Ritual",
+  "description": "A basic ritual template for moon phase alignment",
+  "created": "2024-12-16T19:46:00Z",
+  "modified": "2024-12-16T19:46:00Z",
+  "version": "1.0.0",
+  "author": "RitualOS System",
+  "tags": ["moon", "phase", "alignment", "sample"],
+  "difficulty": "beginner",
+  "duration": "30",
+  "moonPhase": "full",
+  "elements": ["water", "earth"],
+  "chakras": ["crown", "third_eye"],
+  "ingredients": [
+    {
+      "name": "Clear Quartz Crystal",
+      "quantity": 1,
+      "unit": "piece",
+      "category": "crystals",
+      "required": true
+    },
+    {
+      "name": "Sage Bundle",
+      "quantity": 1,
+      "unit": "bundle",
+      "category": "herbs",
+      "required": true
+    },
+    {
+      "name": "Moon Water",
+      "quantity": 100,
+      "unit": "ml",
+      "category": "liquids",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "title": "Sacred Space Preparation",
+      "description": "Clear the ritual space and set up your altar",
+      "duration": 5,
+      "elements": ["earth"],
+      "chakras": ["root"]
+    },
+    {
+      "order": 2,
+      "title": "Crystal Activation",
+      "description": "Hold the clear quartz and charge it with your intention",
+      "duration": 10,
+      "elements": ["water"],
+      "chakras": ["crown", "third_eye"]
+    },
+    {
+      "order": 3,
+      "title": "Moon Phase Alignment",
+      "description": "Align yourself with the current moon phase energy",
+      "duration": 15,
+      "elements": ["water"],
+      "chakras": ["crown"]
+    }
+  ],
+  "notes": "This is a sample ritual template demonstrating the structure for RitualOS templates.",
+  "metadata": {
+    "templateType": "sample",
+    "compatibility": ["1.0.0"],
+    "license": "MIT"
+  }
+} 

@@ -1,0 +1,144 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Color Palette -->
+    <Color x:Key="PrimaryColor">#6B46C1</Color>
+    <Color x:Key="SecondaryColor">#9F7AEA</Color>
+    <Color x:Key="AccentColor">#F6AD55</Color>
+    <Color x:Key="BackgroundColor">#1A202C</Color>
+    <Color x:Key="SurfaceColor">#2D3748</Color>
+    <Color x:Key="TextPrimaryColor">#F7FAFC</Color>
+    <Color x:Key="TextSecondaryColor">#A0AEC0</Color>
+    <Color x:Key="ErrorColor">#E53E3E</Color>
+    <Color x:Key="SuccessColor">#38A169</Color>
+    <Color x:Key="WarningColor">#D69E2E</Color>
+    <Color x:Key="InfoColor">#3182CE</Color>
+
+    <!-- Elemental Colors -->
+    <Color x:Key="FireColor">#E53E3E</Color>
+    <Color x:Key="WaterColor">#3182CE</Color>
+    <Color x:Key="EarthColor">#38A169</Color>
+    <Color x:Key="AirColor">#A0AEC0</Color>
+    <Color x:Key="SpiritColor">#9F7AEA</Color>
+
+    <!-- Chakra Colors -->
+    <Color x:Key="RootChakraColor">#E53E3E</Color>
+    <Color x:Key="SacralChakraColor">#F6AD55</Color>
+    <Color x:Key="SolarPlexusChakraColor">#F6E05E</Color>
+    <Color x:Key="HeartChakraColor">#68D391</Color>
+    <Color x:Key="ThroatChakraColor">#63B3ED</Color>
+    <Color x:Key="ThirdEyeChakraColor">#9F7AEA</Color>
+    <Color x:Key="CrownChakraColor">#F7FAFC</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}"/>
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}"/>
+    <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource InfoColor}"/>
+
+    <!-- Elemental Brushes -->
+    <SolidColorBrush x:Key="FireBrush" Color="{StaticResource FireColor}"/>
+    <SolidColorBrush x:Key="WaterBrush" Color="{StaticResource WaterColor}"/>
+    <SolidColorBrush x:Key="EarthBrush" Color="{StaticResource EarthColor}"/>
+    <SolidColorBrush x:Key="AirBrush" Color="{StaticResource AirColor}"/>
+    <SolidColorBrush x:Key="SpiritBrush" Color="{StaticResource SpiritColor}"/>
+
+    <!-- Chakra Brushes -->
+    <SolidColorBrush x:Key="RootChakraBrush" Color="{StaticResource RootChakraColor}"/>
+    <SolidColorBrush x:Key="SacralChakraBrush" Color="{StaticResource SacralChakraColor}"/>
+    <SolidColorBrush x:Key="SolarPlexusChakraBrush" Color="{StaticResource SolarPlexusChakraColor}"/>
+    <SolidColorBrush x:Key="HeartChakraBrush" Color="{StaticResource HeartChakraColor}"/>
+    <SolidColorBrush x:Key="ThroatChakraBrush" Color="{StaticResource ThroatChakraColor}"/>
+    <SolidColorBrush x:Key="ThirdEyeChakraBrush" Color="{StaticResource ThirdEyeChakraColor}"/>
+    <SolidColorBrush x:Key="CrownChakraBrush" Color="{StaticResource CrownChakraColor}"/>
+
+    <!-- Gradients -->
+    <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource PrimaryColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource SecondaryColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ElementalGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource FireColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource WaterColor}" Offset="0.25"/>
+        <GradientStop Color="{StaticResource EarthColor}" Offset="0.5"/>
+        <GradientStop Color="{StaticResource AirColor}" Offset="0.75"/>
+        <GradientStop Color="{StaticResource SpiritColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Styles -->
+    <Style x:Key="RitualOSButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"
+                                        Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsPointerOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RitualOSCard" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" 
+                                Direction="270" 
+                                ShadowDepth="2" 
+                                Opacity="0.1" 
+                                BlurRadius="4"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RitualOSTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TextSecondaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8,6"/>
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <!-- Moon Phase Icons -->
+    <StreamGeometry x:Key="NewMoonIcon">M12,2 A10,10 0 1,1 12,22 A10,10 0 1,1 12,2 M12,4 A8,8 0 1,0 12,20 A8,8 0 1,0 12,4</StreamGeometry>
+    <StreamGeometry x:Key="FullMoonIcon">M12,2 A10,10 0 1,1 12,22 A10,10 0 1,1 12,2</StreamGeometry>
+    <StreamGeometry x:Key="WaxingCrescentIcon">M12,2 A10,10 0 1,1 12,22 A10,10 0 1,1 12,2 M12,4 A8,8 0 1,0 12,20 A8,8 0 1,0 12,4 M8,4 A8,8 0 0,1 8,20</StreamGeometry>
+
+    <!-- Elemental Symbols -->
+    <StreamGeometry x:Key="FireSymbol">M12,2 L15,8 L12,14 L9,8 Z M12,6 L13,9 L12,12 L11,9 Z</StreamGeometry>
+    <StreamGeometry x:Key="WaterSymbol">M12,2 C8,6 8,14 12,18 C16,14 16,6 12,2 Z M12,6 C10,8 10,12 12,14 C14,12 14,8 12,6 Z</StreamGeometry>
+    <StreamGeometry x:Key="EarthSymbol">M12,2 L20,8 L12,14 L4,8 Z M12,6 L16,9 L12,12 L8,9 Z</StreamGeometry>
+    <StreamGeometry x:Key="AirSymbol">M12,2 C14,4 14,8 12,10 C10,8 10,4 12,2 Z M12,6 C13,7 13,9 12,10 C11,9 11,7 12,6 Z</StreamGeometry>
+    <StreamGeometry x:Key="SpiritSymbol">M12,2 L14,8 L20,8 L15,12 L17,18 L12,14 L7,18 L9,12 L4,8 L10,8 Z</StreamGeometry>
+
+</ResourceDictionary> 
