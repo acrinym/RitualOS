@@ -4,6 +4,8 @@ using System.Windows.Input;
 using RitualOS.Helpers;
 using RitualOS.Models;
 using RitualOS.Services;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace RitualOS.ViewModels.Wizards
 {
@@ -37,6 +39,7 @@ namespace RitualOS.ViewModels.Wizards
         public ICommand AddChakraCommand { get; }
         public ICommand AddElementCommand { get; }
         public ICommand AddStepCommand { get; }
+
         public bool CanEdit => SigilLock.HasAccess(UserContext.CurrentRole, "RitualBuilder");
 
         private string _preview = string.Empty;
@@ -70,7 +73,7 @@ namespace RitualOS.ViewModels.Wizards
             AddChakraCommand = new RelayCommand(_ => Chakras.Add(Chakra.Root));
             AddElementCommand = new RelayCommand(_ => Elements.Add(Element.Earth));
             AddStepCommand = new RelayCommand(_ => Steps.Add(string.Empty));
-            }
+        }
 
         private void MoveNext()
         {
@@ -124,6 +127,8 @@ namespace RitualOS.ViewModels.Wizards
                 Steps.Clear();
                 foreach (var step in loaded.Steps)
                     Steps.Add(step);
+                Template.Steps = loaded.Steps;
+
                 UpdatePreview();
             }
             catch
@@ -134,9 +139,13 @@ namespace RitualOS.ViewModels.Wizards
 
         private void UpdatePreview()
         {
-            var options = new System.Text.Json.JsonSerializerOptions { WriteIndented = true };
-            options.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
-            Preview = System.Text.Json.JsonSerializer.Serialize(Template, options);
+            // Correction is here: a single 'options' object is created, configured, and then used.
+            var options = new JsonSerializerOptions 
+            { 
+                WriteIndented = true 
+            };
+            options.Converters.Add(new JsonStringEnumConverter());
+            Preview = JsonSerializer.Serialize(Template, options);
         }
     }
 }
