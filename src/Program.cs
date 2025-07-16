@@ -21,7 +21,7 @@ namespace RitualOS
             {
                 desktop.MainWindow = new Window
                 {
-                    Content = new InventoryViewModel() // Start with InventoryView to test alerts
+                    Content = new InventoryView() // Fixed: Use InventoryView (UserControl), not InventoryViewModel
                 };
             }
             base.OnFrameworkInitializationCompleted();
@@ -33,6 +33,7 @@ namespace RitualOS
         [STAThread]
         public static void Main(string[] args)
         {
+            Console.WriteLine("Starting RitualOS..."); // Added for debugging
             BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
         }
 
