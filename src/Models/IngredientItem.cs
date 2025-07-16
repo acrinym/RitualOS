@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace RitualOS.Models
 {
     public class IngredientItem
@@ -13,10 +16,10 @@ namespace RitualOS.Models
 
         public string Name { get; set; }
         public string Category { get; set; }
-        public double Quantity { get; set; }
-        public string Unit { get; set; } = string.Empty;
+        public int Quantity { get; set; }
+        public DateTime? ExpirationDate { get; set; }
         public string Location { get; set; }
-        public List<Chakra> Chakras { get; set; } = new();
+        public bool ReorderFlag { get; set; }
         public string MarketplaceLink { get; set; }
         public string Notes { get; set; }
     }

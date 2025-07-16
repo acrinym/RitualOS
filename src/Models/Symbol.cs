@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RitualOS.Models
 {
     public class Symbol
@@ -16,6 +18,7 @@ namespace RitualOS.Models
         public string Rewritten { get; set; }
         public string RitualText { get; set; }
         public string Description { get; set; }
-        public List<string> AssociatedRituals { get; set; } = new();
+        public List<Chakra> ChakraTags { get; set; } = new();
+        public List<string> ElementTags { get; set; } = new();
     }
 }

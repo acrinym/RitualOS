@@ -52,5 +52,10 @@ namespace RitualOS.Services
                 throw new Exception($"Failed to save dream to {path}: {ex.Message}", ex);
             }
         }
+
+        internal static void SaveDreamToJson(DreamEntry dream, string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

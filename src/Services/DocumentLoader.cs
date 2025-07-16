@@ -1,112 +1,118 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 using HtmlAgilityPack;
 using Markdig;
 using UglyToad.PdfPig;
 using VersOne.Epub;
+using RitualOS.Models;
 
 namespace RitualOS.Services
 {
     public static class DocumentLoader
     {
-        public static DocumentFile Load(string path)
+        public static DocumentFile Load(string filePath)
         {
-            var extension = Path.GetExtension(path).ToLowerInvariant();
-            return extension switch
+            var doc = new DocumentFile
             {
-                ".pdf" => LoadPdf(path),
-                ".md" => LoadMarkdown(path),
-                ".html" => LoadHtml(path),
-                ".epub" => LoadEpub(path),
-                _ => throw new NotSupportedException($"Unsupported file type: {extension}")
+                FilePath = filePath,
+                Title = Path.GetFileName(filePath)
             };
+
+            if (!File.Exists(filePath))
+            {
+                doc.Content = "File not found.";
+                return doc;
+            }
+
+            var ext = Path.GetExtension(filePath).ToLowerInvariant();
+            switch (ext)
+            {
+                case ".pdf":
+                    doc.Content = LoadPdf(filePath);
+                    break;
+                case ".md":
+                    doc.Content = LoadMarkdown(filePath);
+                    break;
+                case ".json":
+                    doc.Content = LoadJson(filePath);
+                    break;
+                case ".epub":
+                    doc.Content = LoadEpub(filePath);
+                    break;
+                case ".mobi":
+                    doc.Content = "MOBI support not implemented.";
+                    break;
+                case ".html":
+                case ".htm":
+                    doc.Content = LoadHtml(filePath);
+                    break;
+                default:
+                    doc.Content = File.ReadAllText(filePath);
+                    break;
+            }
+
+            return doc;
         }
 
-        private static DocumentFile LoadPdf(string path)
+        private static string LoadPdf(string filePath)
         {
             try
             {
-                using var document = PdfDocument.Open(path);
-                var builder = new StringBuilder();
-                foreach (var page in document.GetPages())
+                var sb = new StringBuilder();
+                using var pdf = PdfDocument.Open(filePath);
+                foreach (var page in pdf.GetPages())
                 {
-                    builder.AppendLine(page.Text);
+                    sb.AppendLine(page.Text);
                 }
-                return new DocumentFile
-                {
-                    Path = path,
-                    Content = builder.ToString(),
-                    Type = "pdf"
-                };
+                return sb.ToString();
             }
             catch (Exception ex)
             {
-                throw new Exception($"Failed to load PDF: {ex.Message}", ex);
+                return $"PDF load error: {ex.Message}";
             }
         }
 
-        private static DocumentFile LoadMarkdown(string path)
+        private static string LoadMarkdown(string filePath)
         {
-            try
-            {
-                var markdown = File.ReadAllText(path);
-                var html = Markdown.ToHtml(markdown);
-                return new DocumentFile
-                {
-                    Path = path,
-                    Content = html,
-                    Type = "markdown"
-                };
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Failed to load Markdown: {ex.Message}", ex);
-            }
+            var markdown = File.ReadAllText(filePath);
+            return Markdown.ToPlainText(markdown);
         }
 
-        private static DocumentFile LoadHtml(string path)
+        private static string LoadJson(string filePath)
         {
-            try
-            {
-                var doc = new HtmlDocument();
-                doc.Load(path);
-                return new DocumentFile
-                {
-                    Path = path,
-                    Content = doc.DocumentNode.OuterHtml,
-                    Type = "html"
-                };
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Failed to load HTML: {ex.Message}", ex);
-            }
+            var json = File.ReadAllText(filePath);
+            var doc = JsonSerializer.Deserialize<object>(json);
+            return JsonSerializer.Serialize(doc, new JsonSerializerOptions { WriteIndented = true });
         }
 
-        private static DocumentFile LoadEpub(string path)
+        private static string LoadHtml(string filePath)
+        {
+            var html = File.ReadAllText(filePath);
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+            return doc.DocumentNode.InnerText;
+        }
+
+        private static string LoadEpub(string filePath)
         {
             try
             {
-                var epubBook = EpubReader.ReadBook(path);
-                var builder = new StringBuilder();
-                foreach (var contentFile in epubBook.ReadingOrder)
+                var book = EpubReader.ReadBook(filePath);
+                var sb = new StringBuilder();
+                foreach (var contentFile in book.ReadingOrder)
                 {
                     if (contentFile.ContentType == EpubContentType.XHTML_1_1)
                     {
-                        builder.AppendLine(contentFile.Content);
+                        sb.AppendLine(contentFile.Content);
                     }
                 }
-                return new DocumentFile
-                {
-                    Path = path,
-                    Content = builder.ToString(),
-                    Type = "epub"
-                };
+                return sb.ToString();
             }
             catch (Exception ex)
             {
-                throw new Exception($"Failed to load EPUB: {ex.Message}", ex);
+                return $"EPUB load error: {ex.Message}";
             }
         }
     }
