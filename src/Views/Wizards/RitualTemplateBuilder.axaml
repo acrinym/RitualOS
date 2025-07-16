@@ -26,7 +26,7 @@
             <ListBox ItemsSource="{Binding Steps}" Height="80"/>
             <Button Content="Add Step" Command="{Binding AddStepCommand}"/>
             
-            <TextBox Watermark="Moon Phase" Text="{Binding Template.MoonPhase}"/>
+            <ComboBox ItemsSource="{Binding MoonPhases}" SelectedItem="{Binding Template.MoonPhase}" Margin="0,10,0,0"/>
             <TextBox Watermark="Outcome" Text="{Binding Template.OutcomeField}"/>
             <TextBox Watermark="Notes" Text="{Binding Template.Notes}" AcceptsReturn="True" Height="60"/>
             
