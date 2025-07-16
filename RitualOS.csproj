@@ -7,12 +7,13 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.0" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.45" />
-    <PackageReference Include="Markdig" Version="0.31.0" />
-    <PackageReference Include="UglyToad.PdfPig" Version="1.7.0-custom-5" />
-    <PackageReference Include="VersOne.Epub" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="docs\**" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="Converters\StringListConverter.cs" />
+    <Compile Include="Converters\MessageColorConverter.cs" />
+    <Compile Include="Converters\ChakraCheckConverter.cs" />
+    <Compile Include="Services\DreamDataLoader.cs" />
+    <Compile Include="ViewModels\DreamEntryViewModel.cs" />
+    <Compile Include="Views\DreamEntryView.axaml" />
   </ItemGroup>
 </Project>

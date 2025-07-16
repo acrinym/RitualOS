@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels"
+             xmlns:views="clr-namespace:RitualOS.Views"
+             xmlns:conv="clr-namespace:RitualOS.Converters">
+    <UserControl.DataContext>
+        <vm:DreamEntryViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
+        <conv:MessageColorConverter x:Key="MessageColorConverter" />
+    </UserControl.Resources>
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="Dream Journal" FontWeight="Bold"/>
+        <TextBox Watermark="Title" Text="{Binding Dream.Title, Mode=TwoWay}" Width="200"/>
+        <DatePicker SelectedDate="{Binding Dream.Date, Mode=TwoWay}"/>
+        <TextBox Watermark="Description" Text="{Binding Dream.Description, Mode=TwoWay}" AcceptsReturn="True" Height="80"/>
+        <StackPanel Orientation="Horizontal" Spacing="6">
+            <ListBox ItemsSource="{Binding Symbols}" Width="120" Height="80">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBox Text="{Binding}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="Add Symbol" Command="{Binding AddSymbolCommand}"/>
+        </StackPanel>
+        <views:ChakraSelector />
+        <TextBox Watermark="Interpretation" Text="{Binding Dream.Interpretation, Mode=TwoWay}" AcceptsReturn="True" Height="80"/>
+        <TextBox Watermark="Tags" Text="{Binding Dream.Tags, Converter={StaticResource StringListConverter}}" Width="200"/>
+        <TextBlock Text="{Binding Message}" Foreground="{Binding Message, Converter={StaticResource MessageColorConverter}}" Margin="10"/>
+        <Button Content="Save" Command="{Binding SaveCommand}" Width="80"/>
+    </StackPanel>
+</UserControl>
