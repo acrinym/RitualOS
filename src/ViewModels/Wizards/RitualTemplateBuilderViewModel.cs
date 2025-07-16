@@ -5,6 +5,8 @@ using System.Windows.Input;
 using RitualOS.Helpers;
 using RitualOS.Models;
 using RitualOS.Services;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace RitualOS.ViewModels.Wizards
 {
@@ -38,6 +40,7 @@ namespace RitualOS.ViewModels.Wizards
         public ICommand AddChakraCommand { get; }
         public ICommand AddElementCommand { get; }
         public ICommand AddStepCommand { get; }
+
         public bool CanEdit => SigilLock.HasAccess(UserContext.CurrentRole, "RitualBuilder");
 
         private string _preview = string.Empty;
@@ -72,7 +75,7 @@ namespace RitualOS.ViewModels.Wizards
             AddChakraCommand = new RelayCommand(_ => Chakras.Add(Chakra.Root));
             AddElementCommand = new RelayCommand(_ => Elements.Add(Element.Earth));
             AddStepCommand = new RelayCommand(_ => Steps.Add(string.Empty));
-            }
+        }
 
         private void MoveNext()
         {
@@ -111,21 +114,27 @@ namespace RitualOS.ViewModels.Wizards
                 Template.MoonPhase = loaded.MoonPhase;
                 Template.OutcomeField = loaded.OutcomeField;
                 Template.Notes = loaded.Notes;
+                
                 Tools.Clear();
                 foreach (var t in loaded.Tools)
                     Tools.Add(t);
+                
                 Spirits.Clear();
                 foreach (var s in loaded.SpiritsInvoked)
                     Spirits.Add(s);
+
                 Chakras.Clear();
                 foreach (var c in loaded.ChakrasAffected)
                     Chakras.Add(c);
+
                 Elements.Clear();
                 foreach (var e in loaded.Elements)
                     Elements.Add(e);
+
                 Steps.Clear();
                 foreach (var step in loaded.Steps)
                     Steps.Add(step);
+
                 UpdatePreview();
             }
             catch
@@ -136,9 +145,12 @@ namespace RitualOS.ViewModels.Wizards
 
         private void UpdatePreview()
         {
-            var options = new System.Text.Json.JsonSerializerOptions { WriteIndented = true };
-            options.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
-            Preview = System.Text.Json.JsonSerializer.Serialize(Template, options);
+            var options = new JsonSerializerOptions 
+            { 
+                WriteIndented = true 
+            };
+            options.Converters.Add(new JsonStringEnumConverter());
+            Preview = JsonSerializer.Serialize(Template, options);
         }
     }
 }
