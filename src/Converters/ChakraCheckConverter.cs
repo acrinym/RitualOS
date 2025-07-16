@@ -21,7 +21,7 @@ namespace RitualOS.Converters
         {
             if (value is bool isChecked && parameter is Chakra chakra && targetType == typeof(List<Chakra>))
             {
-                var list = (List<Chakra>)Activator.CreateInstance(targetType);
+                var list = new List<Chakra>();
                 if (isChecked)
                 {
                     list.Add(chakra);

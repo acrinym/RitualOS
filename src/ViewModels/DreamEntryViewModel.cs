@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq; // Added for ToList
 using System.Windows.Input;
 using RitualOS.Helpers;
 using RitualOS.Models;
@@ -9,35 +10,59 @@ namespace RitualOS.ViewModels
 {
     public class DreamEntryViewModel : ViewModelBase
     {
-        private DreamEntry _dream = new();
+        private DreamEntry _entry = new();
         private string _message = string.Empty;
 
-        public DreamEntry Dream
+        public ObservableCollection<string> Symbols { get; } = new();
+        public ObservableCollection<Chakra> SelectedChakras { get; } = new();
+
+        public string Title
         {
-            get => _dream;
+            get => _entry.Title;
             set
             {
-                if (_dream != value)
-                {
-                    _dream = value;
-                    OnPropertyChanged();
-                }
+                _entry.Title = value;
+                OnPropertyChanged();
             }
         }
 
-        public ObservableCollection<string> Symbols { get; } = new();
-        public ObservableCollection<Chakra> ChakraTags { get; } = new();
+        public string Description
+        {
+            get => _entry.Description;
+            set
+            {
+                _entry.Description = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Interpretation
+        {
+            get => _entry.Interpretation;
+            set
+            {
+                _entry.Interpretation = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Date
+        {
+            get => _entry.Date;
+            set
+            {
+                _entry.Date = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Message
         {
             get => _message;
             set
             {
-                if (_message != value)
-                {
-                    _message = value;
-                    OnPropertyChanged();
-                }
+                _message = value;
+                OnPropertyChanged();
             }
         }
 
@@ -47,10 +72,8 @@ namespace RitualOS.ViewModels
 
         public DreamEntryViewModel()
         {
-            Dream.Id = Guid.NewGuid().ToString();
-            Dream.Date = DateTime.Now;
-            SaveCommand = new RelayCommand(_ => Save(), _ => !string.IsNullOrWhiteSpace(Dream.Title));
-            AddSymbolCommand = new RelayCommand(_ => Symbols.Add(string.Empty));
+            SaveCommand = new RelayCommand(_ => Save(), _ => !string.IsNullOrWhiteSpace(Title));
+            AddSymbolCommand = new RelayCommand(param => AddSymbol(param as string));
             AddChakraCommand = new RelayCommand(param => AddChakra(param as Chakra?));
         }
 
@@ -58,10 +81,10 @@ namespace RitualOS.ViewModels
         {
             try
             {
-                Dream.Symbols = Symbols.ToList();
-                Dream.ChakraTags = ChakraTags.ToList();
-                DreamDataLoader.SaveDreamToJson(Dream, $"dreams/{Dream.Id}.json");
-                Message = $"Dream '{Dream.Title}' saved successfully!";
+                _entry.Symbols = Symbols.ToList();
+                _entry.Chakras = SelectedChakras.ToList();
+                DreamDataLoader.SaveDream(_entry, $"dreams/{_entry.Id}.json");
+                Message = "Dream saved successfully!";
             }
             catch (Exception ex)
             {
@@ -69,11 +92,19 @@ namespace RitualOS.ViewModels
             }
         }
 
+        private void AddSymbol(string? symbol)
+        {
+            if (!string.IsNullOrWhiteSpace(symbol) && !Symbols.Contains(symbol))
+            {
+                Symbols.Add(symbol);
+            }
+        }
+
         private void AddChakra(Chakra? chakra)
         {
-            if (chakra.HasValue && !ChakraTags.Contains(chakra.Value))
+            if (chakra.HasValue && !SelectedChakras.Contains(chakra.Value))
             {
-                ChakraTags.Add(chakra.Value);
+                SelectedChakras.Add(chakra.Value);
             }
         }
     }

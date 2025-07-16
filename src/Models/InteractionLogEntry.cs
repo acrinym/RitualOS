@@ -1,13 +1,18 @@
-using System;
-
 namespace RitualOS.Models
 {
     public class InteractionLogEntry
     {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        public DateTime Timestamp { get; set; } = DateTime.Now;
+        public InteractionLogEntry()
+        {
+            Type = string.Empty;
+            Summary = string.Empty;
+            Details = string.Empty;
+        }
+
+        public DateTime Date { get; set; }
         public string Type { get; set; }
         public string Summary { get; set; }
         public string Details { get; set; }
+        public string ClientId { get; set; } = string.Empty;
     }
 }

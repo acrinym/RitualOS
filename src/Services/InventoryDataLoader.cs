@@ -8,52 +8,49 @@ namespace RitualOS.Services
 {
     public static class InventoryDataLoader
     {
-        public static InventoryItem LoadItemFromJson(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                throw new RitualDataLoadException($"File not found: {filePath}");
-            }
-
-            try
-            {
-                var json = File.ReadAllText(filePath);
-                return JsonSerializer.Deserialize<InventoryItem>(json) ?? throw new RitualDataLoadException("Failed to deserialize inventory item.");
-            }
-            catch (Exception ex) when (ex is IOException || ex is JsonException)
-            {
-                throw new RitualDataLoadException("Failed to deserialize inventory item.", ex);
-            }
-        }
-
-        public static void SaveItemToJson(InventoryItem item, string filePath)
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            var json = JsonSerializer.Serialize(item, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filePath, json);
-        }
-
         public static List<InventoryItem> LoadAllItems(string directory)
         {
-            var results = new List<InventoryItem>();
+            var items = new List<InventoryItem>();
+            if (string.IsNullOrEmpty(directory))
+            {
+                return items;
+            }
+
             if (!Directory.Exists(directory))
             {
-                return results;
+                Directory.CreateDirectory(directory);
             }
 
             foreach (var file in Directory.GetFiles(directory, "*.json"))
             {
                 try
                 {
-                    var item = LoadItemFromJson(file);
-                    results.Add(item);
+                    var json = File.ReadAllText(file);
+                    var item = JsonSerializer.Deserialize<InventoryItem>(json);
+                    if (item != null)
+                    {
+                        items.Add(item);
+                    }
                 }
-                catch (RitualDataLoadException)
+                catch (Exception ex)
                 {
-                    // Ignore invalid files
+                    Console.WriteLine($"Error loading item from {file}: {ex.Message}");
                 }
             }
-            return results;
+            return items;
+        }
+
+        public static void SaveItemToJson(InventoryItem item, string path)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(item, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(path, json);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to save item to {path}: {ex.Message}", ex);
+            }
         }
     }
 }

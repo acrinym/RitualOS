@@ -31,6 +31,7 @@
     <Compile Include="src\Models\IngredientItem.cs" />
     <Compile Include="src\Models\InteractionLogEntry.cs" />
     <Compile Include="src\Models\InventoryItem.cs" />
+    <Compile Include="src\Models\InventoryAlert.cs" />
     <Compile Include="src\Models\RitualEntry.cs" />
     <Compile Include="src\Models\RitualWizardStep.cs" />
     <Compile Include="src\Models\Symbol.cs" />

@@ -8,52 +8,49 @@ namespace RitualOS.Services
 {
     public static class DreamDataLoader
     {
-        public static DreamEntry LoadDreamFromJson(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                throw new RitualDataLoadException($"File not found: {filePath}");
-            }
-
-            try
-            {
-                var json = File.ReadAllText(filePath);
-                return JsonSerializer.Deserialize<DreamEntry>(json) ?? throw new RitualDataLoadException("Failed to deserialize dream data.");
-            }
-            catch (Exception ex) when (ex is IOException || ex is JsonException)
-            {
-                throw new RitualDataLoadException("Failed to deserialize dream data.", ex);
-            }
-        }
-
-        public static void SaveDreamToJson(DreamEntry entry, string filePath)
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            var json = JsonSerializer.Serialize(entry, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filePath, json);
-        }
-
         public static List<DreamEntry> LoadAllDreams(string directory)
         {
-            var results = new List<DreamEntry>();
+            var dreams = new List<DreamEntry>();
+            if (string.IsNullOrEmpty(directory))
+            {
+                return dreams;
+            }
+
             if (!Directory.Exists(directory))
             {
-                return results;
+                Directory.CreateDirectory(directory);
             }
 
             foreach (var file in Directory.GetFiles(directory, "*.json"))
             {
                 try
                 {
-                    var dream = LoadDreamFromJson(file);
-                    results.Add(dream);
+                    var json = File.ReadAllText(file);
+                    var dream = JsonSerializer.Deserialize<DreamEntry>(json);
+                    if (dream != null)
+                    {
+                        dreams.Add(dream);
+                    }
                 }
-                catch (RitualDataLoadException)
+                catch (Exception ex)
                 {
-                    // Ignore invalid files
+                    Console.WriteLine($"Error loading dream from {file}: {ex.Message}");
                 }
             }
-            return results;
+            return dreams;
+        }
+
+        public static void SaveDream(DreamEntry dream, string path)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(dream, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(path, json);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to save dream to {path}: {ex.Message}", ex);
+            }
         }
     }
 }
