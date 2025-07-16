@@ -26,16 +26,16 @@ namespace RitualOS.ViewModels.Wizards
             }
         }
 
-        public RitualEntry Ritual { get; } = new();
+        public RitualTemplate Template { get; } = new();
 
         public ICommand NextCommand { get; }
         public ICommand PrevCommand { get; }
         public ICommand SaveCommand { get; }
         public ICommand AddSpiritCommand { get; }
-        public ICommand AddIngredientCommand { get; }
+        public ICommand AddToolCommand { get; }
 
         public ObservableCollection<string> Spirits { get; } = new();
-        public ObservableCollection<string> Ingredients { get; } = new();
+        public ObservableCollection<string> Tools { get; } = new();
 
         public RitualTemplateBuilderViewModel()
         {
@@ -43,7 +43,7 @@ namespace RitualOS.ViewModels.Wizards
             PrevCommand = new RelayCommand(_ => MovePrev(), _ => Step != RitualWizardStep.Tools);
             SaveCommand = new RelayCommand(_ => Save());
             AddSpiritCommand = new RelayCommand(_ => Spirits.Add(string.Empty));
-            AddIngredientCommand = new RelayCommand(_ => Ingredients.Add(string.Empty));
+            AddToolCommand = new RelayCommand(_ => Tools.Add(string.Empty));
         }
 
         private void MoveNext()
@@ -64,9 +64,9 @@ namespace RitualOS.ViewModels.Wizards
 
         private void Save()
         {
-            Ritual.SpiritsInvoked = Spirits.ToList();
-            Ritual.Ingredients = Ingredients.ToList();
-            RitualDataLoader.SaveRitualToJson(Ritual, $"{Ritual.Id}.json");
+            Template.SpiritsInvoked = Spirits.ToList();
+            Template.Tools = Tools.ToList();
+            RitualTemplateSerializer.Save(Template, $"{Template.Name}.json");
         }
     }
 }

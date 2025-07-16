@@ -42,6 +42,8 @@
     <Compile Include="src\Models\InventoryAlert.cs" />
     <Compile Include="src\Models\InventoryItem.cs" />
     <Compile Include="src\Models\RitualEntry.cs" />
+    <Compile Include="src\Models\RitualTemplate.cs" />
+    <Compile Include="src\Models\Role.cs" />
     <Compile Include="src\Models\RitualWizardStep.cs" />
     <Compile Include="src\Models\Symbol.cs" />
     <Compile Include="src\Services\ClientDatabase.cs" />
@@ -53,6 +55,8 @@
     <Compile Include="src\Services\RitualDataLoader.cs" />
     <Compile Include="src\Services\RitualDataLoadException.cs" />
     <Compile Include="src\Services\SymbolIndexService.cs" />
+    <Compile Include="src\Services\SigilLock.cs" />
+    <Compile Include="src\Services\RitualTemplateSerializer.cs" />
     <Compile Include="src\Services\ThemeLoader.cs" />
     <Compile Include="src\ViewModels\ClientViewModel.cs" />
     <Compile Include="src\ViewModels\DocumentViewerViewModel.cs" />
