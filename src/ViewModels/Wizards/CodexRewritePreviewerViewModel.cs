@@ -78,6 +78,7 @@ namespace RitualOS.ViewModels.Wizards
         }
 
         public ICommand SaveCommand { get; }
+        public ICommand ExportCommand { get; }
 
         /// <summary>
         /// True if editing the original text, false for the rewritten version.
@@ -119,6 +120,7 @@ namespace RitualOS.ViewModels.Wizards
         public CodexRewritePreviewerViewModel()
         {
             SaveCommand = new RelayCommand(_ => Save(), _ => Symbol != null && CanEdit);
+            ExportCommand = new RelayCommand(_ => Export(), _ => Symbol != null);
         }
 
         private void Save()
@@ -145,6 +147,15 @@ namespace RitualOS.ViewModels.Wizards
             {
                 // We should add user-facing error handling here later.
             }
+        }
+
+        private void Export()
+        {
+            if (Symbol == null)
+                return;
+
+            var fileName = $"{Symbol.Name}_rewritten.md";
+            CodexRewriteEngine.ExportMarkdown(new[] { Symbol }, fileName);
         }
     }
 }

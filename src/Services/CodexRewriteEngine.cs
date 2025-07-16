@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Linq;
 using RitualOS.Models;
 
 namespace RitualOS.Services
@@ -101,6 +102,67 @@ namespace RitualOS.Services
             }
 
             return symbols;
+        }
+
+        /// <summary>
+        /// Apply rewrite rules to a symbol's text fields.
+        /// </summary>
+        public static void RewriteSymbol(Symbol symbol, IEnumerable<IRewriteRule> rules)
+        {
+            var text = symbol.Original;
+            foreach (var rule in rules)
+            {
+                text = rule.Apply(text);
+            }
+
+            symbol.Rewritten = text;
+        }
+
+        /// <summary>
+        /// Rewrite all symbols in a markdown file and export to a new file.
+        /// </summary>
+        public static void RewriteFile(string inputPath, string outputPath, IEnumerable<IRewriteRule> rules)
+        {
+            Console.WriteLine($"Rewriting {inputPath} -> {outputPath}");
+            var symbols = ParseFile(inputPath);
+            foreach (var s in symbols)
+                RewriteSymbol(s, rules);
+
+            ExportMarkdown(symbols, outputPath);
+        }
+
+        /// <summary>
+        /// Batch process multiple markdown files.
+        /// </summary>
+        public static void BatchRewrite(IEnumerable<string> files, string outputDirectory, IEnumerable<IRewriteRule> rules)
+        {
+            Directory.CreateDirectory(outputDirectory);
+            foreach (var file in files)
+            {
+                var output = Path.Combine(outputDirectory, Path.GetFileName(file));
+                RewriteFile(file, output, rules);
+            }
+        }
+
+        /// <summary>
+        /// Export a collection of symbols back to markdown format.
+        /// </summary>
+        public static void ExportMarkdown(IEnumerable<Symbol> symbols, string path)
+        {
+            using var writer = new StreamWriter(path);
+            foreach (var s in symbols)
+            {
+                writer.WriteLine($"## {s.Name}");
+                if (s.ChakraTags.Any())
+                    writer.WriteLine($"Chakras Inferred: {string.Join(", ", s.ChakraTags)}");
+                if (s.ElementTags.Any())
+                    writer.WriteLine($"Elemental Associations: {string.Join(", ", s.ElementTags)}");
+                if (!string.IsNullOrWhiteSpace(s.RitualText))
+                    writer.WriteLine($"Field Implications: {s.RitualText}");
+                writer.WriteLine("Reinterpretation:");
+                writer.WriteLine(s.Rewritten);
+                writer.WriteLine();
+            }
         }
     }
 }
