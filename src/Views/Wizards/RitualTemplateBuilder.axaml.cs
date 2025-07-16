@@ -1,5 +1,5 @@
-using System;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 
 namespace RitualOS.Views.Wizards
 {
@@ -12,7 +12,7 @@ namespace RitualOS.Views.Wizards
 
         private void InitializeComponent()
         {
-            throw new NotImplementedException();
+            AvaloniaXamlLoader.Load(this);
         }
     }
 }

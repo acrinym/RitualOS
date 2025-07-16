@@ -7,8 +7,8 @@
         <Button Content="Add Spirit" Command="{Binding AddSpiritCommand}"/>
       </StackPanel>
       <StackPanel>
-        <ListBox ItemsSource="{Binding Ingredients}" Width="120" Height="80"/>
-        <Button Content="Add Ingredient" Command="{Binding AddIngredientCommand}"/>
+        <ListBox ItemsSource="{Binding Tools}" Width="120" Height="80"/>
+        <Button Content="Add Tool" Command="{Binding AddToolCommand}"/>
       </StackPanel>
     </StackPanel>
     <StackPanel Orientation="Horizontal" Spacing="6">
