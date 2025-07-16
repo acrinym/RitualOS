@@ -11,8 +11,8 @@
     <PackageReference Include="Avalonia.Desktop" Version="11.0.0" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0" />
     <PackageReference Include="Markdig" Version="0.37.0" />
-    <PackageReference Include="UglyToad.PdfPig" Version="0.1.8" />
-    <PackageReference Include="VersOne.Epub" Version="3.2.1" />
+    <PackageReference Include="UglyToad.PdfPig" Version="1.7.0-custom-5" />
+    <PackageReference Include="VersOne.Epub" Version="3.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Converters\ChakraCheckConverter.cs" />
