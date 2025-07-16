@@ -56,6 +56,7 @@
     <Compile Include="src\Services\RitualDataLoadException.cs" />
     <Compile Include="src\Services\SymbolIndexService.cs" />
     <Compile Include="src\Services\SigilLock.cs" />
+    <Compile Include="src\Services\UserContext.cs" />
     <Compile Include="src\Services\RitualTemplateSerializer.cs" />
     <Compile Include="src\Services\ThemeLoader.cs" />
     <Compile Include="src\ViewModels\ClientViewModel.cs" />
