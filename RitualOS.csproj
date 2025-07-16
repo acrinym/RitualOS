@@ -27,10 +27,13 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Converters\ChakraCheckConverter.cs" />
     <Compile Include="src\Converters\ChakraToEmojiConverter.cs" />
+    <Compile Include="src\Converters\ElementToEmojiConverter.cs" />
+    <Compile Include="src\Converters\ElementCheckConverter.cs" />
     <Compile Include="src\Converters\LowQuantityConverter.cs" />
     <Compile Include="src\Converters\MessageColorConverter.cs" />
     <Compile Include="src\Converters\StringListConverter.cs" />
     <Compile Include="src\Helpers\ChakraHelper.cs" />
+    <Compile Include="src\Helpers\ElementHelper.cs" />
     <Compile Include="src\Helpers\RelayCommand.cs" />
     <Compile Include="src\Models\Chakra.cs" />
     <Compile Include="src\Models\ClientProfile.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="src\ViewModels\ThemeViewModel.cs" />
     <Compile Include="src\ViewModels\ViewModelBase.cs" />
     <Compile Include="src\Views\ChakraSelector.axaml.cs" />
+    <Compile Include="src\Views\ElementSelector.axaml.cs" />
     
     <Compile Include="src\Views\InventoryView.axaml.cs" />
     <Compile Include="src\Views\RitualTimeline.axaml.cs" />

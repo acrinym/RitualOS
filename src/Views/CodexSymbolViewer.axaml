@@ -2,6 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:conv="clr-namespace:RitualOS.Converters"
              xmlns:vm="clr-namespace:RitualOS.ViewModels">
+    <UserControl.Resources>
+        <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
+        <conv:ElementToEmojiConverter x:Key="ElementToEmoji" />
+    </UserControl.Resources>
     <UserControl.DataContext>
         <vm:SymbolViewerViewModel />
     </UserControl.DataContext>
@@ -24,14 +28,40 @@
             </TabItem>
         </TabControl>
 
-        <ListBox ItemsSource="{Binding FilteredSymbols}" 
-                 SelectedItem="{Binding SelectedSymbol}" 
+        <ListBox ItemsSource="{Binding FilteredSymbols}"
+                 SelectedItem="{Binding SelectedSymbol}"
                  DockPanel.Dock="Left"
-                 Width="200"
+                 Width="220"
                  Margin="4">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                        <ItemsControl ItemsSource="{Binding ChakraTags}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource ChakraToEmoji}}" Margin="2,0"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding ElementTags}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource ElementToEmoji}}" Margin="2,0"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

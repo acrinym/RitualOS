@@ -28,6 +28,7 @@ namespace RitualOS.ViewModels
 
         public ObservableCollection<string> Symbols { get; } = new();
         public ObservableCollection<Chakra> ChakraTags { get; } = new();
+        public ObservableCollection<Element> Elements { get; } = new();
 
         public string Message
         {
@@ -45,6 +46,7 @@ namespace RitualOS.ViewModels
         public ICommand SaveCommand { get; }
         public ICommand AddSymbolCommand { get; }
         public ICommand AddChakraCommand { get; }
+        public ICommand AddElementCommand { get; }
 
         public DreamEntryViewModel()
         {
@@ -53,6 +55,7 @@ namespace RitualOS.ViewModels
             SaveCommand = new RelayCommand(_ => Save(), _ => !string.IsNullOrWhiteSpace(Dream.Title));
             AddSymbolCommand = new RelayCommand(_ => Symbols.Add(string.Empty));
             AddChakraCommand = new RelayCommand(param => AddChakra(param as Chakra?));
+            AddElementCommand = new RelayCommand(param => AddElement(param as Element?));
         }
 
         private void Save()
@@ -61,6 +64,7 @@ namespace RitualOS.ViewModels
             {
                 Dream.Symbols = Symbols.ToList();
                 Dream.ChakraTags = ChakraTags.ToList();
+                Dream.ElementTags = Elements.ToList();
                 DreamDataLoader.SaveDreamToJson(Dream, $"dreams/{Dream.Id}.json");
                 Message = $"Dream '{Dream.Title}' saved successfully!";
             }
@@ -75,6 +79,14 @@ namespace RitualOS.ViewModels
             if (chakra.HasValue && !ChakraTags.Contains(chakra.Value))
             {
                 ChakraTags.Add(chakra.Value);
+            }
+        }
+
+        private void AddElement(Element? element)
+        {
+            if (element.HasValue && !Elements.Contains(element.Value))
+            {
+                Elements.Add(element.Value);
             }
         }
     }
