@@ -35,10 +35,13 @@
     <AvaloniaXaml Include="src\Views\SymbolIndexBuilder.axaml" />
     <AvaloniaXaml Include="src\Views\SymbolSearch.axaml" />
     <AvaloniaXaml Include="src\Views\ThemeSwitcher.axaml" />
-    <AvaloniaXaml Include="src\Views\Themes\Theme.Amanda.xaml" />
-    <AvaloniaXaml Include="src\Views\Themes\Theme.Dark.xaml" />
-    <AvaloniaXaml Include="src\Views\Themes\Theme.Flame.xaml" />
-    <AvaloniaXaml Include="src\Views\Themes\Theme.Light.xaml" />
+    <AvaloniaXaml Include="src\Styles\Themes\Theme.Amanda.xaml" />
+    <AvaloniaXaml Include="src\Styles\Themes\Theme.Dark.xaml" />
+    <AvaloniaXaml Include="src\Styles\Themes\Theme.Flame.xaml" />
+    <AvaloniaXaml Include="src\Styles\Themes\Theme.Light.xaml" />
+    <AvaloniaXaml Include="src\Styles\Themes\Theme.Material.xaml" />
+    <AvaloniaXaml Include="src\Styles\Themes\Theme.Magical.xaml" />
+    <AvaloniaXaml Include="src\Styles\Themes\Theme.Parchment.xaml" />
     <AvaloniaXaml Include="src\Views\Wizards\ClientProfileDashboard.axaml" />
     <AvaloniaXaml Include="src\Views\Wizards\CodexRewritePreviewer.axaml" />
     <AvaloniaXaml Include="src\Views\Wizards\RitualTemplateBuilder.axaml" />
