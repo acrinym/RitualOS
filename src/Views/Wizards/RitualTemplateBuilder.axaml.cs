@@ -1,3 +1,4 @@
+using System;
 using Avalonia.Controls;
 
 namespace RitualOS.Views.Wizards
@@ -7,6 +8,11 @@ namespace RitualOS.Views.Wizards
         public RitualTemplateBuilder()
         {
             InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
         }
     }
 }
