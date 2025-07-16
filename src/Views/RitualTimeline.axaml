@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels">
+    <UserControl.DataContext>
+        <vm:RitualTimelineViewModel />
+    </UserControl.DataContext>
+    <ScrollViewer>
+        <ItemsControl ItemsSource="{Binding Rituals}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Text="{Binding DatePerformed, StringFormat='yyyy-MM-dd'}" Width="120"/>
+                        <TextBlock Text="{Binding Title}" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>

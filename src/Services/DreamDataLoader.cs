@@ -53,9 +53,9 @@ namespace RitualOS.Services
             }
         }
 
-        internal static void SaveDreamToJson(DreamEntry dream, string v)
+        internal static void SaveDreamToJson(DreamEntry dream, string path)
         {
-            throw new NotImplementedException();
+            SaveDream(dream, path);
         }
     }
 }

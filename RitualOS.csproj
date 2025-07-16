@@ -3,6 +3,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <!-- Prevent duplicate compile items since we list them explicitly -->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,35 +22,8 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.62" />
   </ItemGroup>
  
-  <ItemGroup>
-    <AvaloniaXaml Include="src\App.axaml" />
-    <AvaloniaXaml Include="src\Views\ChakraSelector.axaml" />
-    <AvaloniaXaml Include="src\Views\ClientDetailView.axaml" />
-    <AvaloniaXaml Include="src\Views\CodexSymbolViewer.axaml" />
-    <AvaloniaXaml Include="src\Views\DocumentViewer.axaml" />
-    <AvaloniaXaml Include="src\Views\DreamDictionary.axaml" />
-    <AvaloniaXaml Include="src\Views\DreamEntryView.axaml" />
-    <AvaloniaXaml Include="src\Views\InventoryView.axaml" />
-    <AvaloniaXaml Include="src\Views\RitualDetailView.axaml" />
-    <AvaloniaXaml Include="src\Views\RitualEditor.axaml" />
-    <AvaloniaXaml Include="src\Views\RitualLibrary.axaml" />
-    <AvaloniaXaml Include="src\Views\SymbolIndexBuilder.axaml" />
-    <AvaloniaXaml Include="src\Views\SymbolSearch.axaml" />
-    <AvaloniaXaml Include="src\Views\ThemeSwitcher.axaml" />
-    <AvaloniaXaml Include="src\Styles\Themes\Theme.Amanda.xaml" />
-    <AvaloniaXaml Include="src\Styles\Themes\Theme.Dark.xaml" />
-    <AvaloniaXaml Include="src\Styles\Themes\Theme.Flame.xaml" />
-    <AvaloniaXaml Include="src\Styles\Themes\Theme.Light.xaml" />
-    <AvaloniaXaml Include="src\Styles\Themes\Theme.Material.xaml" />
-    <AvaloniaXaml Include="src\Styles\Themes\Theme.Magical.xaml" />
-    <AvaloniaXaml Include="src\Styles\Themes\Theme.Parchment.xaml" />
-    <AvaloniaXaml Include="src\Views\Wizards\ClientProfileDashboard.axaml" />
-    <AvaloniaXaml Include="src\Views\Wizards\CodexRewritePreviewer.axaml" />
-    <AvaloniaXaml Include="src\Views\Wizards\RitualTemplateBuilder.axaml" />
-  </ItemGroup>
   
   <ItemGroup>
-    <Compile Include="src\App.axaml.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Converters\ChakraCheckConverter.cs" />
     <Compile Include="src\Converters\ChakraToEmojiConverter.cs" />
@@ -85,23 +60,15 @@
     <Compile Include="src\ViewModels\DreamEntryViewModel.cs" />
     <Compile Include="src\ViewModels\InventoryViewModel.cs" />
     <Compile Include="src\ViewModels\RitualLibraryViewModel.cs" />
+    <Compile Include="src\ViewModels\RitualTimelineViewModel.cs" />
     <Compile Include="src\ViewModels\SymbolSearchViewModel.cs" />
     <Compile Include="src\ViewModels\SymbolViewerViewModel.cs" />
     <Compile Include="src\ViewModels\ThemeViewModel.cs" />
     <Compile Include="src\ViewModels\ViewModelBase.cs" />
     <Compile Include="src\Views\ChakraSelector.axaml.cs" />
-    <Compile Include="src\Views\ClientDetailView.axaml.cs" />
-    <Compile Include="src\Views\CodexSymbolViewer.axaml.cs" />
-    <Compile Include="src\Views\DocumentViewer.axaml.cs" />
-    <Compile Include="src\Views\DreamDictionary.axaml.cs" />
-    <Compile Include="src\Views\DreamEntryView.axaml.cs" />
+    
     <Compile Include="src\Views\InventoryView.axaml.cs" />
-    <Compile Include="src\Views\RitualDetailView.axaml.cs" />
-    <Compile Include="src\Views\RitualEditor.axaml.cs" />
-    <Compile Include="src\Views\RitualLibrary.axaml.cs" />
-    <Compile Include="src\Views\SymbolIndexBuilder.axaml.cs" />
-    <Compile Include="src\Views\SymbolSearch.axaml.cs" />
-    <Compile Include="src\Views\ThemeSwitcher.axaml.cs" />
+    <Compile Include="src\Views\RitualTimeline.axaml.cs" />
     <Compile Include="src\ViewModels\Wizards\ClientProfileDashboardViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\CodexRewritePreviewerViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\RitualTemplateBuilderViewModel.cs" />
