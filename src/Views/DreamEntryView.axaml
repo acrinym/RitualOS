@@ -26,6 +26,7 @@
             <Button Content="Add Symbol" Command="{Binding AddSymbolCommand}"/>
         </StackPanel>
         <views:ChakraSelector />
+        <views:ElementSelector />
         <TextBox Watermark="Interpretation" Text="{Binding Dream.Interpretation, Mode=TwoWay}" AcceptsReturn="True" Height="80"/>
         <TextBox Watermark="Tags" Text="{Binding Dream.Tags, Converter={StaticResource StringListConverter}}" Width="200"/>
         <TextBlock Text="{Binding Message}" Foreground="{Binding Message, Converter={StaticResource MessageColorConverter}}" Margin="10"/>
