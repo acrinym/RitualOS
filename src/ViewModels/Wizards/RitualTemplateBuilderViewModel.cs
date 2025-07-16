@@ -100,7 +100,7 @@ namespace RitualOS.ViewModels.Wizards
             Template.ChakrasAffected = Chakras.ToList();
             Template.Elements = Elements.ToList();
             Template.Steps = Steps.ToList();
-            RitualTemplateSerializer.Save(Template, $"{Template.Name}.json");
+            RitualTemplateSerializer.Save(Template);
             UpdatePreview();
         }
 
@@ -108,7 +108,11 @@ namespace RitualOS.ViewModels.Wizards
         {
             try
             {
-                var loaded = RitualTemplateSerializer.Load($"{Template.Name}.json");
+                var path = UserSettingsService.Current.LastTemplatePath;
+                if (string.IsNullOrEmpty(path))
+                    return;
+
+                var loaded = RitualTemplateSerializer.Load(path);
                 Template.Name = loaded.Name;
                 Template.Intention = loaded.Intention;
                 Template.MoonPhase = loaded.MoonPhase;
