@@ -11,6 +11,8 @@
         <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
         <conv:MessageColorConverter x:Key="MessageColorConverter" />
         <conv:LowQuantityConverter x:Key="LowQuantityConverter" />
+    </UserControl.Resources>
+    <UserControl.Styles>
         <Style Selector="TabControl">
             <Setter Property="Background" Value="#1E1B2E"/> <!-- Deep indigo -->
         </Style>
@@ -36,7 +38,7 @@
         <Style Selector="Button:pointerover /template/ ContentPresenter">
             <Setter Property="Background" Value="#6B5B95"/> <!-- Hover glow -->
         </Style>
-    </UserControl.Resources>
+    </UserControl.Styles>
     <TabControl>
         <TabItem Header="Inventory">
             <DockPanel>

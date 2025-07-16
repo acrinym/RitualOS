@@ -8,7 +8,7 @@ using RitualOS.Views;
 
 namespace RitualOS
 {
-    public class App : Application
+    public partial class App : Application
     {
         public override void Initialize()
         {
