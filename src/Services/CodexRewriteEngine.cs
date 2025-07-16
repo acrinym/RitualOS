@@ -71,7 +71,6 @@ namespace RitualOS.Services
                         {
                             var elementName = part.Trim().Split(' ')[0];
                             if (Enum.TryParse<Element>(elementName, true, out var element))
-
                                 current.ElementTags.Add(element);
                         }
                         continue;

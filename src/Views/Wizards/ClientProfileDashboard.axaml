@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:RitualOS.ViewModels.Wizards"
              xmlns:conv="clr-namespace:RitualOS.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-             x:Class="RitualOS.Views.ClientProfileDashboard"
+             x:Class="RitualOS.Views.Wizards.ClientProfileDashboard"
              x:DataType="vm:ClientProfileDashboardViewModel">
   
   <UserControl.Resources>
@@ -20,7 +20,7 @@
       <Border Classes="card">
         <StackPanel Spacing="10">
           <TextBlock Text="Contact Information" FontSize="18" FontWeight="Medium"/>
-            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto">
+          <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="5">
             <TextBlock Text="Email:" Grid.Row="0" Grid.Column="0" FontWeight="Bold"/>
             <TextBlock Text="{Binding Client.Email}" Grid.Row="0" Grid.Column="1" />
             <TextBlock Text="Phone:" Grid.Row="1" Grid.Column="0" FontWeight="Bold"/>

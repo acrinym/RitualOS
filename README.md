@@ -32,11 +32,11 @@ Prerequisite: install the **.NET 8 SDK**.
 
 Restore dependencies, build the project, and run it with:
 
-```bash
+`​`​`bash
 dotnet restore
 dotnet build
 dotnet run
-```
+`​`​`
 
 Launching the project will open the Avalonia UI and create a local `ritualos.json` data file.
 

@@ -31,7 +31,14 @@ namespace RitualOS.ViewModels.Wizards
 
         private void Save()
         {
-            SymbolIndexService.Save(Symbols.ToList());
+            // remove any symbols without a name to avoid corrupt entries
+            var valid = Symbols.Where(s => !string.IsNullOrWhiteSpace(s.Name)).ToList();
+            SymbolIndexService.Save(valid);
+            Symbols.Clear();
+            foreach (var symbol in valid)
+            {
+                Symbols.Add(symbol);
+            }
         }
 
         private void AddSymbol()
