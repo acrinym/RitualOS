@@ -3,7 +3,7 @@ using RitualOS.Models;
 using RitualOS.ViewModels.Wizards;
 using System.Collections.Generic;
 
-namespace RitualOS.Views
+namespace RitualOS.Views.Wizards
 {
     public partial class ClientProfileDashboard : UserControl
     {
