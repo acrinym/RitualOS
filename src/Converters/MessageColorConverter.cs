@@ -6,7 +6,7 @@ namespace RitualOS.Converters
 {
     public class MessageColorConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is string message)
             {
@@ -15,7 +15,7 @@ namespace RitualOS.Converters
             return "Black";
         }
 
-        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

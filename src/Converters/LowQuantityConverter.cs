@@ -6,7 +6,7 @@ namespace RitualOS.Converters
 {
     public class LowQuantityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is int quantity && quantity < 5)
             {
@@ -15,7 +15,7 @@ namespace RitualOS.Converters
             return "Normal";
         }
 
-        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

@@ -8,7 +8,7 @@ namespace RitualOS.Converters
 {
     public class ChakraToEmojiConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is Chakra chakra)
             {
@@ -17,7 +17,7 @@ namespace RitualOS.Converters
             return string.Empty;
         }
 
-        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

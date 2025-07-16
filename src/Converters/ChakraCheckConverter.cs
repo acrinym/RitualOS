@@ -8,7 +8,7 @@ namespace RitualOS.Converters
 {
     public class ChakraCheckConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is List<Chakra> chakraTags && parameter is Chakra chakra)
             {
@@ -17,7 +17,7 @@ namespace RitualOS.Converters
             return false;
         }
 
-        public object ConvertBack(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is bool isChecked && parameter is Chakra chakra && targetType == typeof(List<Chakra>))
             {
