@@ -16,4 +16,4 @@
     <Compile Include="ViewModels\DreamEntryViewModel.cs" />
     <Compile Include="Views\DreamEntryView.axaml" />
   </ItemGroup>
-</Project>
+</Project>.
