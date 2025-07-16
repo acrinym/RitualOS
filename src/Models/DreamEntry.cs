@@ -19,6 +19,10 @@ namespace RitualOS.Models
         public string Description { get; set; }
         public List<string> Symbols { get; set; } = new();
         public List<Chakra> ChakraTags { get; set; } = new();
+        /// <summary>
+        /// Elements associated with this dream entry.
+        /// </summary>
+        public List<Element> ElementTags { get; set; } = new();
         public List<string> Tags { get; set; } = new();
         public string Interpretation { get; set; }
     }
