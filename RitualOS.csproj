@@ -4,6 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <!-- Ensure Avalonia build tasks run so InitializeComponent gets generated -->
+    <UseAvalonia>true</UseAvalonia>
   </PropertyGroup>
 
   <ItemGroup>
