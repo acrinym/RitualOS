@@ -10,13 +10,19 @@ inventory of magical ingredients, log dreams, and manage clients.
 - Dream journal with symbolic tagging
 - Basic client CRM for session notes and ritual history
 - File-backed **ClientDatabase** service for storing and searching clients
-- Calendar timeline to review past rituals
+- Timeline view to review past rituals chronologically
 - Offline-first JSON storage with simple import/export
 - Ritual creation wizard for step-by-step template building
 - Symbol index editor with chakra tagging
 - Codex rewrite preview tool
 - Dashboard view for client profiles
 - Embedded document viewer for common formats (PDF, Markdown, JSON, EPUB, HTML)
+
+## Themes
+RitualOS supports multiple visual themes to match different aesthetics:
+- **Material** for a clean, modern look
+- **Magical** with deep purples and vibrant accents
+- **Parchment** for a premium, old-world feel
 
 ## Project Structure
 See the `/src` folder for code and `/samples` for example JSON files.
@@ -41,6 +47,7 @@ Schema references live in the `docs` folder:
 - [Client CRM Schema](docs/crm_schema.md)
 - [Dream Schema](docs/dream_schema.md)
 - [Dream Dictionary](docs/DreamDictionary/RitualOS_Dream_Dictionary.md)
+- [Ritual Timeline](docs/ritual_timeline.md)
 
 
 ## Pitch Deck

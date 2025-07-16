@@ -17,7 +17,10 @@ namespace RitualOS.ViewModels
             "Theme.Dark.xaml",
             "Theme.Light.xaml",
             "Theme.Flame.xaml",
-            "Theme.Amanda.xaml"
+            "Theme.Amanda.xaml",
+            "Theme.Material.xaml",
+            "Theme.Magical.xaml",
+            "Theme.Parchment.xaml"
         };
 
         public string SelectedTheme
