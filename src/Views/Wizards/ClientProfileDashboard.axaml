@@ -1,12 +1,65 @@
-<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <StackPanel Margin="20" Spacing="8">
-    <TextBlock Text="Client Dashboard" FontWeight="Bold"/>
-    <ListBox ItemsSource="{Binding Clients}">
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-          <TextBlock Text="{Binding Client.Name}"/>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
-  </StackPanel>
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels.Wizards"
+             xmlns:conv="clr-namespace:RitualOS.Converters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="RitualOS.Views.ClientProfileDashboard"
+             x:DataType="vm:ClientProfileDashboardViewModel">
+  
+  <UserControl.Resources>
+    <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji"/>
+  </UserControl.Resources>
+
+  <ScrollViewer>
+    <StackPanel Spacing="15" Margin="25">
+      <TextBlock Text="{Binding Client.Name}" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left"/>
+      <TextBlock Text="{Binding Client.Role}" FontSize="16" Foreground="Gray" Margin="0,-10,0,10" HorizontalAlignment="Left"/>
+
+      <Border Classes="card">
+        <StackPanel Spacing="10">
+          <TextBlock Text="Contact Information" FontSize="18" FontWeight="Medium"/>
+            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto">
+            <TextBlock Text="Email:" Grid.Row="0" Grid.Column="0" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Client.Email}" Grid.Row="0" Grid.Column="1" />
+            <TextBlock Text="Phone:" Grid.Row="1" Grid.Column="0" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Client.Phone}" Grid.Row="1" Grid.Column="1" />
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <Border Classes="card">
+        <StackPanel Spacing="10">
+          <TextBlock Text="Energy Notes" FontSize="18" FontWeight="Medium"/>
+          <TextBlock Text="{Binding Client.EnergyNotes}" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+
+      <Border Classes="card">
+        <StackPanel Spacing="10">
+          <TextBlock Text="Chakra Notes" FontSize="18" FontWeight="Medium"/>
+          <ItemsControl ItemsSource="{Binding Client.ChakraNotes}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Margin="0,5">
+                  <TextBlock Text="{Binding Key, Converter={StaticResource ChakraToEmoji}}" FontWeight="Bold" />
+                  <TextBlock Text="{Binding Value}" TextWrapping="Wrap" Margin="10,2,0,0"/>
+                </StackPanel>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+      </Border>
+
+    </StackPanel>
+  </ScrollViewer>
+  
+  <UserControl.Styles>
+    <Style Selector="Border.card">
+      <Setter Property="Padding" Value="15"/>
+      <Setter Property="CornerRadius" Value="5"/>
+      <Setter Property="Background" Value="#2D2D2D"/>
+    </Style>
+  </UserControl.Styles>
 </UserControl>
