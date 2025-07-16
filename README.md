@@ -10,7 +10,7 @@ inventory of magical ingredients, log dreams, and manage clients.
 - Dream journal with symbolic tagging
 - Basic client CRM for session notes and ritual history
 - File-backed **ClientDatabase** service for storing and searching clients
-- Calendar timeline to review past rituals
+- Timeline view to review past rituals chronologically
 - Offline-first JSON storage with simple import/export
 - Ritual creation wizard for step-by-step template building
 - Symbol index editor with chakra tagging
@@ -47,6 +47,7 @@ Schema references live in the `docs` folder:
 - [Client CRM Schema](docs/crm_schema.md)
 - [Dream Schema](docs/dream_schema.md)
 - [Dream Dictionary](docs/DreamDictionary/RitualOS_Dream_Dictionary.md)
+- [Ritual Timeline](docs/ritual_timeline.md)
 
 
 ## Pitch Deck
