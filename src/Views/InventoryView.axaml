@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels"
+             xmlns:views="clr-namespace:RitualOS.Views"
+             xmlns:conv="clr-namespace:RitualOS.Converters">
+    <UserControl.DataContext>
+        <vm:InventoryViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <conv:ChakraToEmojiConverter x:Key="ChakraToEmoji" />
+        <conv:MessageColorConverter x:Key="MessageColorConverter" />
+    </UserControl.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="20" Spacing="10">
+            <TextBlock Text="Inventory Management" FontWeight="Bold"/>
+            <Button Content="Add Item" Command="{Binding AddItemCommand}"/>
+            <TextBlock Text="{Binding Message}" Foreground="{Binding Message, Converter={StaticResource MessageColorConverter}}" Margin="10"/>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" DockPanel.Dock="Left" Width="200">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" FontWeight="{Binding Quantity, Converter={StaticResource LowQuantityConverter}}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Margin="20" Spacing="10">
+            <TextBox Watermark="Name" Text="{Binding SelectedItem.Name, Mode=TwoWay}"/>
+            <ComboBox SelectedItem="{Binding SelectedItem.Category, Mode=TwoWay}">
+                <ComboBoxItem Content="Herb"/>
+                <ComboBoxItem Content="Oil"/>
+                <ComboBoxItem Content="Crystal"/>
+                <ComboBoxItem Content="Tool"/>
+            </ComboBox>
+            <NumericUpDown Value="{Binding SelectedItem.Quantity, Mode=TwoWay}" Minimum="0"/>
+            <DatePicker SelectedDate="{Binding SelectedItem.ExpirationDate, Mode=TwoWay}"/>
+            <TextBox Watermark="Storage Location" Text="{Binding SelectedItem.StorageLocation, Mode=TwoWay}"/>
+            <views:ChakraSelector DataContext="{Binding SelectedItem}"/>
+            <Button Content="Save" Command="{Binding SaveItemCommand}"/>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

@@ -7,13 +7,18 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.0" />
+    <PackageReference Include="Avalonia.Controls" Version="11.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\StringListConverter.cs" />
     <Compile Include="Converters\MessageColorConverter.cs" />
     <Compile Include="Converters\ChakraCheckConverter.cs" />
+    <Compile Include="Converters\LowQuantityConverter.cs" />
     <Compile Include="Services\DreamDataLoader.cs" />
+    <Compile Include="Services\InventoryDataLoader.cs" />
     <Compile Include="ViewModels\DreamEntryViewModel.cs" />
+    <Compile Include="ViewModels\InventoryViewModel.cs" />
     <Compile Include="Views\DreamEntryView.axaml" />
+    <Compile Include="Views\InventoryView.axaml" />
   </ItemGroup>
 </Project>
