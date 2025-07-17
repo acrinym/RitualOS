@@ -5,6 +5,7 @@ using RitualOS.ViewModels;
 using RitualOS.Models;
 using System.Collections.Generic;
 using RitualOS.Services;
+using RitualOS.Helpers;
 
 namespace RitualOS.ViewModels
 {
@@ -12,6 +13,7 @@ namespace RitualOS.ViewModels
     {
         private ViewModelBase _currentViewModel;
         private int _selectedTabIndex;
+        public RelayCommand SetTabCommand { get; }
 
         public MainShellViewModel()
         {
@@ -34,6 +36,12 @@ namespace RitualOS.ViewModels
             ExportViewModel = new ExportViewModel(exportService, ritualDataLoader, userSettingsService);
             AnalyticsViewModel = new AnalyticsViewModel(analyticsService, userSettingsService);
             DreamParserViewModel = new DreamParserViewModel(dreamParserService, userSettingsService);
+
+            SetTabCommand = new RelayCommand(param =>
+            {
+                if (param is int index)
+                    SelectedTabIndex = index;
+            });
 
             // Set default view
             CurrentViewModel = InventoryViewModel;

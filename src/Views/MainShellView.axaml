@@ -34,39 +34,52 @@
         </Style>
     </UserControl.Styles>
     
+    <UserControl.KeyBindings>
+        <KeyBinding Gesture="Alt+1" Command="{Binding SetTabCommand}" CommandParameter="0"/>
+        <KeyBinding Gesture="Alt+2" Command="{Binding SetTabCommand}" CommandParameter="1"/>
+        <KeyBinding Gesture="Alt+3" Command="{Binding SetTabCommand}" CommandParameter="2"/>
+        <KeyBinding Gesture="Alt+4" Command="{Binding SetTabCommand}" CommandParameter="3"/>
+        <KeyBinding Gesture="Alt+5" Command="{Binding SetTabCommand}" CommandParameter="4"/>
+        <KeyBinding Gesture="Alt+6" Command="{Binding SetTabCommand}" CommandParameter="5"/>
+        <KeyBinding Gesture="Alt+7" Command="{Binding SetTabCommand}" CommandParameter="6"/>
+        <KeyBinding Gesture="Alt+8" Command="{Binding SetTabCommand}" CommandParameter="7"/>
+        <KeyBinding Gesture="Alt+9" Command="{Binding SetTabCommand}" CommandParameter="8"/>
+        <KeyBinding Gesture="Alt+0" Command="{Binding SetTabCommand}" CommandParameter="9"/>
+    </UserControl.KeyBindings>
+
     <TabControl SelectedIndex="{Binding SelectedTabIndex}">
-        <TabItem Header="Inventory">
+        <TabItem Header="Inventory" AutomationProperties.Name="Inventory Tab">
             <views:InventoryView DataContext="{Binding InventoryViewModel}"/>
         </TabItem>
-        <TabItem Header="Dream Dictionary">
+        <TabItem Header="Dream Dictionary" AutomationProperties.Name="Dream Dictionary Tab">
             <views:DreamDictionary DataContext="{Binding DreamDictionaryViewModel}"/>
         </TabItem>
-        <TabItem Header="Ritual Library">
+        <TabItem Header="Ritual Library" AutomationProperties.Name="Ritual Library Tab">
             <views:RitualLibrary DataContext="{Binding RitualLibraryViewModel}"/>
         </TabItem>
-        <TabItem Header="Clients">
+        <TabItem Header="Clients" AutomationProperties.Name="Clients Tab">
             <views:ClientDetailView DataContext="{Binding ClientViewModel}"/>
         </TabItem>
-        <TabItem Header="Symbol Search">
+        <TabItem Header="Symbol Search" AutomationProperties.Name="Symbol Search Tab">
             <views:SymbolSearch DataContext="{Binding SymbolSearchViewModel}"/>
         </TabItem>
-        <TabItem Header="Documents">
+        <TabItem Header="Documents" AutomationProperties.Name="Documents Tab">
             <views:DocumentViewer DataContext="{Binding DocumentViewerViewModel}"/>
         </TabItem>
-        <TabItem Header="Ritual Timeline">
+        <TabItem Header="Ritual Timeline" AutomationProperties.Name="Ritual Timeline Tab">
             <views:RitualTimeline DataContext="{Binding RitualTimelineViewModel}"/>
         </TabItem>
-        <TabItem Header="Theme">
+        <TabItem Header="Theme" AutomationProperties.Name="Theme Tab">
             <views:ThemeSwitcher DataContext="{Binding ThemeViewModel}"/>
         </TabItem>
-        <TabItem Header="Export">
+        <TabItem Header="Export" AutomationProperties.Name="Export Tab">
             <views:ExportView DataContext="{Binding ExportViewModel}"/>
         </TabItem>
-        <TabItem Header="Analytics">
+        <TabItem Header="Analytics" AutomationProperties.Name="Analytics Tab">
             <views:AnalyticsView DataContext="{Binding AnalyticsViewModel}"/>
         </TabItem>
-        <TabItem Header="Dream Parser">
+        <TabItem Header="Dream Parser" AutomationProperties.Name="Dream Parser Tab">
             <views:DreamParserView DataContext="{Binding DreamParserViewModel}"/>
         </TabItem>
     </TabControl>
-</UserControl> 
+</UserControl>

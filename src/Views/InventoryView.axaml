@@ -49,7 +49,8 @@
         <DockPanel Grid.Column="0" Margin="10">
             <StackPanel DockPanel.Dock="Top" Margin="10" Spacing="10">
                 <TextBlock Text="Inventory Management" FontWeight="Bold" FontSize="16"/>
-                <Button Content="➕ Add New Item" Command="{Binding AddItemCommand}" FontWeight="Bold"/>
+                <Button Content="➕ Add New Item" Command="{Binding AddItemCommand}" FontWeight="Bold"
+                        AutomationProperties.Name="Add New Item Button"/>
                 <TextBlock Text="{Binding Message}" Foreground="{Binding Message, Converter={StaticResource MessageColorConverter}}" Margin="10"/>
             </StackPanel>
             <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" DockPanel.Dock="Left" Width="250" Background="#2A1B3D">
@@ -64,7 +65,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <StackPanel Margin="10" Spacing="10">
-                <TextBox Watermark="Name" Text="{Binding SelectedItem.Name, Mode=TwoWay}"/>
+                <TextBox Watermark="Name" Text="{Binding SelectedItem.Name, Mode=TwoWay}"
+                         AutomationProperties.Name="Item Name"/>
                 <ComboBox SelectedItem="{Binding SelectedItem.Category, Mode=TwoWay}">
                     <ComboBoxItem Content="Herb"/>
                     <ComboBoxItem Content="Oil"/>
@@ -75,7 +77,8 @@
                 <DatePicker SelectedDate="{Binding SelectedItem.ExpirationDate, Mode=TwoWay}"/>
                 <TextBox Watermark="Storage Location" Text="{Binding SelectedItem.StorageLocation, Mode=TwoWay}"/>
                 <views:ChakraSelector DataContext="{Binding SelectedItem}"/>
-                <Button Content="Save" Command="{Binding SaveItemCommand}"/>
+                <Button Content="Save" Command="{Binding SaveItemCommand}"
+                        AutomationProperties.Name="Save Item Button"/>
             </StackPanel>
         </DockPanel>
         
@@ -87,7 +90,8 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Spacing="6">
                             <TextBlock Text="{Binding Message}"/>
-                            <Button Content="Clear" Command="{Binding DataContext.ClearAlertCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                            <Button Content="Clear" Command="{Binding DataContext.ClearAlertCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"
+                                    AutomationProperties.Name="Clear Alert Button"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
