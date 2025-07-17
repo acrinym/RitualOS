@@ -4,8 +4,7 @@ using System.IO;
 namespace RitualOS.Services
 {
     /// <summary>
-    /// Simple logging service for writing timestamped messages to the
-    /// <c>logs</c> directory under the application folder.
+    /// Simple logging service for writing timestamped messages to the <c>logs</c> directory under the application folder.
     /// </summary>
     public static class LoggingService
     {
