@@ -4,12 +4,13 @@ using System.IO;
 namespace RitualOS.Services
 {
     /// <summary>
-    /// Simple logging service for writing timestamped messages to /logs/app.log.
+    /// Simple logging service for writing timestamped messages to the <c>logs</c> directory under the application folder.
     /// </summary>
     public static class LoggingService
     {
         private static readonly object _lock = new();
-        private static string LogFilePath => Path.Combine("logs", "app.log");
+        private static string LogDirectory => Path.Combine(AppContext.BaseDirectory, "logs");
+        private static string LogFilePath => Path.Combine(LogDirectory, "app.log");
 
         /// <summary>
         /// Log an informational message.
@@ -36,7 +37,7 @@ namespace RitualOS.Services
             {
                 lock (_lock)
                 {
-                    Directory.CreateDirectory("logs");
+                    Directory.CreateDirectory(LogDirectory);
                     var line = $"{DateTime.Now:u} [{level}] {message}";
                     File.AppendAllLines(LogFilePath, new[] { line });
                 }

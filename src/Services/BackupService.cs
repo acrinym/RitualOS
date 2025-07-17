@@ -21,11 +21,12 @@ namespace RitualOS.Services
             File.Delete(tempZip);
         }
 
-        public static void RestoreBackup(string archivePath, string password)
+        public static void RestoreBackup(string archivePath, string password, string? restoreDirectory = null)
         {
             var tempZip = Path.GetTempFileName();
             DecryptFile(archivePath, tempZip, password);
-            ZipFile.ExtractToDirectory(tempZip, AppContext.BaseDirectory, true);
+            var target = restoreDirectory ?? AppContext.BaseDirectory;
+            ZipFile.ExtractToDirectory(tempZip, target, true);
             File.Delete(tempZip);
         }
 
