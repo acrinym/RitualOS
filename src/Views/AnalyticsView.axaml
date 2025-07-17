@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Border Grid.Row="0" Style="{StaticResource RitualOSCard}" Margin="0,0,0,20">
+        <Border Grid.Row="0" Classes="RitualOSCard" Margin="0,0,0,20">
             <Grid ColumnDefinitions="*,Auto">
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="Analytics Dashboard" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
@@ -22,17 +22,15 @@
                                Foreground="{DynamicResource TextSecondaryBrush}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <Button Content="Refresh" Command="{Binding RefreshCommand}" 
-                            Style="{StaticResource RitualOSButton}" Margin="0,0,10,0"/>
-                    <Button Content="Export" Command="{Binding ExportCommand}" 
-                            Style="{StaticResource RitualOSButton}"/>
+                    <Button Content="Refresh" Command="{Binding RefreshCommand}" Classes="RitualOSButton" Margin="0,0,10,0"/>
+                    <Button Content="Export" Command="{Binding ExportCommand}" Classes="RitualOSButton"/>
                 </StackPanel>
             </Grid>
         </Border>
 
         <!-- Summary Cards -->
-        <Grid Grid.Row="1" ColumnDefinitions="1*,1*,1*,1*" ColumnSpacing="15" Margin="0,0,0,20">
-            <Border Grid.Column="0" Style="{StaticResource RitualOSCard}">
+        <Grid Grid.Row="1" ColumnDefinitions="1*,1*,1*,1*" Margin="0,0,0,20">
+            <Border Grid.Column="0" Classes="RitualOSCard">
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="{Binding TotalRitualsText}" FontSize="32" FontWeight="Bold" 
                                Foreground="{DynamicResource PrimaryBrush}"/>
@@ -41,7 +39,7 @@
                 </StackPanel>
             </Border>
             
-            <Border Grid.Column="1" Style="{StaticResource RitualOSCard}">
+            <Border Grid.Column="1" Classes="RitualOSCard">
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="{Binding TotalSessionsText}" FontSize="32" FontWeight="Bold" 
                                Foreground="{DynamicResource SecondaryBrush}"/>
@@ -50,7 +48,7 @@
                 </StackPanel>
             </Border>
             
-            <Border Grid.Column="2" Style="{StaticResource RitualOSCard}">
+            <Border Grid.Column="2" Classes="RitualOSCard">
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="{Binding TotalUsageTimeText}" FontSize="32" FontWeight="Bold" 
                                Foreground="{DynamicResource AccentBrush}"/>
@@ -59,7 +57,7 @@
                 </StackPanel>
             </Border>
             
-            <Border Grid.Column="3" Style="{StaticResource RitualOSCard}">
+            <Border Grid.Column="3" Classes="RitualOSCard">
                 <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="{Binding GeneratedDateText}" FontSize="16" FontWeight="Bold" 
                                Foreground="{DynamicResource InfoBrush}"/>
@@ -70,13 +68,13 @@
         </Grid>
 
         <!-- Main Content -->
-        <Grid Grid.Row="2" ColumnDefinitions="1*,1*" ColumnSpacing="20">
+        <Grid Grid.Row="2" ColumnDefinitions="1*,1*">
             
             <!-- Left Column -->
             <StackPanel Grid.Column="0" Spacing="20">
                 
                 <!-- Most Used Rituals -->
-                <Border Style="{StaticResource RitualOSCard}">
+                <Border Classes="RitualOSCard">
                     <StackPanel>
                         <TextBlock Text="Most Used Rituals" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                         <ItemsControl ItemsSource="{Binding MostUsedRituals}">
@@ -94,7 +92,7 @@
                 </Border>
                 
                 <!-- Element Usage -->
-                <Border Style="{StaticResource RitualOSCard}">
+                <Border Classes="RitualOSCard">
                     <StackPanel>
                         <TextBlock Text="Element Usage" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                         <ItemsControl ItemsSource="{Binding ElementUsage}">
@@ -118,7 +116,7 @@
             <StackPanel Grid.Column="1" Spacing="20">
                 
                 <!-- Chakra Usage -->
-                <Border Style="{StaticResource RitualOSCard}">
+                <Border Classes="RitualOSCard">
                     <StackPanel>
                         <TextBlock Text="Chakra Usage" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                         <ItemsControl ItemsSource="{Binding ChakraUsage}">
@@ -138,7 +136,7 @@
                 </Border>
                 
                 <!-- Theme Preferences -->
-                <Border Style="{StaticResource RitualOSCard}">
+                <Border Classes="RitualOSCard">
                     <StackPanel>
                         <TextBlock Text="Theme Preferences" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                         <ItemsControl ItemsSource="{Binding ThemePreferences}">
@@ -156,7 +154,7 @@
                 </Border>
                 
                 <!-- Feature Usage -->
-                <Border Style="{StaticResource RitualOSCard}">
+                <Border Classes="RitualOSCard">
                     <StackPanel>
                         <TextBlock Text="Feature Usage" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                         <ItemsControl ItemsSource="{Binding FeatureUsage}">
@@ -176,8 +174,8 @@
         </Grid>
 
         <!-- Footer - Export Options -->
-        <Border Grid.Row="3" Style="{StaticResource RitualOSCard}" Margin="0,20,0,0">
-            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="15">
+        <Border Grid.Row="3" Classes="RitualOSCard" Margin="0,20,0,0">
+            <Grid ColumnDefinitions="*,Auto,Auto">
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="Export Analytics" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                     <TextBlock Text="Export your analytics data for reporting and analysis" 
@@ -188,8 +186,7 @@
                           SelectedItem="{Binding SelectedExportFormat}" 
                           MinWidth="120"/>
                 
-                <Button Grid.Column="2" Content="Export" Command="{Binding ExportCommand}" 
-                        Style="{StaticResource RitualOSButton}"/>
+                    <Button Grid.Column="2" Content="Export" Command="{Binding ExportCommand}" Classes="RitualOSButton"/>
             </Grid>
         </Border>
 

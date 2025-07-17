@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Border Grid.Row="0" Style="{StaticResource RitualOSCard}" Margin="0,0,0,20">
+        <Border Grid.Row="0" Classes="RitualOSCard" Margin="0,0,0,20">
             <StackPanel>
                 <TextBlock Text="Export Rituals" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
                 <TextBlock Text="Export your rituals in various formats for sharing, printing, or backup" 
@@ -22,10 +22,10 @@
         </Border>
 
         <!-- Main Content -->
-        <Grid Grid.Row="1" ColumnDefinitions="1*,1*" ColumnSpacing="20">
+        <Grid Grid.Row="1" ColumnDefinitions="1*,1*" >
             
             <!-- Left Panel - Export Options -->
-            <Border Grid.Column="0" Style="{StaticResource RitualOSCard}">
+            <Border Grid.Column="0" Classes="RitualOSCard">
                 <StackPanel>
                     <TextBlock Text="Export Options" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
                     
@@ -44,29 +44,29 @@
                     
                     <!-- Output Path -->
                     <TextBlock Text="Output Path:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                    <Grid ColumnDefinitions="*,Auto" >
                         <TextBox Grid.Column="0" Text="{Binding OutputPath}" 
-                                 Style="{StaticResource RitualOSTextBox}"/>
+                                 Classes="RitualOSTextBox"/>
                         <Button Grid.Column="1" Content="Browse" 
                                 Command="{Binding BrowseOutputPathCommand}"
-                                Style="{StaticResource RitualOSButton}"/>
+                                Classes="RitualOSButton"/>
                     </Grid>
                     
                     <!-- Export Buttons -->
                     <StackPanel Orientation="Horizontal" Margin="0,30,0,0" HorizontalAlignment="Center">
                         <Button Content="Export Ritual" 
                                 Command="{Binding ExportRitualCommand}"
-                                Style="{StaticResource RitualOSButton}"
+                                Classes="RitualOSButton"
                                 Margin="0,0,10,0"/>
                         <Button Content="Export Library" 
                                 Command="{Binding ExportLibraryCommand}"
-                                Style="{StaticResource RitualOSButton}"/>
+                                Classes="RitualOSButton"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
             
             <!-- Right Panel - Status and Preview -->
-            <Border Grid.Column="1" Style="{StaticResource RitualOSCard}">
+            <Border Grid.Column="1" Classes="RitualOSCard">
                 <StackPanel>
                     <TextBlock Text="Export Status" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
                     
@@ -121,7 +121,7 @@
         </Grid>
 
         <!-- Footer -->
-        <Border Grid.Row="2" Style="{StaticResource RitualOSCard}" Margin="0,20,0,0">
+        <Border Grid.Row="2" Classes="RitualOSCard" Margin="0,20,0,0">
             <StackPanel>
                 <TextBlock Text="Export Formats" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                 <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource TextSecondaryBrush}">

@@ -27,6 +27,7 @@ namespace RitualOS.ViewModels.Wizards
         private int _selectedStepIndex = -1;
         private string _preview = string.Empty;
         private bool _showRawMarkdown = false;
+        private readonly IUserSettingsService _settingsService;
 
         public RitualTemplate Template
         {
@@ -132,8 +133,13 @@ namespace RitualOS.ViewModels.Wizards
         public bool HasErrors => _errors.Any();
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
-        public RitualTemplateBuilderViewModel()
+        public RitualTemplateBuilderViewModel() : this(new UserSettingsService())
         {
+        }
+
+        public RitualTemplateBuilderViewModel(IUserSettingsService settingsService)
+        {
+            _settingsService = settingsService;
             InitializeCommands();
             SetupPropertyChangedHandlers();
             UpdatePreview();
@@ -328,9 +334,9 @@ namespace RitualOS.ViewModels.Wizards
                 if (file != null)
                 {
                     var path = file.Path.LocalPath;
-                    await RitualTemplateSerializer.SaveAsync(Template, path);
-                    UserSettingsService.Current.LastTemplatePath = path;
-                    UserSettingsService.Save();
+                    await RitualTemplateSerializer.SaveAsync(Template, path, _settingsService);
+                    _settingsService.Current.LastTemplatePath = path;
+                    _settingsService.Save();
                 }
             }
             catch (Exception ex)
@@ -360,10 +366,10 @@ namespace RitualOS.ViewModels.Wizards
                 {
                     var file = files[0];
                     var path = file.Path.LocalPath;
-                    var loaded = await RitualTemplateSerializer.LoadAsync(path);
+                    var loaded = await RitualTemplateSerializer.LoadAsync(path, _settingsService);
                     LoadTemplateIntoUI(loaded);
-                    UserSettingsService.Current.LastTemplatePath = path;
-                    UserSettingsService.Save();
+                    _settingsService.Current.LastTemplatePath = path;
+                    _settingsService.Save();
                 }
             }
             catch (Exception ex)

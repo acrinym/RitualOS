@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Border Grid.Row="0" Style="{StaticResource RitualOSCard}" Margin="0,0,0,20">
+        <Border Grid.Row="0" Classes="RitualOSCard" Margin="0,0,0,20">
             <Grid ColumnDefinitions="*,Auto">
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="Dream Parser with NLP" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
@@ -22,39 +22,39 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <Button Content="Analyze" Command="{Binding AnalyzeDreamCommand}" 
-                            Style="{StaticResource RitualOSButton}" Margin="0,0,10,0"/>
+                            Classes="RitualOSButton" Margin="0,0,10,0"/>
                     <Button Content="Save" Command="{Binding SaveAnalysisCommand}" 
-                            Style="{StaticResource RitualOSButton}" Margin="0,0,10,0"/>
+                            Classes="RitualOSButton" Margin="0,0,10,0"/>
                     <Button Content="Clear" Command="{Binding ClearAnalysisCommand}" 
-                            Style="{StaticResource RitualOSButton}"/>
+                            Classes="RitualOSButton"/>
                 </StackPanel>
             </Grid>
         </Border>
 
         <!-- Main Content -->
-        <Grid Grid.Row="1" ColumnDefinitions="1*,1*" ColumnSpacing="20">
+        <Grid Grid.Row="1" ColumnDefinitions="1*,1*" >
             
             <!-- Left Panel - Dream Input and Analysis -->
             <StackPanel Grid.Column="0" Spacing="20">
                 
                 <!-- Dream Input -->
-                <Border Style="{StaticResource RitualOSCard}">
+                <Border Classes="RitualOSCard">
                     <StackPanel>
                         <TextBlock Text="Dream Content" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
-                        <TextBox Text="{Binding DreamContent}" 
-                                 Style="{StaticResource RitualOSTextBox}"
+                        <TextBox Text="{Binding DreamContent}"
+                                 Classes="RitualOSTextBox"
                                  Height="200" AcceptsReturn="True" TextWrapping="Wrap"
-                                 PlaceholderText="Enter your dream content here..."/>
+                                 Watermark="Enter your dream content here..."/>
                     </StackPanel>
                 </Border>
                 
                 <!-- Analysis Results -->
-                <Border Style="{StaticResource RitualOSCard}" IsVisible="{Binding AnalysisComplete}">
+                <Border Classes="RitualOSCard" IsVisible="{Binding AnalysisComplete}">
                     <StackPanel>
                         <TextBlock Text="Analysis Results" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                         
                         <!-- Confidence and Stats -->
-                        <Grid ColumnDefinitions="1*,1*,1*" ColumnSpacing="15" Margin="0,0,0,20">
+                        <Grid ColumnDefinitions="1*,1*,1*"  Margin="0,0,0,20">
                             <Border Grid.Column="0" Background="{DynamicResource SurfaceBrush}" 
                                     CornerRadius="8" Padding="15">
                                 <StackPanel HorizontalAlignment="Center">
@@ -131,7 +131,7 @@
             <StackPanel Grid.Column="1" Spacing="20">
                 
                 <!-- Ritual Suggestions -->
-                <Border Style="{StaticResource RitualOSCard}" IsVisible="{Binding AnalysisComplete}">
+                <Border Classes="RitualOSCard" IsVisible="{Binding AnalysisComplete}">
                     <StackPanel>
                         <TextBlock Text="Suggested Rituals" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                         <ScrollViewer MaxHeight="400">
@@ -144,10 +144,8 @@
                                                 <Grid ColumnDefinitions="*,Auto">
                                                     <TextBlock Grid.Column="0" Text="{Binding Name}" 
                                                                FontWeight="Bold" FontSize="16"/>
-                                                    <Border Grid.Column="1" Background="{Binding Relevance, Converter={x:Static ObjectConverters.Multiply}, ConverterParameter=0.8}" 
-                                                            CornerRadius="4" Padding="4,2">
-                                                        <TextBlock Text="{Binding Relevance, StringFormat='{}{0:P0}'}" 
-                                                                   Foreground="White" FontSize="10" FontWeight="Bold"/>
+                                                    <Border Grid.Column="1" Padding="4,2" CornerRadius="4" Background="Gray">
+                                                        <TextBlock Text="{Binding Relevance, StringFormat='{}{0:P0}'}" Foreground="White" FontSize="10" FontWeight="Bold"/>
                                                     </Border>
                                                 </Grid>
                                                 
@@ -157,8 +155,7 @@
                                                 
                                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                                     <TextBlock Text="Difficulty:" FontWeight="SemiBold"/>
-                                                    <TextBlock Text="{Binding Difficulty}" Margin="5,0,0,0" 
-                                                               Foreground="{Binding Difficulty, Converter={x:Static ObjectConverters.Multiply}, ConverterParameter=0.8}"/>
+                                                    <TextBlock Text="{Binding Difficulty}" Margin="5,0,0,0"/>
                                                     <TextBlock Text="Duration:" FontWeight="SemiBold" Margin="20,0,0,0"/>
                                                     <TextBlock Text="{Binding EstimatedDuration}" Margin="5,0,0,0"/>
                                                     <TextBlock Text="min" Margin="0,0,0,0"/>
@@ -201,7 +198,7 @@
                 </Border>
                 
                 <!-- Dream History -->
-                <Border Style="{StaticResource RitualOSCard}">
+                <Border Classes="RitualOSCard">
                     <StackPanel>
                         <TextBlock Text="Dream History" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
                         <ScrollViewer MaxHeight="200">
@@ -232,7 +229,7 @@
         </Grid>
 
         <!-- Footer -->
-        <Border Grid.Row="2" Style="{StaticResource RitualOSCard}" Margin="0,20,0,0">
+        <Border Grid.Row="2" Classes="RitualOSCard" Margin="0,20,0,0">
             <StackPanel>
                 <TextBlock Text="NLP Dream Analysis Features" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                 <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource TextSecondaryBrush}">

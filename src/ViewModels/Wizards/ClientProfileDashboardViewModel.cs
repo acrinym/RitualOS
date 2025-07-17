@@ -20,9 +20,10 @@ namespace RitualOS.ViewModels.Wizards
             const string clientDir = "clients";
             const string ritualDir = "rituals";
 
+            var loader = new RitualDataLoader();
             foreach (var client in ClientProfileLoader.LoadClients(clientDir))
             {
-                var rituals = RitualDataLoader.LoadRitualsForClient(ritualDir, client.Id);
+                var rituals = loader.LoadRitualsForClient(ritualDir, client.Id);
                 Clients.Add(new ClientViewModel(client, rituals));
             }
         }

@@ -63,6 +63,8 @@
     <Compile Include="src\Services\SigilLock.cs" />
     <Compile Include="src\Services\CodexRewriteEngine.cs" />
     <Compile Include="src\Services\IRewriteRule.cs" />
+    <Compile Include="src\Services\IUserSettingsService.cs" />
+    <Compile Include="src\Services\IRitualDataLoader.cs" />
     <Compile Include="src\Services\UserContext.cs" />
     <Compile Include="src\Services\RitualTemplateSerializer.cs" />
     <Compile Include="src\Services\UserSettingsService.cs" />
