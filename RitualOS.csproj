@@ -109,33 +109,4 @@
     <Compile Include="src\Views\DreamParserView.axaml.cs" />
   </ItemGroup>
 
-  <!-- Include XAML files for compilation -->
-  <ItemGroup>
-    <AvaloniaResource Include="src\Views\ChakraSelector.axaml" />
-    <AvaloniaResource Include="src\Views\ElementSelector.axaml" />
-    <AvaloniaResource Include="src\Views\InventoryView.axaml" />
-    <AvaloniaResource Include="src\Views\RitualTimeline.axaml" />
-    <AvaloniaResource Include="src\Views\Wizards\ClientProfileDashboard.axaml" />
-    <AvaloniaResource Include="src\Views\Wizards\CodexRewritePreviewer.axaml" />
-    <AvaloniaResource Include="src\Views\Wizards\RitualTemplateBuilder.axaml" />
-    <AvaloniaResource Include="src\Views\MainShellView.axaml" />
-    <AvaloniaResource Include="src\Views\DreamDictionary.axaml" />
-    <AvaloniaResource Include="src\Views\RitualLibrary.axaml" />
-    <AvaloniaResource Include="src\Views\ClientDetailView.axaml" />
-    <AvaloniaResource Include="src\Views\SymbolSearch.axaml" />
-    <AvaloniaResource Include="src\Views\DocumentViewer.axaml" />
-    <AvaloniaResource Include="src\Views\ThemeSwitcher.axaml" />
-    <AvaloniaResource Include="src\Views\ExportView.axaml" />
-    <AvaloniaResource Include="src\Views\AnalyticsView.axaml" />
-    <AvaloniaResource Include="src\Views\DreamParserView.axaml" />
-    
-    <!-- Theme files -->
-    <AvaloniaResource Include="src\Styles\Themes\Theme.Dark.xaml" />
-    <AvaloniaResource Include="src\Styles\Themes\Theme.Light.xaml" />
-    <AvaloniaResource Include="src\Styles\Themes\Theme.Amanda.xaml" />
-    <AvaloniaResource Include="src\Styles\Themes\Theme.Flame.xaml" />
-    <AvaloniaResource Include="src\Styles\Themes\Theme.Parchment.xaml" />
-    <AvaloniaResource Include="src\Styles\Themes\Theme.Magical.xaml" />
-    <AvaloniaResource Include="src\Styles\Themes\Theme.Material.xaml" />
-  </ItemGroup>
 </Project>
