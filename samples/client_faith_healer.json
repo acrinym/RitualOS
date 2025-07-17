@@ -1,9 +1,15 @@
 {
-  "name": "Ayla Summers",
-  "email": "ayla@example.com",
-  "role": "Faith Healer",
-  "flags": ["VIP"],
-  "tags": ["healing", "long-term"],
-  "ritual_ids": ["ritual_gold_path"],
-  "energy_notes": "Prefers moon rituals. Has shown strong intuitive abilities."
+  "Id": "client_ayla_summers",
+  "Name": "Ayla Summers",
+  "Role": "Ritualist",
+  "Email": "ayla@example.com",
+  "Phone": "",
+  "Notes": "",
+  "RitualsPerformed": [],
+  "History": [],
+  "Tags": ["healing", "long-term"],
+  "EnergyNotes": "Prefers moon rituals. Has shown strong intuitive abilities.",
+  "ChakraNotes": {},
+  "CreatedAt": "2025-07-09T00:00:00Z",
+  "LastUpdated": "2025-07-09T00:00:00Z"
 }
