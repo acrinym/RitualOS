@@ -59,5 +59,14 @@
         <TabItem Header="Theme">
             <views:ThemeSwitcher DataContext="{Binding ThemeViewModel}"/>
         </TabItem>
+        <TabItem Header="Export">
+            <views:ExportView DataContext="{Binding ExportViewModel}"/>
+        </TabItem>
+        <TabItem Header="Analytics">
+            <views:AnalyticsView DataContext="{Binding AnalyticsViewModel}"/>
+        </TabItem>
+        <TabItem Header="Dream Parser">
+            <views:DreamParserView DataContext="{Binding DreamParserViewModel}"/>
+        </TabItem>
     </TabControl>
 </UserControl> 

@@ -1,0 +1,214 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="RitualOS.Views.AnalyticsView">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Style="{StaticResource RitualOSCard}" Margin="0,0,0,20">
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Analytics Dashboard" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Track your ritual practice patterns and insights" 
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="Refresh" Command="{Binding RefreshCommand}" 
+                            Style="{StaticResource RitualOSButton}" Margin="0,0,10,0"/>
+                    <Button Content="Export" Command="{Binding ExportCommand}" 
+                            Style="{StaticResource RitualOSButton}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Summary Cards -->
+        <Grid Grid.Row="1" ColumnDefinitions="1*,1*,1*,1*" ColumnSpacing="15" Margin="0,0,0,20">
+            <Border Grid.Column="0" Style="{StaticResource RitualOSCard}">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding TotalRitualsText}" FontSize="32" FontWeight="Bold" 
+                               Foreground="{DynamicResource PrimaryBrush}"/>
+                    <TextBlock Text="Total Rituals" FontSize="14" 
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+            
+            <Border Grid.Column="1" Style="{StaticResource RitualOSCard}">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding TotalSessionsText}" FontSize="32" FontWeight="Bold" 
+                               Foreground="{DynamicResource SecondaryBrush}"/>
+                    <TextBlock Text="Total Sessions" FontSize="14" 
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+            
+            <Border Grid.Column="2" Style="{StaticResource RitualOSCard}">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding TotalUsageTimeText}" FontSize="32" FontWeight="Bold" 
+                               Foreground="{DynamicResource AccentBrush}"/>
+                    <TextBlock Text="Hours Used" FontSize="14" 
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+            
+            <Border Grid.Column="3" Style="{StaticResource RitualOSCard}">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding GeneratedDateText}" FontSize="16" FontWeight="Bold" 
+                               Foreground="{DynamicResource InfoBrush}"/>
+                    <TextBlock Text="Last Updated" FontSize="14" 
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="2" ColumnDefinitions="1*,1*" ColumnSpacing="20">
+            
+            <!-- Left Column -->
+            <StackPanel Grid.Column="0" Spacing="20">
+                
+                <!-- Most Used Rituals -->
+                <Border Style="{StaticResource RitualOSCard}">
+                    <StackPanel>
+                        <TextBlock Text="Most Used Rituals" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ItemsControl ItemsSource="{Binding MostUsedRituals}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                                        <TextBlock Grid.Column="0" Text="{Binding Key}" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Value}" 
+                                                   Foreground="{DynamicResource PrimaryBrush}" FontWeight="Bold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Element Usage -->
+                <Border Style="{StaticResource RitualOSCard}">
+                    <StackPanel>
+                        <TextBlock Text="Element Usage" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ItemsControl ItemsSource="{Binding ElementUsage}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,8">
+                                        <Ellipse Grid.Column="0" Width="12" Height="12" Margin="0,0,10,0"
+                                                 Fill="{Binding DataContext.GetElementColor, RelativeSource={RelativeSource AncestorType=UserControl}, ConverterParameter={Binding Key}}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Key}" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding Value}" 
+                                                   Foreground="{DynamicResource PrimaryBrush}" FontWeight="Bold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            
+            <!-- Right Column -->
+            <StackPanel Grid.Column="1" Spacing="20">
+                
+                <!-- Chakra Usage -->
+                <Border Style="{StaticResource RitualOSCard}">
+                    <StackPanel>
+                        <TextBlock Text="Chakra Usage" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ItemsControl ItemsSource="{Binding ChakraUsage}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,8">
+                                        <Ellipse Grid.Column="0" Width="12" Height="12" Margin="0,0,10,0"
+                                                 Fill="{Binding DataContext.GetChakraColor, RelativeSource={RelativeSource AncestorType=UserControl}, ConverterParameter={Binding Key}}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Key}" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding Value}" 
+                                                   Foreground="{DynamicResource PrimaryBrush}" FontWeight="Bold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Theme Preferences -->
+                <Border Style="{StaticResource RitualOSCard}">
+                    <StackPanel>
+                        <TextBlock Text="Theme Preferences" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ItemsControl ItemsSource="{Binding ThemePreferences}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                                        <TextBlock Grid.Column="0" Text="{Binding Key}" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Value}" 
+                                                   Foreground="{DynamicResource PrimaryBrush}" FontWeight="Bold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Feature Usage -->
+                <Border Style="{StaticResource RitualOSCard}">
+                    <StackPanel>
+                        <TextBlock Text="Feature Usage" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ItemsControl ItemsSource="{Binding FeatureUsage}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                                        <TextBlock Grid.Column="0" Text="{Binding Key}" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Value}" 
+                                                   Foreground="{DynamicResource PrimaryBrush}" FontWeight="Bold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <!-- Footer - Export Options -->
+        <Border Grid.Row="3" Style="{StaticResource RitualOSCard}" Margin="0,20,0,0">
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="15">
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Export Analytics" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Export your analytics data for reporting and analysis" 
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+                
+                <ComboBox Grid.Column="1" ItemsSource="{Binding AvailableExportFormats}" 
+                          SelectedItem="{Binding SelectedExportFormat}" 
+                          MinWidth="120"/>
+                
+                <Button Grid.Column="2" Content="Export" Command="{Binding ExportCommand}" 
+                        Style="{StaticResource RitualOSButton}"/>
+            </Grid>
+        </Border>
+
+        <!-- Loading Overlay -->
+        <Border Grid.RowSpan="4" Background="Black" Opacity="0.5" 
+                IsVisible="{Binding IsLoading}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ProgressBar IsIndeterminate="True" Width="200" Height="4" Margin="0,0,0,20"/>
+                <TextBlock Text="Loading analytics data..." 
+                           Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Status Message -->
+        <Border Grid.RowSpan="4" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="15" 
+                Margin="0,20,0,0" IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+            <TextBlock Text="{Binding StatusMessage}" 
+                       Foreground="{DynamicResource TextPrimaryBrush}" FontWeight="SemiBold"/>
+        </Border>
+    </Grid>
+</UserControl> 

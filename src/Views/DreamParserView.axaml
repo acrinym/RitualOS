@@ -1,0 +1,276 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+             x:Class="RitualOS.Views.DreamParserView">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Style="{StaticResource RitualOSCard}" Margin="0,0,0,20">
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Dream Parser with NLP" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Analyze your dreams and get intelligent ritual suggestions" 
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="Analyze" Command="{Binding AnalyzeDreamCommand}" 
+                            Style="{StaticResource RitualOSButton}" Margin="0,0,10,0"/>
+                    <Button Content="Save" Command="{Binding SaveAnalysisCommand}" 
+                            Style="{StaticResource RitualOSButton}" Margin="0,0,10,0"/>
+                    <Button Content="Clear" Command="{Binding ClearAnalysisCommand}" 
+                            Style="{StaticResource RitualOSButton}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" ColumnDefinitions="1*,1*" ColumnSpacing="20">
+            
+            <!-- Left Panel - Dream Input and Analysis -->
+            <StackPanel Grid.Column="0" Spacing="20">
+                
+                <!-- Dream Input -->
+                <Border Style="{StaticResource RitualOSCard}">
+                    <StackPanel>
+                        <TextBlock Text="Dream Content" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <TextBox Text="{Binding DreamContent}" 
+                                 Style="{StaticResource RitualOSTextBox}"
+                                 Height="200" AcceptsReturn="True" TextWrapping="Wrap"
+                                 PlaceholderText="Enter your dream content here..."/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Analysis Results -->
+                <Border Style="{StaticResource RitualOSCard}" IsVisible="{Binding AnalysisComplete}">
+                    <StackPanel>
+                        <TextBlock Text="Analysis Results" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        
+                        <!-- Confidence and Stats -->
+                        <Grid ColumnDefinitions="1*,1*,1*" ColumnSpacing="15" Margin="0,0,0,20">
+                            <Border Grid.Column="0" Background="{DynamicResource SurfaceBrush}" 
+                                    CornerRadius="8" Padding="15">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding ConfidenceText}" FontSize="20" FontWeight="Bold" 
+                                               Foreground="{DynamicResource PrimaryBrush}"/>
+                                    <TextBlock Text="Confidence" FontSize="12" 
+                                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                </StackPanel>
+                            </Border>
+                            
+                            <Border Grid.Column="1" Background="{DynamicResource SurfaceBrush}" 
+                                    CornerRadius="8" Padding="15">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding SymbolCountText}" FontSize="20" FontWeight="Bold" 
+                                               Foreground="{DynamicResource SecondaryBrush}"/>
+                                    <TextBlock Text="Symbols" FontSize="12" 
+                                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                </StackPanel>
+                            </Border>
+                            
+                            <Border Grid.Column="2" Background="{DynamicResource SurfaceBrush}" 
+                                    CornerRadius="8" Padding="15">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding EmotionCountText}" FontSize="20" FontWeight="Bold" 
+                                               Foreground="{DynamicResource AccentBrush}"/>
+                                    <TextBlock Text="Emotions" FontSize="12" 
+                                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        
+                        <!-- Extracted Symbols -->
+                        <TextBlock Text="Extracted Symbols:" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                        <WrapPanel>
+                            <ItemsControl ItemsSource="{Binding ExtractedSymbols}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{DynamicResource PrimaryBrush}" 
+                                                CornerRadius="15" Padding="8,4" Margin="0,0,5,5">
+                                            <TextBlock Text="{Binding}" Foreground="White" FontSize="12"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </WrapPanel>
+                        
+                        <!-- Extracted Emotions -->
+                        <TextBlock Text="Extracted Emotions:" FontWeight="SemiBold" Margin="0,20,0,10"/>
+                        <WrapPanel>
+                            <ItemsControl ItemsSource="{Binding ExtractedEmotions}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{DynamicResource SecondaryBrush}" 
+                                                CornerRadius="15" Padding="8,4" Margin="0,0,5,5">
+                                            <TextBlock Text="{Binding}" Foreground="White" FontSize="12"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </WrapPanel>
+                        
+                        <!-- Generated Intent -->
+                        <TextBlock Text="Generated Intent:" FontWeight="SemiBold" Margin="0,20,0,10"/>
+                        <Border Background="{DynamicResource SurfaceBrush}" 
+                                CornerRadius="8" Padding="15">
+                            <TextBlock Text="{Binding CurrentAnalysis.GeneratedIntent}" 
+                                       TextWrapping="Wrap" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            
+            <!-- Right Panel - Ritual Suggestions and History -->
+            <StackPanel Grid.Column="1" Spacing="20">
+                
+                <!-- Ritual Suggestions -->
+                <Border Style="{StaticResource RitualOSCard}" IsVisible="{Binding AnalysisComplete}">
+                    <StackPanel>
+                        <TextBlock Text="Suggested Rituals" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ScrollViewer MaxHeight="400">
+                            <ItemsControl ItemsSource="{Binding SuggestedRituals}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{DynamicResource SurfaceBrush}" 
+                                                CornerRadius="8" Padding="15" Margin="0,0,0,10">
+                                            <StackPanel>
+                                                <Grid ColumnDefinitions="*,Auto">
+                                                    <TextBlock Grid.Column="0" Text="{Binding Name}" 
+                                                               FontWeight="Bold" FontSize="16"/>
+                                                    <Border Grid.Column="1" Background="{Binding Relevance, Converter={x:Static ObjectConverters.Multiply}, ConverterParameter=0.8}" 
+                                                            CornerRadius="4" Padding="4,2">
+                                                        <TextBlock Text="{Binding Relevance, StringFormat='{}{0:P0}'}" 
+                                                                   Foreground="White" FontSize="10" FontWeight="Bold"/>
+                                                    </Border>
+                                                </Grid>
+                                                
+                                                <TextBlock Text="{Binding Description}" 
+                                                           Foreground="{DynamicResource TextSecondaryBrush}"
+                                                           TextWrapping="Wrap" Margin="0,8,0,0"/>
+                                                
+                                                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                                    <TextBlock Text="Difficulty:" FontWeight="SemiBold"/>
+                                                    <TextBlock Text="{Binding Difficulty}" Margin="5,0,0,0" 
+                                                               Foreground="{Binding Difficulty, Converter={x:Static ObjectConverters.Multiply}, ConverterParameter=0.8}"/>
+                                                    <TextBlock Text="Duration:" FontWeight="SemiBold" Margin="20,0,0,0"/>
+                                                    <TextBlock Text="{Binding EstimatedDuration}" Margin="5,0,0,0"/>
+                                                    <TextBlock Text="min" Margin="0,0,0,0"/>
+                                                </StackPanel>
+                                                
+                                                <TextBlock Text="Elements:" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                                                <WrapPanel>
+                                                    <ItemsControl ItemsSource="{Binding Elements}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border Background="{DynamicResource PrimaryBrush}" 
+                                                                        CornerRadius="10" Padding="6,2" Margin="0,0,5,5">
+                                                                    <TextBlock Text="{Binding}" Foreground="White" FontSize="10"/>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </WrapPanel>
+                                                
+                                                <TextBlock Text="Chakras:" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                                                <WrapPanel>
+                                                    <ItemsControl ItemsSource="{Binding Chakras}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border Background="{DynamicResource SecondaryBrush}" 
+                                                                        CornerRadius="10" Padding="6,2" Margin="0,0,5,5">
+                                                                    <TextBlock Text="{Binding}" Foreground="White" FontSize="10"/>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </WrapPanel>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Dream History -->
+                <Border Style="{StaticResource RitualOSCard}">
+                    <StackPanel>
+                        <TextBlock Text="Dream History" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ScrollViewer MaxHeight="200">
+                            <ItemsControl ItemsSource="{Binding DreamHistory}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{DynamicResource SurfaceBrush}" 
+                                                CornerRadius="6" Padding="10" Margin="0,0,0,5">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Analyzed, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" 
+                                                           FontWeight="Bold" FontSize="12"/>
+                                                <TextBlock Text="{Binding OriginalContent}" 
+                                                           Foreground="{DynamicResource TextSecondaryBrush}"
+                                                           TextWrapping="Wrap" MaxLines="2" 
+                                                           TextTrimming="CharacterEllipsis" Margin="0,5,0,0"/>
+                                                <TextBlock Text="{Binding Confidence, StringFormat='{}{0:P1} confidence'}" 
+                                                           FontSize="10" Foreground="{DynamicResource PrimaryBrush}" 
+                                                           Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <!-- Footer -->
+        <Border Grid.Row="2" Style="{StaticResource RitualOSCard}" Margin="0,20,0,0">
+            <StackPanel>
+                <TextBlock Text="NLP Dream Analysis Features" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource TextSecondaryBrush}">
+                    <Run Text="• "/>
+                    <Run Text="Symbol Extraction" FontWeight="Bold"/>
+                    <Run Text=": Automatically identifies dream symbols and their meanings"/>
+                    <Run Text="• "/>
+                    <Run Text="Emotion Analysis" FontWeight="Bold"/>
+                    <Run Text=": Detects emotional patterns and themes in your dreams"/>
+                    <Run Text="• "/>
+                    <Run Text="Elemental Mapping" FontWeight="Bold"/>
+                    <Run Text=": Maps dream content to elemental energies (Fire, Water, Earth, Air, Spirit)"/>
+                    <Run Text="• "/>
+                    <Run Text="Chakra Alignment" FontWeight="Bold"/>
+                    <Run Text=": Identifies chakra associations for energy work"/>
+                    <Run Text="• "/>
+                    <Run Text="Ritual Suggestions" FontWeight="Bold"/>
+                    <Run Text=": Generates personalized ritual recommendations based on dream analysis"/>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <!-- Loading Overlay -->
+        <Border Grid.RowSpan="3" Background="Black" Opacity="0.5" 
+                IsVisible="{Binding IsAnalyzing}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ProgressBar IsIndeterminate="True" Width="200" Height="4" Margin="0,0,0,20"/>
+                <TextBlock Text="Analyzing dream content..." 
+                           Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Status Message -->
+        <Border Grid.RowSpan="3" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="15" 
+                Margin="0,20,0,0" IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+            <TextBlock Text="{Binding StatusMessage}" 
+                       Foreground="{DynamicResource TextPrimaryBrush}" FontWeight="SemiBold"/>
+        </Border>
+    </Grid>
+</UserControl> 

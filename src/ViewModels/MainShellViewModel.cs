@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using RitualOS.ViewModels;
 using RitualOS.Models;
 using System.Collections.Generic;
+using RitualOS.Services;
 
 namespace RitualOS.ViewModels
 {
@@ -14,6 +15,13 @@ namespace RitualOS.ViewModels
 
         public MainShellViewModel()
         {
+            // Initialize services
+            var userSettingsService = new UserSettingsService();
+            var exportService = new ExportService(userSettingsService);
+            var analyticsService = new AnalyticsService(userSettingsService);
+            var dreamParserService = new DreamParserService();
+            var ritualDataLoader = new RitualDataLoader();
+
             // Initialize all available view models
             InventoryViewModel = new InventoryViewModel();
             DreamDictionaryViewModel = new DreamDictionaryViewModel();
@@ -23,6 +31,9 @@ namespace RitualOS.ViewModels
             DocumentViewerViewModel = new DocumentViewerViewModel();
             RitualTimelineViewModel = new RitualTimelineViewModel();
             ThemeViewModel = new ThemeViewModel();
+            ExportViewModel = new ExportViewModel(exportService, ritualDataLoader, userSettingsService);
+            AnalyticsViewModel = new AnalyticsViewModel(analyticsService, userSettingsService);
+            DreamParserViewModel = new DreamParserViewModel(dreamParserService, userSettingsService);
 
             // Set default view
             CurrentViewModel = InventoryViewModel;
@@ -63,6 +74,9 @@ namespace RitualOS.ViewModels
                         5 => DocumentViewerViewModel,
                         6 => RitualTimelineViewModel,
                         7 => ThemeViewModel,
+                        8 => ExportViewModel,
+                        9 => AnalyticsViewModel,
+                        10 => DreamParserViewModel,
                         _ => InventoryViewModel
                     };
                 }
@@ -78,5 +92,8 @@ namespace RitualOS.ViewModels
         public DocumentViewerViewModel DocumentViewerViewModel { get; }
         public RitualTimelineViewModel RitualTimelineViewModel { get; }
         public ThemeViewModel ThemeViewModel { get; }
+        public ExportViewModel ExportViewModel { get; }
+        public AnalyticsViewModel AnalyticsViewModel { get; }
+        public DreamParserViewModel DreamParserViewModel { get; }
     }
 } 
