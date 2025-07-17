@@ -13,6 +13,8 @@
     <Color x:Key="SuccessColor">#38A169</Color>
     <Color x:Key="WarningColor">#D69E2E</Color>
     <Color x:Key="InfoColor">#3182CE</Color>
+    <!-- Magical highlight color for ritual glow -->
+    <Color x:Key="RitualGlowColor">#FFD700</Color>
 
     <!-- Elemental Colors -->
     <Color x:Key="FireColor">#E53E3E</Color>
@@ -42,6 +44,7 @@
     <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}"/>
     <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}"/>
     <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource InfoColor}"/>
+    <SolidColorBrush x:Key="RitualGlowBrush" Color="{StaticResource RitualGlowColor}"/>
 
     <!-- Elemental Brushes -->
     <SolidColorBrush x:Key="FireBrush" Color="{StaticResource FireColor}"/>
