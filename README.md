@@ -17,12 +17,15 @@ inventory of magical ingredients, log dreams, and manage clients.
 - Codex rewrite preview tool
 - Dashboard view for client profiles
 - Embedded document viewer for common formats (PDF, Markdown, JSON, EPUB, HTML)
+- Keyboard shortcuts for tab navigation
+- Screen reader labels on major controls
 
 ## Themes
 RitualOS supports multiple visual themes to match different aesthetics:
 - **Material** for a clean, modern look
 - **Magical** with deep purples and vibrant accents
 - **Parchment** for a premium, old-world feel
+- **HighContrast** for maximum readability
 
 ## Project Structure
 Key folders you will find in RitualOS:
