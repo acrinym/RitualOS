@@ -5,6 +5,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using RitualOS.ViewModels;
 using RitualOS.Views;
+using RitualOS.Services;
 
 namespace RitualOS
 {
@@ -13,7 +14,7 @@ namespace RitualOS
         [STAThread]
         public static void Main(string[] args)
         {
-            Console.WriteLine("Starting RitualOS..."); // Added for debugging
+            LoggingService.Info("Starting RitualOS...");
             BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
         }
 
