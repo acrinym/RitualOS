@@ -29,6 +29,7 @@ namespace RitualOS.Services
         public DateTime Analyzed { get; set; } = DateTime.Now;
         public string OriginalContent { get; set; } = string.Empty;
         public List<string> ExtractedSymbols { get; set; } = new();
+        public Dictionary<string, DreamDictionaryEntry> SymbolMeanings { get; set; } = new();
         public List<string> Emotions { get; set; } = new();
         public Dictionary<string, double> ElementalAffinities { get; set; } = new();
         public Dictionary<string, double> ChakraAffinities { get; set; } = new();
@@ -72,6 +73,7 @@ namespace RitualOS.Services
         private readonly Dictionary<string, List<string>> _emotionDictionary;
         private readonly Dictionary<string, List<string>> _elementalMappings;
         private readonly Dictionary<string, List<string>> _chakraMappings;
+        private List<DreamDictionaryEntry> _dreamDictionary = new();
 
         public DreamParserService()
         {
@@ -80,7 +82,27 @@ namespace RitualOS.Services
             _emotionDictionary = InitializeEmotionDictionary();
             _elementalMappings = InitializeElementalMappings();
             _chakraMappings = InitializeChakraMappings();
-        }
+
+            var searchPaths = new[]
+            {
+                Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "docs", "DreamDictionary", "RitualOS_Dream_Dictionary.md"),
+                Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "docs", "DreamDictionary", "RitualOS_Dream_Dictionary.md"),
+                Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "docs", "DreamDictionary", "RitualOS_Dream_Dictionary.md")
+            };
+
+            foreach (var path in searchPaths)
+            {
+                var full = Path.GetFullPath(path);
+                if (File.Exists(full))
+                {
+                    _dreamDictionary = DreamDictionaryLoader.LoadFromMarkdown(full);
+                    break;
+                }
+            }
+
+            if (_dreamDictionary.Count == 0)
+                _dreamDictionary = new List<DreamDictionaryEntry>();
+       }
 
         public async Task<DreamAnalysis> AnalyzeDreamAsync(string dreamContent)
         {
@@ -91,6 +113,16 @@ namespace RitualOS.Services
 
             // Extract symbols
             analysis.ExtractedSymbols = await ExtractSymbolsAsync(dreamContent);
+
+            // Lookup meanings
+            foreach (var symbol in analysis.ExtractedSymbols)
+            {
+                var entry = _dreamDictionary.FirstOrDefault(e =>
+                    string.Equals(e.Term, symbol, StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(e.Term.Split(' ')[0], symbol, StringComparison.OrdinalIgnoreCase));
+                if (entry != null)
+                    analysis.SymbolMeanings[symbol] = entry;
+            }
             
             // Extract emotions
             analysis.Emotions = await ExtractEmotionsAsync(dreamContent);
