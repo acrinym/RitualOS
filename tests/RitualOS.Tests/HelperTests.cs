@@ -13,7 +13,7 @@ public class HelperTests
         Assert.Equal("\uD83D\uDFE1", ChakraHelper.GetEmoji(Chakra.SolarPlexus));
         Assert.Equal("\uD83D\uDC9A", ChakraHelper.GetEmoji(Chakra.Heart));
         Assert.Equal("\uD83D\uDD35", ChakraHelper.GetEmoji(Chakra.Throat));
-        Assert.Equal("\uD83D\uDD39", ChakraHelper.GetEmoji(Chakra.ThirdEye));
+        Assert.Equal("\uD83D\uDFE3", ChakraHelper.GetEmoji(Chakra.ThirdEye));
         Assert.Equal("\u26AA", ChakraHelper.GetEmoji(Chakra.Crown));
     }
 

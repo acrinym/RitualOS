@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:RitualOS.ViewModels"
+        x:Class="RitualOS.Views.WelcomeView"
+        Width="400" Height="350" Title="Welcome to RitualOS">
+    <Window.DataContext>
+        <vm:WelcomeViewModel />
+    </Window.DataContext>
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="Welcome to RitualOS" FontSize="20" HorizontalAlignment="Center"/>
+        <TextBlock TextWrapping="Wrap"
+                   Text="RitualOS helps track rituals, manage magical inventory, and explore dreams. Enter your access token to continue."/>
+        <TextBox Watermark="Access Token" Text="{Binding Token, Mode=TwoWay}"/>
+        <TextBlock Text="{Binding StatusMessage}" Foreground="Red"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <Button Content="Enter" Command="{Binding SubmitCommand}"/>
+            <Button Content="Superuser" Command="{Binding SuperuserCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

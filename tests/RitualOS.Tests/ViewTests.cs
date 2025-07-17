@@ -10,7 +10,7 @@ public class ViewTests
     public void ChakraSelector_LoadsHeadless()
     {
         AppBuilder.Configure<App>()
-            .UseHeadless()
+            .UseHeadless(new AvaloniaHeadlessPlatformOptions())
             .SetupWithoutStarting();
 
         var view = new RitualOS.Views.ChakraSelector();
