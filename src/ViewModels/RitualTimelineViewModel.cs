@@ -16,7 +16,8 @@ namespace RitualOS.ViewModels
         public RitualTimelineViewModel()
         {
             var dataDir = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "samples");
-            var rituals = RitualDataLoader.LoadAllRituals(dataDir)
+            var loader = new RitualDataLoader();
+            var rituals = loader.LoadAllRituals(dataDir)
                 .OrderByDescending(r => r.DatePerformed);
             foreach (var r in rituals)
             {

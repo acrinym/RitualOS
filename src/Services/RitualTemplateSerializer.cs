@@ -17,7 +17,7 @@ namespace RitualOS.Services
         private static readonly string DirectoryPath = Path.Combine(AppContext.BaseDirectory, "ritual_templates");
         private const int CurrentVersion = 1;
 
-        public static async Task SaveAsync(RitualTemplate template, string? directory = null)
+        public static async Task SaveAsync(RitualTemplate template, string? directory = null, IUserSettingsService? settingsService = null)
         {
             Validate(template);
 
@@ -37,15 +37,18 @@ namespace RitualOS.Services
             var json = JsonSerializer.Serialize(template, options);
             await File.WriteAllTextAsync(path, json);
 
-            UserSettingsService.Current.LastTemplatePath = path;
-            UserSettingsService.Save();
+            if (settingsService != null)
+            {
+                settingsService.Current.LastTemplatePath = path;
+                settingsService.Save();
+            }
         }
 
-        public static void Save(RitualTemplate template, string? directory = null)
+        public static void Save(RitualTemplate template, string? directory = null, IUserSettingsService? settingsService = null)
         {
-            SaveAsync(template, directory).GetAwaiter().GetResult();
+            SaveAsync(template, directory, settingsService).GetAwaiter().GetResult();
         }
-        public static async Task<RitualTemplate> LoadAsync(string path)
+        public static async Task<RitualTemplate> LoadAsync(string path, IUserSettingsService? settingsService = null)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException($"Template file not found: {path}");
@@ -61,15 +64,18 @@ namespace RitualOS.Services
 
             Validate(template);
 
-            UserSettingsService.Current.LastTemplatePath = path;
-            UserSettingsService.Save();
+            if (settingsService != null)
+            {
+                settingsService.Current.LastTemplatePath = path;
+                settingsService.Save();
+            }
 
             return template;
         }
 
-        public static RitualTemplate Load(string path)
+        public static RitualTemplate Load(string path, IUserSettingsService? settingsService = null)
         {
-            return LoadAsync(path).GetAwaiter().GetResult();
+            return LoadAsync(path, settingsService).GetAwaiter().GetResult();
         }
 
         public static List<RitualTemplate> LoadAll()

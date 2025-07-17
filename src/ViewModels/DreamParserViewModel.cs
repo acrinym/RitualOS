@@ -94,10 +94,10 @@ namespace RitualOS.ViewModels
         public ObservableCollection<string> ExtractedSymbols { get; }
         public ObservableCollection<string> ExtractedEmotions { get; }
 
-        public ICommand AnalyzeDreamCommand { get; }
-        public ICommand SaveAnalysisCommand { get; }
-        public ICommand ClearAnalysisCommand { get; }
-        public ICommand LoadDreamHistoryCommand { get; }
+        public RelayCommand AnalyzeDreamCommand { get; }
+        public RelayCommand SaveAnalysisCommand { get; }
+        public RelayCommand ClearAnalysisCommand { get; }
+        public RelayCommand LoadDreamHistoryCommand { get; }
 
         // Computed properties for UI binding
         public string ConfidenceText => CurrentAnalysis?.Confidence.ToString("P1") ?? "0%";

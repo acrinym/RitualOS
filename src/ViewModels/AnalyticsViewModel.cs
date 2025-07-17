@@ -81,9 +81,9 @@ namespace RitualOS.ViewModels
             }
         }
 
-        public ICommand RefreshCommand { get; }
-        public ICommand ExportCommand { get; }
-        public ICommand BrowseExportPathCommand { get; }
+        public RelayCommand RefreshCommand { get; }
+        public RelayCommand ExportCommand { get; }
+        public RelayCommand BrowseExportPathCommand { get; }
 
         // Computed properties for UI binding
         public string TotalRitualsText => AnalyticsData?.TotalRituals.ToString() ?? "0";

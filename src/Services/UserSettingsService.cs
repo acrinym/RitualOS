@@ -7,18 +7,23 @@ namespace RitualOS.Services
     /// <summary>
     /// Persists simple user settings such as the last used template path.
     /// </summary>
-    public static class UserSettingsService
+    public class UserSettingsService : IUserSettingsService
     {
-        private static readonly string FilePath = Path.Combine(AppContext.BaseDirectory, "user_settings.json");
+        private readonly string FilePath = Path.Combine(AppContext.BaseDirectory, "user_settings.json");
 
         public class UserSettings
         {
             public string LastTemplatePath { get; set; } = string.Empty;
         }
 
-        public static UserSettings Current { get; private set; } = Load();
+        public UserSettings Current { get; private set; }
 
-        private static UserSettings Load()
+        public UserSettingsService()
+        {
+            Current = Load();
+        }
+
+        private UserSettings Load()
         {
             try
             {
@@ -38,7 +43,7 @@ namespace RitualOS.Services
             return new UserSettings();
         }
 
-        public static void Save()
+        public void Save()
         {
             try
             {

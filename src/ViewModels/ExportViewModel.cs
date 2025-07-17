@@ -39,10 +39,7 @@ namespace RitualOS.ViewModels
             {
                 "markdown",
                 "html",
-                "json",
-                "pdf",
-                "epub",
-                "website"
+                "json"
             };
 
             LoadRitualsAsync().ConfigureAwait(false);
@@ -101,10 +98,10 @@ namespace RitualOS.ViewModels
             set => SetProperty(ref _exportSuccess, value);
         }
 
-        public ICommand ExportRitualCommand { get; }
-        public ICommand ExportLibraryCommand { get; }
-        public ICommand BrowseOutputPathCommand { get; }
-        public ICommand LoadRitualsCommand { get; }
+        public RelayCommand ExportRitualCommand { get; }
+        public RelayCommand ExportLibraryCommand { get; }
+        public RelayCommand BrowseOutputPathCommand { get; }
+        public RelayCommand LoadRitualsCommand { get; }
 
         private async Task LoadRitualsAsync()
         {
@@ -154,15 +151,6 @@ namespace RitualOS.ViewModels
                         break;
                     case "json":
                         result = await _exportService.ExportToJsonAsync(SelectedRitual);
-                        break;
-                    case "pdf":
-                        result = await _exportService.ExportToPdfAsync(SelectedRitual);
-                        break;
-                    case "epub":
-                        result = await _exportService.ExportToEpubAsync(SelectedRitual);
-                        break;
-                    case "website":
-                        result = await _exportService.ExportToWebsiteAsync(SelectedRitual);
                         break;
                     default:
                         throw new ArgumentException($"Unsupported format: {SelectedFormat}");
@@ -231,9 +219,6 @@ namespace RitualOS.ViewModels
                 "markdown" => "md",
                 "html" => "html",
                 "json" => "json",
-                "pdf" => "pdf",
-                "epub" => "epub",
-                "website" => "html",
                 _ => "txt"
             };
         }

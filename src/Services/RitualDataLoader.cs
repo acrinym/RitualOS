@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text.Json;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RitualOS.Models;
 
 namespace RitualOS.Services
@@ -9,7 +10,7 @@ namespace RitualOS.Services
     /// <summary>
     /// Provides helper methods for loading and saving ritual data to disk.
     /// </summary>
-    public static class RitualDataLoader
+    public class RitualDataLoader : IRitualDataLoader
     {
         /// <summary>
         /// Loads a ritual entry from a JSON file on disk.
@@ -19,7 +20,7 @@ namespace RitualOS.Services
         /// <exception cref="RitualDataLoadException">
         /// Thrown when the file cannot be read, the JSON is invalid, or deserialization returns null.
         /// </exception>
-        public static RitualEntry LoadRitualFromJson(string filePath)
+        public RitualEntry LoadRitualFromJson(string filePath)
         {
             if (!File.Exists(filePath))
             {
@@ -48,7 +49,7 @@ namespace RitualOS.Services
         /// <param name="entry">The ritual entry to save.</param>
         /// <param name="filePath">File path where the JSON should be written. If null or empty, a file
         /// name will be generated using the pattern ritual_&lt;timestamp&gt;.json.</param>
-        public static void SaveRitualToJson(RitualEntry entry, string filePath)
+        public void SaveRitualToJson(RitualEntry entry, string filePath)
         {
             try
             {
@@ -73,7 +74,7 @@ namespace RitualOS.Services
         /// <param name="directory">Directory containing ritual JSON files.</param>
         /// <param name="clientId">ID of the client to filter by.</param>
         /// <returns>List of rituals associated with the client.</returns>
-        public static List<RitualEntry> LoadRitualsForClient(string directory, string clientId)
+        public List<RitualEntry> LoadRitualsForClient(string directory, string clientId)
         {
             var results = new List<RitualEntry>();
             if (string.IsNullOrEmpty(directory) || string.IsNullOrEmpty(clientId))
@@ -111,7 +112,7 @@ namespace RitualOS.Services
         /// </summary>
         /// <param name="directory">Directory containing ritual JSON files.</param>
         /// <returns>List of all successfully loaded rituals.</returns>
-        public static List<RitualEntry> LoadAllRituals(string directory)
+        public List<RitualEntry> LoadAllRituals(string directory)
         {
             var results = new List<RitualEntry>();
             if (string.IsNullOrEmpty(directory))
@@ -139,6 +140,11 @@ namespace RitualOS.Services
             }
 
             return results;
+        }
+
+        public Task<List<RitualTemplate>> LoadRitualTemplatesAsync()
+        {
+            return Task.Run(() => RitualTemplateSerializer.LoadAll());
         }
     }
 }
