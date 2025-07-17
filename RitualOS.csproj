@@ -72,6 +72,8 @@
     <Compile Include="src\Services\ExportService.cs" />
     <Compile Include="src\Services\AnalyticsService.cs" />
     <Compile Include="src\Services\DreamParserService.cs" />
+    <Compile Include="src\Services\LoggingService.cs" />
+    <Compile Include="src\Services\BackupService.cs" />
     <Compile Include="src\ViewModels\ClientViewModel.cs" />
     <Compile Include="src\ViewModels\DocumentViewerViewModel.cs" />
     <Compile Include="src\ViewModels\DreamDictionaryViewModel.cs" />

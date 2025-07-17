@@ -5,6 +5,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using RitualOS.ViewModels;
 using RitualOS.Views;
+using RitualOS.Services;
 
 namespace RitualOS
 {
@@ -45,6 +46,7 @@ namespace RitualOS
                 }
 
                 desktop.MainWindow = welcome;
+                desktop.Exit += (_, _) => LoggingService.Info("RitualOS closed");
                 welcome.Show();
             }
             base.OnFrameworkInitializationCompleted();
