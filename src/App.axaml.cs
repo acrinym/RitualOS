@@ -19,21 +19,33 @@ namespace RitualOS
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                // check SigilLock before allowing main window to appear
-                if (!Services.SigilLock.HasAccess(Services.UserContext.CurrentRole, "AppAccess"))
+                var welcome = new WelcomeView();
+                if (welcome.DataContext is WelcomeViewModel vm)
                 {
-                    Console.WriteLine("Access denied: insufficient role for main UI.");
-                    desktop.Shutdown();
-                    return;
+                    vm.AccessGranted = () =>
+                    {
+                        if (!Services.SigilLock.HasAccess(Services.UserContext.CurrentRole, "AppAccess"))
+                        {
+                            Console.WriteLine("Access denied: insufficient role for main UI.");
+                            desktop.Shutdown();
+                            return;
+                        }
+
+                        var main = new Window
+                        {
+                            Title = "RitualOS",
+                            Width = 1200,
+                            Height = 800,
+                            Content = new MainShellView()
+                        };
+                        desktop.MainWindow = main;
+                        main.Show();
+                        welcome.Close();
+                    };
                 }
 
-                desktop.MainWindow = new Window
-                {
-                    Title = "RitualOS",
-                    Width = 1200,
-                    Height = 800,
-                    Content = new MainShellView()
-                };
+                desktop.MainWindow = welcome;
+                welcome.Show();
             }
             base.OnFrameworkInitializationCompleted();
         }
