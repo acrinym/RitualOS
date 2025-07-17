@@ -20,7 +20,7 @@ namespace RitualOS.ViewModels
         public DocumentViewerViewModel()
         {
             BrowseCommand = new RelayCommand(async (param) => await BrowseForFile());
-            LoadDocumentCommand = new RelayCommand((param) => LoadDocument());
+            LoadDocumentCommand = new RelayCommand(async (param) => await LoadDocumentAsync());
         }
 
         public string DocumentPath
@@ -79,7 +79,7 @@ namespace RitualOS.ViewModels
             }
         }
 
-        private void LoadDocument()
+        private async Task LoadDocumentAsync()
         {
             if (string.IsNullOrWhiteSpace(DocumentPath) || !File.Exists(DocumentPath))
             {
@@ -87,7 +87,9 @@ namespace RitualOS.ViewModels
                 return;
             }
 
-            DocumentFile doc = DocumentLoader.Load(DocumentPath);
+            // Let the user know we're working some magic in the background! ✨
+            DocumentContent = "Loading...";
+            DocumentFile doc = await DocumentLoader.LoadAsync(DocumentPath);
             DocumentContent = doc.Content;
         }
     }
