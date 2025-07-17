@@ -431,6 +431,8 @@ namespace RitualOS.ViewModels.Wizards
 
             if (RitualSteps.Count == 0)
                 AddError("Steps", "At least one ritual step is required");
+            if (RitualSteps.Any(s => string.IsNullOrWhiteSpace(s)))
+                AddError("Steps", "Steps cannot be blank");
 
             OnErrorsChanged(nameof(Template));
         }

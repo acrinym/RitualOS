@@ -3,6 +3,7 @@
              xmlns:vm="clr-namespace:RitualOS.ViewModels.Wizards"
              xmlns:views="clr-namespace:RitualOS.Views"
              xmlns:conv="clr-namespace:RitualOS.Converters"
+             xmlns:behaviors="clr-namespace:RitualOS.Behaviors"
              x:Class="RitualOS.Views.Wizards.RitualTemplateBuilder">
     
     <UserControl.DataContext>
@@ -208,10 +209,11 @@
                                    Classes="error" 
                                    IsVisible="{Binding HasErrors}"/>
                         
-                        <ListBox ItemsSource="{Binding RitualSteps}" 
+                        <ListBox ItemsSource="{Binding RitualSteps}"
                                  SelectedIndex="{Binding SelectedStepIndex}"
-                                 Height="200" 
-                                 Classes="steps">
+                                 Height="200"
+                                 Classes="steps"
+                                 behaviors:ListBoxReorderBehavior.Enabled="True">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
