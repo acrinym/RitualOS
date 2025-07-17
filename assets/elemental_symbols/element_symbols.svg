@@ -1,1 +1,90 @@
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Fire Symbol -->
+  <g id="fire" transform="translate(20, 20)">
+    <path d="M20,40 L30,20 L20,0 L10,20 Z M20,30 L22,25 L20,20 L18,25 Z" 
+          fill="#E53E3E" stroke="#C53030" stroke-width="1"/>
+    <text x="20" y="50" text-anchor="middle" fill="#E53E3E" font-size="8">Fire</text>
+  </g>
+  
+  <!-- Water Symbol -->
+  <g id="water" transform="translate(60, 20)">
+    <path d="M20,0 C10,10 10,30 20,40 C30,30 30,10 20,0 Z M20,10 C15,15 15,25 20,30 C25,25 25,15 20,10 Z" 
+          fill="#3182CE" stroke="#2C5282" stroke-width="1"/>
+    <text x="20" y="50" text-anchor="middle" fill="#3182CE" font-size="8">Water</text>
+  </g>
+  
+  <!-- Earth Symbol -->
+  <g id="earth" transform="translate(100, 20)">
+    <path d="M20,0 L35,15 L20,30 L5,15 Z M20,10 L28,15 L20,20 L12,15 Z" 
+          fill="#38A169" stroke="#2F855A" stroke-width="1"/>
+    <text x="20" y="50" text-anchor="middle" fill="#38A169" font-size="8">Earth</text>
+  </g>
+  
+  <!-- Air Symbol -->
+  <g id="air" transform="translate(140, 20)">
+    <path d="M20,0 C25,5 25,15 20,20 C15,15 15,5 20,0 Z M20,5 C22,7 22,13 20,15 C18,13 18,7 20,5 Z" 
+          fill="#A0AEC0" stroke="#718096" stroke-width="1"/>
+    <text x="20" y="50" text-anchor="middle" fill="#A0AEC0" font-size="8">Air</text>
+  </g>
+  
+  <!-- Spirit Symbol -->
+  <g id="spirit" transform="translate(180, 20)">
+    <path d="M20,0 L25,15 L35,15 L27,25 L30,40 L20,30 L10,40 L13,25 L5,15 L15,15 Z" 
+          fill="#9F7AEA" stroke="#805AD5" stroke-width="1"/>
+    <text x="20" y="50" text-anchor="middle" fill="#9F7AEA" font-size="8">Spirit</text>
+  </g>
+  
+  <!-- Chakra Symbols -->
+  <g id="root-chakra" transform="translate(20, 80)">
+    <circle cx="20" cy="20" r="15" fill="#E53E3E" stroke="#C53030" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#E53E3E" font-size="8">Root</text>
+  </g>
+  
+  <g id="sacral-chakra" transform="translate(60, 80)">
+    <circle cx="20" cy="20" r="15" fill="#F6AD55" stroke="#ED8936" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#F6AD55" font-size="8">Sacral</text>
+  </g>
+  
+  <g id="solar-plexus-chakra" transform="translate(100, 80)">
+    <circle cx="20" cy="20" r="15" fill="#F6E05E" stroke="#ECC94B" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#F6E05E" font-size="8">Solar Plexus</text>
+  </g>
+  
+  <g id="heart-chakra" transform="translate(140, 80)">
+    <circle cx="20" cy="20" r="15" fill="#68D391" stroke="#48BB78" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#68D391" font-size="8">Heart</text>
+  </g>
+  
+  <g id="throat-chakra" transform="translate(180, 80)">
+    <circle cx="20" cy="20" r="15" fill="#63B3ED" stroke="#4299E1" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#63B3ED" font-size="8">Throat</text>
+  </g>
+  
+  <g id="third-eye-chakra" transform="translate(20, 140)">
+    <circle cx="20" cy="20" r="15" fill="#9F7AEA" stroke="#805AD5" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#9F7AEA" font-size="8">Third Eye</text>
+  </g>
+  
+  <g id="crown-chakra" transform="translate(60, 140)">
+    <circle cx="20" cy="20" r="15" fill="#F7FAFC" stroke="#E2E8F0" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#F7FAFC" font-size="8">Crown</text>
+  </g>
+  
+  <!-- Moon Phases -->
+  <g id="new-moon" transform="translate(100, 140)">
+    <circle cx="20" cy="20" r="15" fill="none" stroke="#A0AEC0" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#A0AEC0" font-size="8">New Moon</text>
+  </g>
+  
+  <g id="full-moon" transform="translate(140, 140)">
+    <circle cx="20" cy="20" r="15" fill="#F7FAFC" stroke="#A0AEC0" stroke-width="2"/>
+    <text x="20" y="50" text-anchor="middle" fill="#F7FAFC" font-size="8">Full Moon</text>
+  </g>
+  
+  <g id="waxing-crescent" transform="translate(180, 140)">
+    <circle cx="20" cy="20" r="15" fill="none" stroke="#A0AEC0" stroke-width="2"/>
+    <path d="M5,20 A15,15 0 0,1 5,20" fill="#F7FAFC"/>
+    <text x="20" y="50" text-anchor="middle" fill="#A0AEC0" font-size="8">Waxing</text>
+  </g>
+</svg> 

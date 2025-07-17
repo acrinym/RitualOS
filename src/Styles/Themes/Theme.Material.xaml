@@ -1,5 +1,6 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui">
-    <SolidColorBrush x:Key="BackgroundBrush" Color="#FAFAFA" />
-    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#212121" />
-    <SolidColorBrush x:Key="AccentBrush" Color="#009688" />
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#121212" />
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#ffffff" />
+    <SolidColorBrush x:Key="AccentBrush" Color="#bb86fc" />
 </ResourceDictionary>
