@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Markdig;
 using Docnet.Core;
@@ -52,6 +53,59 @@ namespace RitualOS.Services
                     break;
                 default:
                     doc.Content = File.ReadAllText(filePath);
+                    break;
+            }
+
+            return doc;
+        }
+
+        /// <summary>
+        /// Asynchronously loads a document for viewing without blocking the UI. 😄
+        /// </summary>
+        public static async Task<DocumentFile> LoadAsync(string filePath)
+        {
+            var doc = new DocumentFile
+            {
+                FilePath = filePath,
+                Title = Path.GetFileName(filePath)
+            };
+
+            if (!File.Exists(filePath))
+            {
+                doc.Content = "File not found.";
+                return doc;
+            }
+
+            var ext = Path.GetExtension(filePath).ToLowerInvariant();
+            switch (ext)
+            {
+                case ".pdf":
+                    doc.Content = await Task.Run(() => LoadPdf(filePath));
+                    break;
+                case ".md":
+                    var md = await File.ReadAllTextAsync(filePath);
+                    doc.Content = Markdown.ToPlainText(md);
+                    break;
+                case ".json":
+                    var json = await File.ReadAllTextAsync(filePath);
+                    var obj = JsonSerializer.Deserialize<object>(json);
+                    doc.Content = JsonSerializer.Serialize(obj, new JsonSerializerOptions { WriteIndented = true });
+                    break;
+                case ".epub":
+                    doc.Content = await Task.Run(() => LoadEpub(filePath));
+                    break;
+                case ".mobi":
+                    doc.Content = "MOBI support not implemented.";
+                    break;
+                case ".html":
+                case ".htm":
+                    var html = await File.ReadAllTextAsync(filePath);
+                    var hdoc = new HtmlDocument();
+                    hdoc.LoadHtml(html);
+                    doc.Content = hdoc.DocumentNode.InnerText;
+                    break;
+                default:
+                    doc.Content = await File.ReadAllTextAsync(filePath);
                     break;
             }
 
