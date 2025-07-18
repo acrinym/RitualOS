@@ -1,0 +1,626 @@
+[
+  {
+    "name": "The Fool",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "new beginnings",
+    "meaning_rev": "recklessness",
+    "description": "Leap of faith"
+  },
+  {
+    "name": "The Magician",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "skill and focus",
+    "meaning_rev": "manipulation",
+    "description": "Harnessing willpower"
+  },
+  {
+    "name": "The High Priestess",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "intuition",
+    "meaning_rev": "hidden agendas",
+    "description": "Inner wisdom"
+  },
+  {
+    "name": "The Empress",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "nurturing",
+    "meaning_rev": "dependence",
+    "description": "Abundant creation"
+  },
+  {
+    "name": "The Emperor",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "authority",
+    "meaning_rev": "control issues",
+    "description": "Solid leadership"
+  },
+  {
+    "name": "The Hierophant",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "tradition",
+    "meaning_rev": "rebellion",
+    "description": "Spiritual guidance"
+  },
+  {
+    "name": "The Lovers",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "partnership",
+    "meaning_rev": "imbalance",
+    "description": "Choice of the heart"
+  },
+  {
+    "name": "The Chariot",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "determination",
+    "meaning_rev": "lack of direction",
+    "description": "Driving forward"
+  },
+  {
+    "name": "Strength",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "bravery",
+    "meaning_rev": "self-doubt",
+    "description": "Inner power"
+  },
+  {
+    "name": "The Hermit",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "soul searching",
+    "meaning_rev": "isolation",
+    "description": "Seek within"
+  },
+  {
+    "name": "Wheel of Fortune",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "change",
+    "meaning_rev": "bad luck",
+    "description": "Cycles of fate"
+  },
+  {
+    "name": "Justice",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "fairness",
+    "meaning_rev": "dishonesty",
+    "description": "Cause and effect"
+  },
+  {
+    "name": "The Hanged Man",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "sacrifice",
+    "meaning_rev": "stalling",
+    "description": "New perspective"
+  },
+  {
+    "name": "Death",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "transformation",
+    "meaning_rev": "resistance",
+    "description": "Endings and rebirth"
+  },
+  {
+    "name": "Temperance",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "balance",
+    "meaning_rev": "extremes",
+    "description": "Blend and heal"
+  },
+  {
+    "name": "The Devil",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "materialism",
+    "meaning_rev": "freedom",
+    "description": "Shadow self"
+  },
+  {
+    "name": "The Tower",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "upheaval",
+    "meaning_rev": "avoidance",
+    "description": "Sudden change"
+  },
+  {
+    "name": "The Star",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "hope",
+    "meaning_rev": "despair",
+    "description": "Guiding light"
+  },
+  {
+    "name": "The Moon",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "dreams",
+    "meaning_rev": "confusion",
+    "description": "Illusion and insight"
+  },
+  {
+    "name": "The Sun",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "success",
+    "meaning_rev": "negativity",
+    "description": "Joyful vitality"
+  },
+  {
+    "name": "Judgement",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "awakening",
+    "meaning_rev": "doubt",
+    "description": "Inner calling"
+  },
+  {
+    "name": "The World",
+    "arcana": "Major",
+    "suit": "",
+    "meaning_up": "completion",
+    "meaning_rev": "shortcuts",
+    "description": "Fulfillment"
+  },
+  {
+    "name": "Ace of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "emotional offer",
+    "meaning_rev": "blockage",
+    "description": "Seed of feelings"
+  },
+  {
+    "name": "Two of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "union",
+    "meaning_rev": "tension",
+    "description": "Harmony"
+  },
+  {
+    "name": "Three of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "celebration",
+    "meaning_rev": "overindulgence",
+    "description": "Friendship"
+  },
+  {
+    "name": "Four of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "contemplation",
+    "meaning_rev": "boredom",
+    "description": "Discontent"
+  },
+  {
+    "name": "Five of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "loss",
+    "meaning_rev": "acceptance",
+    "description": "Grieving"
+  },
+  {
+    "name": "Six of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "nostalgia",
+    "meaning_rev": "stuck past",
+    "description": "Memories"
+  },
+  {
+    "name": "Seven of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "choices",
+    "meaning_rev": "confusion",
+    "description": "Many options"
+  },
+  {
+    "name": "Eight of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "walk away",
+    "meaning_rev": "avoidance",
+    "description": "Seeking"
+  },
+  {
+    "name": "Nine of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "satisfaction",
+    "meaning_rev": "greed",
+    "description": "Wish come true"
+  },
+  {
+    "name": "Ten of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "family bliss",
+    "meaning_rev": "disharmony",
+    "description": "Joy at home"
+  },
+  {
+    "name": "Page of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "curiosity",
+    "meaning_rev": "immaturity",
+    "description": "Messenger of love"
+  },
+  {
+    "name": "Knight of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "romance",
+    "meaning_rev": "moodiness",
+    "description": "Charming arrival"
+  },
+  {
+    "name": "Queen of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "compassion",
+    "meaning_rev": "co-dependence",
+    "description": "Emotional depth"
+  },
+  {
+    "name": "King of Cups",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "meaning_up": "balance",
+    "meaning_rev": "coldness",
+    "description": "Diplomatic leader"
+  },
+  {
+    "name": "Ace of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "new prosperity",
+    "meaning_rev": "lost chance",
+    "description": "Seed of wealth"
+  },
+  {
+    "name": "Two of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "juggling",
+    "meaning_rev": "overcommitment",
+    "description": "Balance tasks"
+  },
+  {
+    "name": "Three of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "teamwork",
+    "meaning_rev": "disharmony",
+    "description": "Craftsmanship"
+  },
+  {
+    "name": "Four of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "conservation",
+    "meaning_rev": "greed",
+    "description": "Holding on"
+  },
+  {
+    "name": "Five of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "poverty",
+    "meaning_rev": "recovery",
+    "description": "Hardship"
+  },
+  {
+    "name": "Six of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "generosity",
+    "meaning_rev": "strings attached",
+    "description": "Giving"
+  },
+  {
+    "name": "Seven of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "patience",
+    "meaning_rev": "impatience",
+    "description": "Assessment"
+  },
+  {
+    "name": "Eight of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "skill",
+    "meaning_rev": "perfectionism",
+    "description": "Apprenticeship"
+  },
+  {
+    "name": "Nine of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "luxury",
+    "meaning_rev": "setbacks",
+    "description": "Self-reliance"
+  },
+  {
+    "name": "Ten of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "legacy",
+    "meaning_rev": "fleeting success",
+    "description": "Long term wealth"
+  },
+  {
+    "name": "Page of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "ambition",
+    "meaning_rev": "laziness",
+    "description": "Student of value"
+  },
+  {
+    "name": "Knight of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "efficiency",
+    "meaning_rev": "routine",
+    "description": "Steady progress"
+  },
+  {
+    "name": "Queen of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "practicality",
+    "meaning_rev": "imbalance",
+    "description": "Nurturing provider"
+  },
+  {
+    "name": "King of Pentacles",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "meaning_up": "security",
+    "meaning_rev": "stubborn",
+    "description": "Wealthy leader"
+  },
+  {
+    "name": "Ace of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "clarity",
+    "meaning_rev": "confusion",
+    "description": "Truth revealed"
+  },
+  {
+    "name": "Two of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "stalemate",
+    "meaning_rev": "indecision",
+    "description": "Difficult choices"
+  },
+  {
+    "name": "Three of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "heartbreak",
+    "meaning_rev": "healing",
+    "description": "Painful truth"
+  },
+  {
+    "name": "Four of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "rest",
+    "meaning_rev": "exhaustion",
+    "description": "Recovery"
+  },
+  {
+    "name": "Five of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "conflict",
+    "meaning_rev": "reconciliation",
+    "description": "Tension"
+  },
+  {
+    "name": "Six of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "transition",
+    "meaning_rev": "unfinished",
+    "description": "Moving on"
+  },
+  {
+    "name": "Seven of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "strategy",
+    "meaning_rev": "deception",
+    "description": "Sneaky plans"
+  },
+  {
+    "name": "Eight of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "restriction",
+    "meaning_rev": "release",
+    "description": "Feeling trapped"
+  },
+  {
+    "name": "Nine of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "anxiety",
+    "meaning_rev": "hope",
+    "description": "Nightmares"
+  },
+  {
+    "name": "Ten of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "endings",
+    "meaning_rev": "recovery",
+    "description": "Betrayal"
+  },
+  {
+    "name": "Page of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "curiosity",
+    "meaning_rev": "devious",
+    "description": "Quick thinker"
+  },
+  {
+    "name": "Knight of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "action",
+    "meaning_rev": "impulsiveness",
+    "description": "Bold pursuit"
+  },
+  {
+    "name": "Queen of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "perception",
+    "meaning_rev": "cold heart",
+    "description": "Sharp intellect"
+  },
+  {
+    "name": "King of Swords",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "meaning_up": "truth",
+    "meaning_rev": "tyranny",
+    "description": "Analytical leader"
+  },
+  {
+    "name": "Ace of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "inspiration",
+    "meaning_rev": "delay",
+    "description": "New passion"
+  },
+  {
+    "name": "Two of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "planning",
+    "meaning_rev": "fear of change",
+    "description": "Contemplation"
+  },
+  {
+    "name": "Three of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "progress",
+    "meaning_rev": "setbacks",
+    "description": "Expansion"
+  },
+  {
+    "name": "Four of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "celebration",
+    "meaning_rev": "instability",
+    "description": "Homecoming"
+  },
+  {
+    "name": "Five of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "competition",
+    "meaning_rev": "avoidance",
+    "description": "Rivalry"
+  },
+  {
+    "name": "Six of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "victory",
+    "meaning_rev": "pride",
+    "description": "Recognition"
+  },
+  {
+    "name": "Seven of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "defense",
+    "meaning_rev": "give up",
+    "description": "Standing ground"
+  },
+  {
+    "name": "Eight of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "swift action",
+    "meaning_rev": "delays",
+    "description": "Quick movement"
+  },
+  {
+    "name": "Nine of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "resilience",
+    "meaning_rev": "fatigue",
+    "description": "Perseverance"
+  },
+  {
+    "name": "Ten of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "burden",
+    "meaning_rev": "release",
+    "description": "Heavy load"
+  },
+  {
+    "name": "Page of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "adventure",
+    "meaning_rev": "lack direction",
+    "description": "Creative spark"
+  },
+  {
+    "name": "Knight of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "energy",
+    "meaning_rev": "reckless",
+    "description": "Passionate pursuit"
+  },
+  {
+    "name": "Queen of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "confidence",
+    "meaning_rev": "jealousy",
+    "description": "Vibrant leader"
+  },
+  {
+    "name": "King of Wands",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "meaning_up": "vision",
+    "meaning_rev": "impulsiveness",
+    "description": "Natural authority"
+  }
+]

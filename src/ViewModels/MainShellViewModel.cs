@@ -1,4 +1,7 @@
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RitualOS.ViewModels;
@@ -14,6 +17,7 @@ namespace RitualOS.ViewModels
         private ViewModelBase _currentViewModel;
         private int _selectedTabIndex;
         public RelayCommand SetTabCommand { get; }
+        public ObservableCollection<string> RecentTemplateNames { get; } = new();
 
         public MainShellViewModel()
         {
@@ -36,6 +40,9 @@ namespace RitualOS.ViewModels
             ExportViewModel = new ExportViewModel(exportService, ritualDataLoader, userSettingsService);
             AnalyticsViewModel = new AnalyticsViewModel(analyticsService, userSettingsService);
             DreamParserViewModel = new DreamParserViewModel(dreamParserService, userSettingsService);
+            TarotViewModel = new TarotViewModel();
+
+            LoadRecentTemplates();
 
             SetTabCommand = new RelayCommand(param =>
             {
@@ -85,6 +92,7 @@ namespace RitualOS.ViewModels
                         8 => ExportViewModel,
                         9 => AnalyticsViewModel,
                         10 => DreamParserViewModel,
+                        11 => TarotViewModel,
                         _ => InventoryViewModel
                     };
                 }
@@ -103,5 +111,26 @@ namespace RitualOS.ViewModels
         public ExportViewModel ExportViewModel { get; }
         public AnalyticsViewModel AnalyticsViewModel { get; }
         public DreamParserViewModel DreamParserViewModel { get; }
+        public TarotViewModel TarotViewModel { get; }
+
+        private void LoadRecentTemplates()
+        {
+            try
+            {
+                var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ritual_templates");
+                if (!Directory.Exists(dir)) return;
+
+                var files = Directory.GetFiles(dir, "*.json");
+                foreach (var file in files.OrderByDescending(File.GetCreationTime).Take(3))
+                {
+                    var name = Path.GetFileNameWithoutExtension(file).Replace("_", " ");
+                    RecentTemplateNames.Add(name);
+                }
+            }
+            catch
+            {
+                // ignore errors for now
+            }
+        }
     }
-} 
+}

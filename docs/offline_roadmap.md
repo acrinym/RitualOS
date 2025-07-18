@@ -7,7 +7,6 @@ This document outlines short-term goals for RitualOS that do not rely on cloud A
 - [x] Add a Theme Picker dialog so users can preview themes before applying them
 - [x] Document how to create custom themes in the `docs/` folder
 
-
 ## 2. Enhanced Analytics
 - [x] Extend `AnalyticsViewModel` to display ritual frequency by moon phase
 - [x] Include local stats about ingredient usage
@@ -24,9 +23,16 @@ This document outlines short-term goals for RitualOS that do not rely on cloud A
 - [x] Keep operations offline, relying only on file reads and writes
 
 ## 5. Community Templates
+- [x] Offer a curated set of ritual templates in `samples/`
+- [x] Highlight recent additions in the main dashboard
+- [x] Allow users to share templates via local files without a server
+
+## 6. Tarot Tools
+- [x] Build an offline Tarot card spread viewer with a full deck
 - [ ] Offer a curated set of ritual templates in `samples/`
 - [ ] Highlight recent additions in the main dashboard
 - [ ] Allow users to share templates via local files without a server
+
 
 ---
 These milestones will breathe new life into the project while honoring the current offline-first focus. They also pave the way for future online features when infrastructure becomes available.
