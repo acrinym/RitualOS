@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:RitualOS.ViewModels"
+        x:Class="RitualOS.Views.CatWindow"
+        Width="300" Height="300"
+        WindowStartupLocation="CenterScreen"
+        Title="Meow! Easter Egg!">
+    <!-- ASCII art cat window start
+       /_/\  
+      ( ^.^ ) 
+      > ^ <
+    -->
+    <Window.DataContext>
+        <vm:CatViewModel />
+    </Window.DataContext>
+    <Canvas>
+        <!-- Simple SVG cat face -->
+        <Image
+            Canvas.Left="50" Canvas.Top="50"
+            Width="200" Height="200"
+            Source="avares://RitualOS/assets/catface.svg" />
+    </Canvas>
+    <!-- ASCII art cat window end
+       _/| |_
+      /  | |  \
+    -->
+</Window>

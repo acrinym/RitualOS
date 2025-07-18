@@ -9,10 +9,13 @@
     <UserControl.DataContext>
         <vm:MagicSchoolsViewModel />
     </UserControl.DataContext>
-    <StackPanel Margin="10">
+    <DockPanel Margin="10">
         <!-- Filter Controls -->
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBox Text="{Binding FilterText}" Width="200" Margin="0,0,10,0" Watermark="Filter by name or keyword..."/>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+            <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="200" 
+                     Margin="0,0,10,0" 
+                     PlaceholderText="Filter by name or keyword..." />
             <Button Content="Wicca" Command="{Binding FilterCommand}" CommandParameter="wicca" Margin="0,0,5,0"/>
             <Button Content="Vodou" Command="{Binding FilterCommand}" CommandParameter="vodou" Margin="0,0,5,0"/>
             <Button Content="Hoodoo" Command="{Binding FilterCommand}" CommandParameter="hoodoo" Margin="0,0,5,0"/>
@@ -33,17 +36,21 @@
                         <StackPanel Margin="0,0,0,20">
                             <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Overview}" TextWrapping="Wrap" Margin="0,5,0,0"/>
-                            <TextBlock Text="Historical Context: {Binding HistoricalContext}" TextWrapping="Wrap" Margin="0,2,0,0"/>
-                            <TextBlock Text="Practices: {Binding CommonPractices}" TextWrapping="Wrap" Margin="0,2,0,0"/>
-                            <TextBlock Text="Who is it for: {Binding WhoIsItFor}" TextWrapping="Wrap" Margin="0,2,0,0"/>
-                            <TextBlock Text="Notable Figures: {Binding NotableFigures}" TextWrapping="Wrap" Margin="0,2,0,0"/>
-                            <TextBlock Text="Recommended Readings: {Binding RecommendedReadings}" TextWrapping="Wrap" Margin="0,2,0,0"/>
-                            <TextBlock Text="Keywords: {Binding Keywords, StringFormat={}{0}}}" TextWrapping="Wrap" Margin="0,2,0,0"/>
-                            <Button Content="More Info" Margin="0,5,0,0" Command="{Binding DataContext.OpenDocCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding InfoPath}" IsVisible="{Binding InfoPath, Converter={StaticResource NullToBoolConverter}}"/>
+                            <TextBlock Text="{Binding HistoricalContext, StringFormat=Historical Context: {0}}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="{Binding CommonPractices, StringFormat=Practices: {0}}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="{Binding WhoIsItFor, StringFormat=Who is it for: {0}}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="{Binding NotableFigures, StringFormat=Notable Figures: {0}}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="{Binding RecommendedReadings, StringFormat=Recommended Readings: {0}}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="{Binding Keywords, StringFormat=Keywords: {0}}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <Button Content="More Info" 
+                                    Margin="0,5,0,0" 
+                                    Command="{Binding DataContext.OpenDocCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                    CommandParameter="{Binding InfoPath}" 
+                                    IsVisible="{Binding InfoPath, Converter={StaticResource NullToBoolConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

@@ -8,6 +8,10 @@ using System.IO;
 using System.Linq;
 using System.Windows.Input;
 
+// ASCII art cat shape start
+//   /_/\  
+//  ( o.o ) 
+//  > ^ <
 namespace RitualOS.ViewModels
 {
     /// <summary>
@@ -19,7 +23,7 @@ namespace RitualOS.ViewModels
         public ObservableCollection<MagicSchool> FilteredSchools { get; } = new();
         public RelayCommand OpenDocCommand { get; }
         private readonly Action<string>? _openDocAction;
-        public RelayCommand FilterCommand { get; }
+        public RelayCommand<string> FilterCommand { get; }
 
         private string _filterText = string.Empty;
         public string FilterText
@@ -32,11 +36,16 @@ namespace RitualOS.ViewModels
                     _filterText = value;
                     OnPropertyChanged();
                     ApplyFilter();
+                    CheckEasterEgg();
                 }
             }
         }
 
-        public MagicSchoolsViewModel() : this(null)
+        // ASCII art cat shape middle
+        //  /| |\
+        //  /| | \
+        public MagicSchoolsViewModel()
+            : this(null)
         {
         }
 
@@ -51,9 +60,9 @@ namespace RitualOS.ViewModels
                     OpenDoc(path);
                 }
             });
-            FilterCommand = new RelayCommand(param =>
+            FilterCommand = new RelayCommand<string>(keyword =>
             {
-                FilterText = param as string ?? string.Empty;
+                FilterText = keyword ?? string.Empty;
             });
             FilteredSchools = new ObservableCollection<MagicSchool>(Schools); // Initial full list
         }
@@ -109,6 +118,18 @@ namespace RitualOS.ViewModels
             }
         }
 
+        private void CheckEasterEgg()
+        {
+            if (FilterText?.ToLowerInvariant() == "cat")
+            {
+                new RitualOS.Views.CatWindow().Show();
+                FilterText = string.Empty; // Reset to hide the trigger
+            }
+        }
+
+        // ASCII art cat shape end
+        //   _/| |_
+        //  /  | |  \
         private void LoadSchools()
         {
             // Comprehensive list of traditions with detailed insights ✨
