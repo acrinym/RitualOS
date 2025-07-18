@@ -21,7 +21,9 @@ namespace RitualOS.ViewModels
             "Theme.Material.xaml",
             "Theme.Magical.xaml",
             "Theme.Parchment.xaml",
-            "Theme.HighContrast.xaml"
+            "Theme.HighContrast.xaml",
+            "Theme.Forest.xaml",
+            "Theme.Ocean.xaml"
         };
 
         public string SelectedTheme

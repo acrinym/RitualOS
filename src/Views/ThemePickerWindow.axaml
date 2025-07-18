@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:RitualOS.ViewModels"
+        x:Class="RitualOS.Views.ThemePickerWindow"
+        Width="400" Height="300" Title="Theme Picker">
+    <Window.DataContext>
+        <vm:ThemeViewModel />
+    </Window.DataContext>
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="Preview Themes" FontSize="16" HorizontalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding AvailableThemes}" SelectedItem="{Binding SelectedTheme}" />
+        <Border Background="{DynamicResource BackgroundBrush}" Padding="15" CornerRadius="6">
+            <TextBlock Text="This is a preview" Foreground="{DynamicResource PrimaryTextBrush}"/>
+        </Border>
+    </StackPanel>
+</Window>
