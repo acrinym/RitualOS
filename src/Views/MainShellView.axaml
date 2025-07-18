@@ -96,6 +96,9 @@
         <TabItem Header="Tarot" AutomationProperties.Name="Tarot Tab">
             <views:TarotView DataContext="{Binding TarotViewModel}"/>
         </TabItem>
+        <TabItem Header="Magic Schools" AutomationProperties.Name="Magic Schools Tab">
+            <views:MagicSchoolsView DataContext="{Binding MagicSchoolsViewModel}"/>
+        </TabItem>
     </TabControl>
     </DockPanel>
 </UserControl>

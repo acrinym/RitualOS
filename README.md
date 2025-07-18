@@ -77,6 +77,7 @@ Schema references live in the `docs` folder:
 - [Offline Roadmap](docs/offline_roadmap.md)
 - [Sample Templates](samples/ritual_templates)
 - Tarot Spread Viewer (new tab)
+- [Magic Schools Library](docs/magic_schools_library.md)
 
 
 

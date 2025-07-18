@@ -41,6 +41,7 @@ namespace RitualOS.ViewModels
             AnalyticsViewModel = new AnalyticsViewModel(analyticsService, userSettingsService);
             DreamParserViewModel = new DreamParserViewModel(dreamParserService, userSettingsService);
             TarotViewModel = new TarotViewModel();
+            MagicSchoolsViewModel = new MagicSchoolsViewModel();
 
             LoadRecentTemplates();
 
@@ -93,6 +94,7 @@ namespace RitualOS.ViewModels
                         9 => AnalyticsViewModel,
                         10 => DreamParserViewModel,
                         11 => TarotViewModel,
+                        12 => MagicSchoolsViewModel,
                         _ => InventoryViewModel
                     };
                 }
@@ -112,7 +114,7 @@ namespace RitualOS.ViewModels
         public AnalyticsViewModel AnalyticsViewModel { get; }
         public DreamParserViewModel DreamParserViewModel { get; }
         public TarotViewModel TarotViewModel { get; }
-
+        public MagicSchoolsViewModel MagicSchoolsViewModel { get; }
         private void LoadRecentTemplates()
         {
             try
