@@ -22,6 +22,8 @@ inventory of magical ingredients, log dreams, and manage clients.
 - Plugin loader for community extensions
 - Drag-and-drop step reordering in the ritual builder
 - Dream dictionary integration in the Dream Parser
+- Offline Tarot spread viewer with full deck
+- Theme picker dialog for previewing visual styles
 - Asynchronous document loading for large files
 
 ## Themes
@@ -75,7 +77,7 @@ Schema references live in the `docs` folder:
 - [Sample Plugins](plugins/)
 - [Custom Theme Guide](docs/custom_theme_guide.md)
 - [Offline Roadmap](docs/offline_roadmap.md)
-- [Sample Templates](samples/ritual_templates)
+- [Sample Data Overview](docs/samples_overview.md)
 - Tarot Spread Viewer (new tab)
 - [Magic Schools Library](docs/magic_schools_library.md)
 - [Magical Titles](docs/magical_titles.md)
