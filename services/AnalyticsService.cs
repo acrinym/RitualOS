@@ -35,6 +35,8 @@ namespace RitualOS.Services
         public Dictionary<string, int> ChakraUsage { get; set; } = new();
         public Dictionary<string, int> ThemePreferences { get; set; } = new();
         public Dictionary<string, int> FeatureUsage { get; set; } = new();
+        public Dictionary<string, int> MoonPhaseFrequency { get; set; } = new();
+        public Dictionary<string, int> IngredientUsage { get; set; } = new();
         public PerformanceMetrics Performance { get; set; } = new();
         public List<UsageSession> RecentSessions { get; set; } = new();
     }
@@ -111,6 +113,8 @@ namespace RitualOS.Services
                 analytics.ElementUsage = await GetElementUsageAsync();
                 analytics.ChakraUsage = await GetChakraUsageAsync();
                 analytics.ThemePreferences = await GetThemePreferencesAsync();
+                analytics.MoonPhaseFrequency = await GetMoonPhaseFrequencyAsync();
+                analytics.IngredientUsage = await GetIngredientUsageAsync();
                 analytics.Performance = await GetPerformanceMetricsAsync();
                 analytics.RecentSessions = await GetRecentSessionsAsync();
 
@@ -278,6 +282,60 @@ namespace RitualOS.Services
             }
         }
 
+        public async Task<Dictionary<string, int>> GetMoonPhaseFrequencyAsync()
+        {
+            try
+            {
+                var dataDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "samples");
+                var loader = new RitualDataLoader();
+                var rituals = loader.LoadAllRituals(dataDir);
+
+                var results = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                foreach (var ritual in rituals)
+                {
+                    var phase = string.IsNullOrWhiteSpace(ritual.MoonPhase) ? "Unknown" : ritual.MoonPhase;
+                    if (results.ContainsKey(phase))
+                        results[phase]++;
+                    else
+                        results[phase] = 1;
+                }
+
+                return results;
+            }
+            catch (Exception)
+            {
+                return new Dictionary<string, int>();
+            }
+        }
+
+        public async Task<Dictionary<string, int>> GetIngredientUsageAsync()
+        {
+            try
+            {
+                var dataDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "samples");
+                var loader = new RitualDataLoader();
+                var rituals = loader.LoadAllRituals(dataDir);
+
+                var results = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                foreach (var ritual in rituals)
+                {
+                    foreach (var ing in ritual.Ingredients)
+                    {
+                        if (results.ContainsKey(ing))
+                            results[ing]++;
+                        else
+                            results[ing] = 1;
+                    }
+                }
+
+                return results;
+            }
+            catch (Exception)
+            {
+                return new Dictionary<string, int>();
+            }
+        }
+
         public async Task<PerformanceMetrics> GetPerformanceMetricsAsync()
         {
             try
@@ -316,6 +374,9 @@ namespace RitualOS.Services
                     break;
                 case "markdown":
                     await ExportAnalyticsToMarkdownAsync(analytics, outputPath);
+                    break;
+                case "csv":
+                    await ExportAnalyticsToCsvAsync(analytics, outputPath);
                     break;
                 case "html":
                     await ExportAnalyticsToHtmlAsync(analytics, outputPath);
@@ -360,6 +421,22 @@ namespace RitualOS.Services
                 markdown.AppendLine($"- **{chakra.Key}**: {chakra.Value} times");
             }
             markdown.AppendLine();
+
+            // Moon Phase Frequency
+            markdown.AppendLine("## Moon Phase Frequency");
+            foreach (var phase in analytics.MoonPhaseFrequency.OrderByDescending(x => x.Value))
+            {
+                markdown.AppendLine($"- **{phase.Key}**: {phase.Value} rituals");
+            }
+            markdown.AppendLine();
+
+            // Ingredient Usage
+            markdown.AppendLine("## Ingredient Usage");
+            foreach (var ing in analytics.IngredientUsage.OrderByDescending(x => x.Value))
+            {
+                markdown.AppendLine($"- **{ing.Key}**: {ing.Value} times");
+            }
+            markdown.AppendLine();
             
             // Theme Preferences
             markdown.AppendLine("## Theme Preferences");
@@ -386,6 +463,47 @@ namespace RitualOS.Services
             markdown.AppendLine();
             
             await File.WriteAllTextAsync(outputPath, markdown.ToString());
+        }
+
+        private async Task ExportAnalyticsToCsvAsync(AnalyticsData analytics, string outputPath)
+        {
+            var csv = new System.Text.StringBuilder();
+            csv.AppendLine("Metric,Name,Value");
+
+            csv.AppendLine($"Summary,Total Rituals,{analytics.TotalRituals}");
+            csv.AppendLine($"Summary,Total Sessions,{analytics.TotalSessions}");
+            csv.AppendLine($"Summary,Total Usage Hours,{analytics.TotalUsageTime.TotalHours:F1}");
+
+            foreach (var ritual in analytics.MostUsedRituals)
+            {
+                csv.AppendLine($"Most Used Rituals,{ritual.Key},{ritual.Value}");
+            }
+            foreach (var element in analytics.ElementUsage)
+            {
+                csv.AppendLine($"Element Usage,{element.Key},{element.Value}");
+            }
+            foreach (var chakra in analytics.ChakraUsage)
+            {
+                csv.AppendLine($"Chakra Usage,{chakra.Key},{chakra.Value}");
+            }
+            foreach (var phase in analytics.MoonPhaseFrequency)
+            {
+                csv.AppendLine($"Moon Phase Frequency,{phase.Key},{phase.Value}");
+            }
+            foreach (var ing in analytics.IngredientUsage)
+            {
+                csv.AppendLine($"Ingredient Usage,{ing.Key},{ing.Value}");
+            }
+            foreach (var theme in analytics.ThemePreferences)
+            {
+                csv.AppendLine($"Theme Preferences,{theme.Key},{theme.Value}");
+            }
+            foreach (var feature in analytics.FeatureUsage)
+            {
+                csv.AppendLine($"Feature Usage,{feature.Key},{feature.Value}");
+            }
+
+            await File.WriteAllTextAsync(outputPath, csv.ToString());
         }
 
         private async Task ExportAnalyticsToHtmlAsync(AnalyticsData analytics, string outputPath)
@@ -446,6 +564,28 @@ namespace RitualOS.Services
                 html.AppendLine($"                </div>");
             }
             html.AppendLine("            </div>");
+            html.AppendLine("        </section>");
+
+            // Moon Phase Frequency
+            html.AppendLine("        <section>");
+            html.AppendLine("            <h2>Moon Phase Frequency</h2>");
+            html.AppendLine("            <ul>");
+            foreach (var phase in analytics.MoonPhaseFrequency.OrderByDescending(x => x.Value))
+            {
+                html.AppendLine($"                <li><strong>{phase.Key}</strong>: {phase.Value} rituals</li>");
+            }
+            html.AppendLine("            </ul>");
+            html.AppendLine("        </section>");
+
+            // Ingredient Usage
+            html.AppendLine("        <section>");
+            html.AppendLine("            <h2>Ingredient Usage</h2>");
+            html.AppendLine("            <ul>");
+            foreach (var ing in analytics.IngredientUsage.OrderByDescending(x => x.Value))
+            {
+                html.AppendLine($"                <li><strong>{ing.Key}</strong>: {ing.Value} times</li>");
+            }
+            html.AppendLine("            </ul>");
             html.AppendLine("        </section>");
             
             html.AppendLine("    </main>");

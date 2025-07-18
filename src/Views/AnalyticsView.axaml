@@ -110,6 +110,23 @@
                         </ItemsControl>
                     </StackPanel>
                 </Border>
+
+                <!-- Moon Phase Frequency -->
+                <Border Classes="RitualOSCard">
+                    <StackPanel>
+                        <TextBlock Text="Moon Phase Frequency" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ItemsControl ItemsSource="{Binding MoonPhaseFrequency}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                                        <TextBlock Grid.Column="0" Text="{Binding Key}" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Value}" Foreground="{DynamicResource PrimaryBrush}" FontWeight="Bold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
             </StackPanel>
             
             <!-- Right Column -->
@@ -152,7 +169,7 @@
                         </ItemsControl>
                     </StackPanel>
                 </Border>
-                
+
                 <!-- Feature Usage -->
                 <Border Classes="RitualOSCard">
                     <StackPanel>
@@ -162,7 +179,25 @@
                                 <DataTemplate>
                                     <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
                                         <TextBlock Grid.Column="0" Text="{Binding Key}" FontWeight="SemiBold"/>
-                                        <TextBlock Grid.Column="1" Text="{Binding Value}" 
+                                        <TextBlock Grid.Column="1" Text="{Binding Value}"
+                                                   Foreground="{DynamicResource PrimaryBrush}" FontWeight="Bold"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- Ingredient Usage -->
+                <Border Classes="RitualOSCard">
+                    <StackPanel>
+                        <TextBlock Text="Ingredient Usage" FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                        <ItemsControl ItemsSource="{Binding IngredientUsage}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                                        <TextBlock Grid.Column="0" Text="{Binding Key}" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Value}"
                                                    Foreground="{DynamicResource PrimaryBrush}" FontWeight="Bold"/>
                                     </Grid>
                                 </DataTemplate>
