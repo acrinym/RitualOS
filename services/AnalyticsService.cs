@@ -282,7 +282,7 @@ namespace RitualOS.Services
             }
         }
 
-        public async Task<Dictionary<string, int>> GetMoonPhaseFrequencyAsync()
+        public Task<Dictionary<string, int>> GetMoonPhaseFrequencyAsync()
         {
             try
             {
@@ -300,15 +300,15 @@ namespace RitualOS.Services
                         results[phase] = 1;
                 }
 
-                return results;
+                return Task.FromResult(results);
             }
             catch (Exception)
             {
-                return new Dictionary<string, int>();
+                return Task.FromResult(new Dictionary<string, int>());
             }
         }
 
-        public async Task<Dictionary<string, int>> GetIngredientUsageAsync()
+        public Task<Dictionary<string, int>> GetIngredientUsageAsync()
         {
             try
             {
@@ -328,11 +328,11 @@ namespace RitualOS.Services
                     }
                 }
 
-                return results;
+                return Task.FromResult(results);
             }
             catch (Exception)
             {
-                return new Dictionary<string, int>();
+                return Task.FromResult(new Dictionary<string, int>());
             }
         }
 
