@@ -22,6 +22,7 @@ namespace RitualOS.ViewModels
         public ObservableCollection<MagicSchool> Schools { get; } = new();
         public ObservableCollection<MagicSchool> FilteredSchools { get; } = new();
         public RelayCommand OpenDocCommand { get; }
+        private readonly Action<string>? _openDocAction;
         public RelayCommand<string> FilterCommand { get; }
 
         private string _filterText = string.Empty;
@@ -44,7 +45,13 @@ namespace RitualOS.ViewModels
         //  /| |\
         //  /| | \
         public MagicSchoolsViewModel()
+            : this(null)
         {
+        }
+
+        public MagicSchoolsViewModel(Action<string>? openDocAction)
+        {
+            _openDocAction = openDocAction;
             LoadSchools();
             OpenDocCommand = new RelayCommand(param =>
             {
@@ -63,24 +70,29 @@ namespace RitualOS.ViewModels
         private void OpenDoc(string path)
         {
             var full = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
-            if (File.Exists(full))
-            {
-                try
-                {
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = full,
-                        UseShellExecute = true
-                    });
-                }
-                catch (Exception ex)
-                {
-                    LoggingService.Error($"Failed to open document {path}: {ex.Message}");
-                }
-            }
-            else
+            if (!File.Exists(full))
             {
                 LoggingService.Warn($"Document not found at {full}");
+                return;
+            }
+
+            if (_openDocAction != null)
+            {
+                _openDocAction(full);
+                return;
+            }
+
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = full,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                LoggingService.Error($"Failed to open document {path}: {ex.Message}");
             }
         }
 

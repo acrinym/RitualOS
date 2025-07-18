@@ -41,7 +41,12 @@ namespace RitualOS.ViewModels
             AnalyticsViewModel = new AnalyticsViewModel(analyticsService, userSettingsService);
             DreamParserViewModel = new DreamParserViewModel(dreamParserService, userSettingsService);
             TarotViewModel = new TarotViewModel();
-            MagicSchoolsViewModel = new MagicSchoolsViewModel();
+            MagicSchoolsViewModel = new MagicSchoolsViewModel(path =>
+            {
+                DocumentViewerViewModel.DocumentPath = path;
+                DocumentViewerViewModel.LoadDocumentCommand.Execute(null);
+                SelectedTabIndex = 5; // Switch to Documents tab
+            });
 
             LoadRecentTemplates();
 
