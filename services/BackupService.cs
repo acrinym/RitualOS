@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace RitualOS.Services
 {
@@ -28,6 +29,22 @@ namespace RitualOS.Services
             var target = restoreDirectory ?? AppContext.BaseDirectory;
             ZipFile.ExtractToDirectory(tempZip, target, true);
             File.Delete(tempZip);
+        }
+
+        /// <summary>
+        /// Create a backup asynchronously. Great for heavy data! 😄
+        /// </summary>
+        public static Task CreateBackupAsync(string outputPath, string password)
+        {
+            return Task.Run(() => CreateBackup(outputPath, password));
+        }
+
+        /// <summary>
+        /// Restore a backup asynchronously. 🧰
+        /// </summary>
+        public static Task RestoreBackupAsync(string archivePath, string password, string? restoreDirectory = null)
+        {
+            return Task.Run(() => RestoreBackup(archivePath, password, restoreDirectory));
         }
 
         private static void EncryptFile(string input, string output, string password)
