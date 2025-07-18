@@ -7,20 +7,21 @@ This document outlines short-term goals for RitualOS that do not rely on cloud A
 - [x] Add a Theme Picker dialog so users can preview themes before applying them
 - [x] Document how to create custom themes in the `docs/` folder
 
-## 2. Enhanced Analytics- [x] Extend `AnalyticsViewModel` to display ritual frequency by moon phase
+
+## 2. Enhanced Analytics
+- [x] Extend `AnalyticsViewModel` to display ritual frequency by moon phase
 - [x] Include local stats about ingredient usage
 - [x] Provide export options for CSV and Markdown reports
 
-
 ## 3. Plugin Growth
-- [ ] Build more example plugins in the `plugins/` directory
-- [ ] Outline plugin development in `docs/plugin_system.md`
-- [ ] Encourage community contributions for tarot spreads, astrology tools, and more
+- [x] Build more example plugins in the `plugins/` directory
+- [x] Outline plugin development in `docs/plugin_system.md`
+- [x] Encourage community contributions for tarot spreads, astrology tools, and more
 
 ## 4. Data Import & Export
-- [ ] Add wizards for importing existing ritual logs
-- [ ] Support exporting all data to a single JSON bundle
-- [ ] Keep operations offline, relying only on file reads and writes
+- [x] Add wizards for importing existing ritual logs
+- [x] Support exporting all data to a single JSON bundle
+- [x] Keep operations offline, relying only on file reads and writes
 
 ## 5. Community Templates
 - [ ] Offer a curated set of ritual templates in `samples/`

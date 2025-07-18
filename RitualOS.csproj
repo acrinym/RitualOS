@@ -74,6 +74,7 @@
     <Compile Include="services\DreamParserService.cs" />
     <Compile Include="services\LoggingService.cs" />
     <Compile Include="services\BackupService.cs" />
+    <Compile Include="services\DataImportExportService.cs" />
     <Compile Include="services\PluginLoader.cs" />
     <Compile Include="src\Behaviors\ListBoxReorderBehavior.cs" />
     <Compile Include="src\ViewModels\ClientViewModel.cs" />
@@ -99,9 +100,11 @@
     <Compile Include="src\ViewModels\Wizards\CodexRewritePreviewerViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\RitualTemplateBuilderViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\SymbolIndexBuilderViewModel.cs" />
+    <Compile Include="src\ViewModels\Wizards\ImportExportWizardViewModel.cs" />
     <Compile Include="src\Views\Wizards\ClientProfileDashboard.axaml.cs" />
     <Compile Include="src\Views\Wizards\CodexRewritePreviewer.axaml.cs" />
     <Compile Include="src\Views\Wizards\RitualTemplateBuilder.axaml.cs" />
+    <Compile Include="src\Views\Wizards\ImportExportWizard.axaml.cs" />
     <Compile Include="src\ViewModels\MainShellViewModel.cs" />
     <Compile Include="src\Views\MainShellView.axaml.cs" />
     <Compile Include="src\Views\DreamDictionary.axaml.cs" />
