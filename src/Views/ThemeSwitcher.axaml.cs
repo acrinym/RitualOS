@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace RitualOS.Views
 {
@@ -8,5 +9,11 @@ namespace RitualOS.Views
         {
             InitializeComponent();
         }
+
+        private void OpenPicker_Click(object? sender, RoutedEventArgs e)
+        {
+            var picker = new ThemePickerWindow();
+            picker.Show();
+        }
     }
-} 
+}

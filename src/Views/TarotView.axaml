@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels"
+             x:Class="RitualOS.Views.TarotView">
+    <UserControl.DataContext>
+        <vm:TarotViewModel />
+    </UserControl.DataContext>
+    <StackPanel Spacing="10" Margin="10">
+        <StackPanel Orientation="Horizontal" Spacing="5">
+            <Button Content="Draw 1" Command="{Binding DrawOneCommand}"/>
+            <Button Content="Draw 3" Command="{Binding DrawThreeCommand}"/>
+            <Button Content="Full Spread" Command="{Binding DrawFullCommand}"/>
+        </StackPanel>
+        <ItemsControl ItemsSource="{Binding DrawnCards}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5" Background="#2A1B3D">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Description}"/>
+                        <TextBlock Text="Upright: {Binding MeaningUp}"/>
+                        <TextBlock Text="Reversed: {Binding MeaningRev}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>
