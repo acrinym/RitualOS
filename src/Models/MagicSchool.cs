@@ -11,5 +11,6 @@ namespace RitualOS.Models
         public string Overview { get; set; } = string.Empty;
         public string CommonPractices { get; set; } = string.Empty;
         public string WhoIsItFor { get; set; } = string.Empty;
+        public string? InfoPath { get; set; }
     }
 }

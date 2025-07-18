@@ -78,7 +78,8 @@ Schema references live in the `docs` folder:
 - [Sample Templates](samples/ritual_templates)
 - Tarot Spread Viewer (new tab)
 - [Magic Schools Library](docs/magic_schools_library.md)
-
+- [Magical Titles](docs/magical_titles.md)
+- [Talking About Magic](docs/talking_about_magic.md)
 
 
 ## Pitch Deck
