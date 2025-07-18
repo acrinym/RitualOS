@@ -46,6 +46,7 @@
     <Compile Include="src\Models\InventoryItem.cs" />
     <Compile Include="src\Models\RitualEntry.cs" />
     <Compile Include="src\Models\RitualTemplate.cs" />
+    <Compile Include="src\Models\TarotCard.cs" />
     <Compile Include="src\Models\Element.cs" />
     <Compile Include="src\Models\MoonPhase.cs" />
     <Compile Include="src\Models\Role.cs" />
@@ -74,7 +75,9 @@
     <Compile Include="services\DreamParserService.cs" />
     <Compile Include="services\LoggingService.cs" />
     <Compile Include="services\BackupService.cs" />
+    <Compile Include="services\DataImportExportService.cs" />
     <Compile Include="services\PluginLoader.cs" />
+    <Compile Include="services\TarotService.cs" />
     <Compile Include="src\Behaviors\ListBoxReorderBehavior.cs" />
     <Compile Include="src\ViewModels\ClientViewModel.cs" />
     <Compile Include="src\ViewModels\DocumentViewerViewModel.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="src\ViewModels\ExportViewModel.cs" />
     <Compile Include="src\ViewModels\AnalyticsViewModel.cs" />
     <Compile Include="src\ViewModels\DreamParserViewModel.cs" />
+    <Compile Include="src\ViewModels\TarotViewModel.cs" />
     <Compile Include="src\Views\ChakraSelector.axaml.cs" />
     <Compile Include="src\Views\ElementSelector.axaml.cs" />
     
@@ -99,9 +103,11 @@
     <Compile Include="src\ViewModels\Wizards\CodexRewritePreviewerViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\RitualTemplateBuilderViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\SymbolIndexBuilderViewModel.cs" />
+    <Compile Include="src\ViewModels\Wizards\ImportExportWizardViewModel.cs" />
     <Compile Include="src\Views\Wizards\ClientProfileDashboard.axaml.cs" />
     <Compile Include="src\Views\Wizards\CodexRewritePreviewer.axaml.cs" />
     <Compile Include="src\Views\Wizards\RitualTemplateBuilder.axaml.cs" />
+    <Compile Include="src\Views\Wizards\ImportExportWizard.axaml.cs" />
     <Compile Include="src\ViewModels\MainShellViewModel.cs" />
     <Compile Include="src\Views\MainShellView.axaml.cs" />
     <Compile Include="src\Views\DreamDictionary.axaml.cs" />
@@ -110,12 +116,18 @@
     <Compile Include="src\Views\SymbolSearch.axaml.cs" />
     <Compile Include="src\Views\DocumentViewer.axaml.cs" />
     <Compile Include="src\Views\ThemeSwitcher.axaml.cs" />
+    <Compile Include="src\Views\ThemePickerWindow.axaml.cs" />
     <Compile Include="src\Views\ExportView.axaml.cs" />
     <Compile Include="src\Views\AnalyticsView.axaml.cs" />
     <Compile Include="src\Views\DreamParserView.axaml.cs" />
+    <Compile Include="src\Views\TarotView.axaml.cs" />
     <Compile Include="src\Views\WelcomeView.axaml.cs" />
     <Compile Include="src\ViewModels\WelcomeViewModel.cs" />
     <Compile Include="components\MagicalProgressBar.axaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="assets\tarot\tarot_cards.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

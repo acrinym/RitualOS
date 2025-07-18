@@ -72,6 +72,11 @@ Schema references live in the `docs` folder:
 - [Dream Dictionary](docs/DreamDictionary/RitualOS_Dream_Dictionary.md)
 - [Ritual Timeline](docs/ritual_timeline.md)
 - [Plugin System](docs/plugin_system.md)
+- [Sample Plugins](plugins/)
+- [Custom Theme Guide](docs/custom_theme_guide.md)
+- [Offline Roadmap](docs/offline_roadmap.md)
+- [Sample Templates](samples/ritual_templates)
+- Tarot Spread Viewer (new tab)
 
 
 ## Pitch Deck
