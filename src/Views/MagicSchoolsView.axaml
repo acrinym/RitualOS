@@ -9,10 +9,10 @@
     <UserControl.DataContext>
         <vm:MagicSchoolsViewModel />
     </UserControl.DataContext>
-    <StackPanel Margin="10">
+    <DockPanel Margin="10">
         <!-- Filter Controls -->
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,10,0" PlaceholderText="Filter by name or keyword..."/>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+            <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,10,0" PlaceholderText="Filter by name or keyword..." Watermark="Filter magical schools..."/>
             <Button Content="Wicca" Command="{Binding FilterCommand}" CommandParameter="wicca" Margin="0,0,5,0"/>
             <Button Content="Vodou" Command="{Binding FilterCommand}" CommandParameter="vodou" Margin="0,0,5,0"/>
             <Button Content="Hoodoo" Command="{Binding FilterCommand}" CommandParameter="hoodoo" Margin="0,0,5,0"/>
@@ -45,5 +45,5 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

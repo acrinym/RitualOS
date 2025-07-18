@@ -1,12 +1,17 @@
 using System.Collections.ObjectModel;
 using RitualOS.Models;
 using RitualOS.Helpers;
+using RitualOS.Services;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
 
+// ASCII art cat shape start
+//   /_/\  
+//  ( o.o ) 
+//  > ^ <
 namespace RitualOS.ViewModels
 {
     /// <summary>
@@ -30,10 +35,14 @@ namespace RitualOS.ViewModels
                     _filterText = value;
                     OnPropertyChanged();
                     ApplyFilter();
+                    CheckEasterEgg();
                 }
             }
         }
 
+        // ASCII art cat shape middle
+        //  /| |\
+        //  /| | \
         public MagicSchoolsViewModel()
         {
             LoadSchools();
@@ -97,6 +106,18 @@ namespace RitualOS.ViewModels
             }
         }
 
+        private void CheckEasterEgg()
+        {
+            if (FilterText?.ToLowerInvariant() == "cat")
+            {
+                new RitualOS.Views.CatWindow().Show();
+                FilterText = string.Empty; // Reset to hide the trigger
+            }
+        }
+
+        // ASCII art cat shape end
+        //   _/| |_
+        //  /  | |  \
         private void LoadSchools()
         {
             // Comprehensive list of traditions with detailed insights ✨
