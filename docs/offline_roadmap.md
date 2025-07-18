@@ -7,10 +7,10 @@ This document outlines short-term goals for RitualOS that do not rely on cloud A
 - [x] Add a Theme Picker dialog so users can preview themes before applying them
 - [x] Document how to create custom themes in the `docs/` folder
 
-## 2. Enhanced Analytics
-- [x] Extend `AnalyticsViewModel` to display ritual frequency by moon phase
+## 2. Enhanced Analytics- [x] Extend `AnalyticsViewModel` to display ritual frequency by moon phase
 - [x] Include local stats about ingredient usage
 - [x] Provide export options for CSV and Markdown reports
+
 
 ## 3. Plugin Growth
 - [ ] Build more example plugins in the `plugins/` directory
