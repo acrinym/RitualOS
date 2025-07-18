@@ -5,18 +5,24 @@
     <UserControl.DataContext>
         <vm:MagicSchoolsViewModel />
     </UserControl.DataContext>
-    <ScrollViewer Margin="10">
-        <ItemsControl ItemsSource="{Binding Schools}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="0,0,0,20">
-                        <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding Overview}" TextWrapping="Wrap" Margin="0,5,0,0"/>
-                        <TextBlock Text="Practices: {Binding CommonPractices}" TextWrapping="Wrap" Margin="0,2,0,0"/>
-                        <TextBlock Text="Who is it for: {Binding WhoIsItFor}" TextWrapping="Wrap" Margin="0,2,0,0"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </ScrollViewer>
+    <DockPanel Margin="10">
+        <TextBox Watermark="Filter magical schools..."
+                 DockPanel.Dock="Top"
+                 Margin="0,0,0,10"
+                 Text="{Binding FilterText, Mode=TwoWay}" />
+        <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding FilteredSchools}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,0,0,20">
+                            <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Overview}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            <TextBlock Text="Practices: {Binding CommonPractices}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="Who is it for: {Binding WhoIsItFor}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>

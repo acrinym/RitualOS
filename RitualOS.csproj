@@ -20,6 +20,7 @@
     <PackageReference Include="Docnet.Core" Version="2.6.0" />
     <PackageReference Include="VersOne.Epub" Version="3.3.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.62" />
+    <PackageReference Include="Avalonia.Svg.Skia" Version="11.0.0" />
   </ItemGroup>
   
   <ItemGroup>
@@ -124,6 +125,8 @@
     <Compile Include="src\Views\DreamParserView.axaml.cs" />
     <Compile Include="src\Views\TarotView.axaml.cs" />
     <Compile Include="src\Views\MagicSchoolsView.axaml.cs" />
+    <Compile Include="src\Views\CatWindow.axaml.cs" />
+    <Compile Include="src\ViewModels\CatViewModel.cs" />
     <Compile Include="src\Views\WelcomeView.axaml.cs" />
     <Compile Include="src\ViewModels\WelcomeViewModel.cs" />
     <Compile Include="components\MagicalProgressBar.axaml.cs" />
@@ -131,6 +134,7 @@
 
   <ItemGroup>
     <None Include="assets\tarot\tarot_cards.json" CopyToOutputDirectory="PreserveNewest" />
+    <AvaloniaResource Include="assets\catface.svg" />
   </ItemGroup>
 
 </Project>
