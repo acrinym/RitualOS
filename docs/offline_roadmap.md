@@ -1,38 +1,36 @@
 # RitualOS Offline Roadmap
 
-This document outlines short-term goals for RitualOS that do not rely on cloud APIs or mobile platforms. Everything listed here is designed to work fully offline.
+This roadmap focuses on features that work without any cloud services. Many milestones are already complete, while others are planned for the next releases.
 
 ## 1. Improved Theme Customization
-- [x] Expand the `themes/` folder with additional color palettes
-- [x] Add a Theme Picker dialog so users can preview themes before applying them
-- [x] Document how to create custom themes in the `docs/` folder
+- [x] Expand the `themes/` folder with additional palettes
+- [x] Theme Picker dialog for previewing styles
+- [x] Documentation on creating custom themes
 
 ## 2. Enhanced Analytics
-- [x] Extend `AnalyticsViewModel` to display ritual frequency by moon phase
-- [x] Include local stats about ingredient usage
-- [x] Provide export options for CSV and Markdown reports
+- [x] Ritual frequency charts by moon phase
+- [x] Ingredient usage statistics
+- [x] Export reports in CSV and Markdown
 
 ## 3. Plugin Growth
-- [x] Build more example plugins in the `plugins/` directory
-- [x] Outline plugin development in `docs/plugin_system.md`
-- [x] Encourage community contributions for tarot spreads, astrology tools, and more
+- [x] Example plugins in the `plugins/` directory
+- [x] Development guide in `docs/plugin_system.md`
+- [x] Community contributions for astrology and tarot tools
 
 ## 4. Data Import & Export
-- [x] Add wizards for importing existing ritual logs
-- [x] Support exporting all data to a single JSON bundle
-- [x] Keep operations offline, relying only on file reads and writes
+- [x] Wizards for importing existing ritual logs
+- [x] Export all data to a single JSON bundle
+- [x] Operations remain offline using local files
 
 ## 5. Community Templates
-- [x] Offer a curated set of ritual templates in `samples/`
-- [x] Highlight recent additions in the main dashboard
-- [x] Allow users to share templates via local files without a server
+- [x] Curated ritual templates available in `samples/`
+- [x] Recent additions highlighted on the dashboard
+- [x] Sharing via local files without a server
 
 ## 6. Tarot Tools
-- [x] Build an offline Tarot card spread viewer with a full deck
-- [ ] Offer a curated set of ritual templates in `samples/`
-- [ ] Highlight recent additions in the main dashboard
-- [ ] Allow users to share templates via local files without a server
-
+- [x] Offline Tarot card spread viewer with a complete deck
+- [ ] Additional sample spreads in `samples/ritual_templates`
+- [ ] Local sharing of custom spreads
 
 ---
-These milestones will breathe new life into the project while honoring the current offline-first focus. They also pave the way for future online features when infrastructure becomes available.
+These milestones keep RitualOS useful even without internet access and set the foundation for future online features once infrastructure is available.

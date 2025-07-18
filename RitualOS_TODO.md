@@ -46,6 +46,7 @@
 - [x] Implement plugin loading system
 - [x] Create modular UI components
 - [x] Enhance theme system with new resources
+- [x] Offline Tarot spread viewer
 
 ## 📋 Upcoming Features
 
