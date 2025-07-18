@@ -14,7 +14,7 @@ namespace RitualOS.ViewModels
 {
     public class MainShellViewModel : ViewModelBase
     {
-        private ViewModelBase _currentViewModel;
+        private ViewModelBase _currentViewModel = null!;
         private int _selectedTabIndex;
         public RelayCommand SetTabCommand { get; }
         public ObservableCollection<string> RecentTemplateNames { get; } = new();
