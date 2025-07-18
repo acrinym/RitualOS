@@ -1,0 +1,13 @@
+{
+  "name": "Tarot Spread Plugin",
+  "version": "1.0.0",
+  "description": "Adds sample tarot spreads for ritual divination",
+  "author": "RitualOS Community",
+  "type": "template",
+  "entryPoint": "TarotPlugin.Main",
+  "dependencies": [],
+  "permissions": ["read_rituals", "write_rituals"],
+  "compatibility": ["1.0.0"],
+  "features": ["three_card_spread", "celtic_cross"],
+  "license": "MIT"
+}
