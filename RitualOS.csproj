@@ -99,9 +99,9 @@
     <Compile Include="src\ViewModels\MagicSchoolsViewModel.cs" />
     <Compile Include="src\Views\ChakraSelector.axaml.cs" />
     <Compile Include="src\Views\ElementSelector.axaml.cs" />
-    
     <Compile Include="src\Views\InventoryView.axaml.cs" />
     <Compile Include="src\Views\RitualTimeline.axaml.cs" />
+    
     <Compile Include="src\ViewModels\Wizards\ClientProfileDashboardViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\CodexRewritePreviewerViewModel.cs" />
     <Compile Include="src\ViewModels\Wizards\RitualTemplateBuilderViewModel.cs" />

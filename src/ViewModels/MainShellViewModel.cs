@@ -115,7 +115,6 @@ namespace RitualOS.ViewModels
         public DreamParserViewModel DreamParserViewModel { get; }
         public TarotViewModel TarotViewModel { get; }
         public MagicSchoolsViewModel MagicSchoolsViewModel { get; }
-
         private void LoadRecentTemplates()
         {
             try

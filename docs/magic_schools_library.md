@@ -25,3 +25,5 @@ Below are highlights of several paths you can explore in the app:
 Open the Magic Schools tab in RitualOS to browse details for each path. 🌟
 
 For a guide on honorifics and what to call yourself, see [Magical Titles](magical_titles.md).
+
+
