@@ -19,6 +19,10 @@ inventory of magical ingredients, log dreams, and manage clients.
 - Embedded document viewer for common formats (PDF, Markdown, JSON, EPUB, HTML)
 - Keyboard shortcuts for tab navigation
 - Screen reader labels on major controls
+- Plugin loader for community extensions
+- Drag-and-drop step reordering in the ritual builder
+- Dream dictionary integration in the Dream Parser
+- Asynchronous document loading for large files
 
 ## Themes
 RitualOS supports multiple visual themes to match different aesthetics:
@@ -67,6 +71,7 @@ Schema references live in the `docs` folder:
 - [Dream Schema](docs/dream_schema.md)
 - [Dream Dictionary](docs/DreamDictionary/RitualOS_Dream_Dictionary.md)
 - [Ritual Timeline](docs/ritual_timeline.md)
+- [Plugin System](docs/plugin_system.md)
 
 
 ## Pitch Deck

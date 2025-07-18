@@ -13,6 +13,11 @@
 - [x] Symbol search and viewer
 - [x] Ritual template builder with validation
 - [x] User settings and permissions system
+- [x] Plugin loader for community extensions
+- [x] Drag-and-drop step reordering in ritual builder
+- [x] Dream parser dictionary integration
+- [x] Asynchronous document loading
+- [x] High contrast theme and keyboard shortcuts
 
 ### Directory Structure
 - [x] `/rituals/` - JSON ritual templates
@@ -37,10 +42,10 @@
 ## 🚧 In Progress
 
 ### Current Development
-- [ ] Move existing services to new directory structure
-- [ ] Implement plugin loading system
-- [ ] Create modular UI components
-- [ ] Enhance theme system with new resources
+- [x] Move existing services to new directory structure
+- [x] Implement plugin loading system
+- [x] Create modular UI components
+- [x] Enhance theme system with new resources
 
 ## 📋 Upcoming Features
 
@@ -236,7 +241,7 @@
 
 ### High Priority (Immediate)
 1. Dream Parser implementation
-2. Plugin system completion
+2. Plugin system completion (done)
 3. Mobile companion development
 4. Cloud sync service
 
