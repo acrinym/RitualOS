@@ -72,6 +72,7 @@ Schema references live in the `docs` folder:
 - [Dream Dictionary](docs/DreamDictionary/RitualOS_Dream_Dictionary.md)
 - [Ritual Timeline](docs/ritual_timeline.md)
 - [Plugin System](docs/plugin_system.md)
+- [Offline Roadmap](docs/offline_roadmap.md)
 
 
 ## Pitch Deck
