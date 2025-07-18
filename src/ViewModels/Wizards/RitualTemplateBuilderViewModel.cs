@@ -98,35 +98,35 @@ namespace RitualOS.ViewModels.Wizards
         public string[] MoonPhaseOptions { get; } = { "New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous", "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent" };
 
         // Commands
-        private ICommand _addStepCommand;
+        private ICommand _addStepCommand = null!;
         public ICommand AddStepCommand { get => _addStepCommand; private set { _addStepCommand = value; OnPropertyChanged(); } }
-        private ICommand _removeStepCommand;
+        private ICommand _removeStepCommand = null!;
         public ICommand RemoveStepCommand { get => _removeStepCommand; private set { _removeStepCommand = value; OnPropertyChanged(); } }
-        private ICommand _moveStepUpCommand;
+        private ICommand _moveStepUpCommand = null!;
         public ICommand MoveStepUpCommand { get => _moveStepUpCommand; private set { _moveStepUpCommand = value; OnPropertyChanged(); } }
-        private ICommand _moveStepDownCommand;
+        private ICommand _moveStepDownCommand = null!;
         public ICommand MoveStepDownCommand { get => _moveStepDownCommand; private set { _moveStepDownCommand = value; OnPropertyChanged(); } }
-        private ICommand _saveTemplateCommand;
+        private ICommand _saveTemplateCommand = null!;
         public ICommand SaveTemplateCommand { get => _saveTemplateCommand; private set { _saveTemplateCommand = value; OnPropertyChanged(); } }
-        private ICommand _loadTemplateCommand;
+        private ICommand _loadTemplateCommand = null!;
         public ICommand LoadTemplateCommand { get => _loadTemplateCommand; private set { _loadTemplateCommand = value; OnPropertyChanged(); } }
-        private ICommand _clearTemplateCommand;
+        private ICommand _clearTemplateCommand = null!;
         public ICommand ClearTemplateCommand { get => _clearTemplateCommand; private set { _clearTemplateCommand = value; OnPropertyChanged(); } }
-        private ICommand _addToolCommand;
+        private ICommand _addToolCommand = null!;
         public ICommand AddToolCommand { get => _addToolCommand; private set { _addToolCommand = value; OnPropertyChanged(); } }
-        private ICommand _removeToolCommand;
+        private ICommand _removeToolCommand = null!;
         public ICommand RemoveToolCommand { get => _removeToolCommand; private set { _removeToolCommand = value; OnPropertyChanged(); } }
-        private ICommand _addSpiritCommand;
+        private ICommand _addSpiritCommand = null!;
         public ICommand AddSpiritCommand { get => _addSpiritCommand; private set { _addSpiritCommand = value; OnPropertyChanged(); } }
-        private ICommand _removeSpiritCommand;
+        private ICommand _removeSpiritCommand = null!;
         public ICommand RemoveSpiritCommand { get => _removeSpiritCommand; private set { _removeSpiritCommand = value; OnPropertyChanged(); } }
-        private ICommand _addChakraCommand;
+        private ICommand _addChakraCommand = null!;
         public ICommand AddChakraCommand { get => _addChakraCommand; private set { _addChakraCommand = value; OnPropertyChanged(); } }
-        private ICommand _removeChakraCommand;
+        private ICommand _removeChakraCommand = null!;
         public ICommand RemoveChakraCommand { get => _removeChakraCommand; private set { _removeChakraCommand = value; OnPropertyChanged(); } }
-        private ICommand _addElementCommand;
+        private ICommand _addElementCommand = null!;
         public ICommand AddElementCommand { get => _addElementCommand; private set { _addElementCommand = value; OnPropertyChanged(); } }
-        private ICommand _removeElementCommand;
+        private ICommand _removeElementCommand = null!;
         public ICommand RemoveElementCommand { get => _removeElementCommand; private set { _removeElementCommand = value; OnPropertyChanged(); } }
 
         // INotifyDataErrorInfo implementation

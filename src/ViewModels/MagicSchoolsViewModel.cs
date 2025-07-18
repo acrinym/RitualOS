@@ -23,7 +23,7 @@ namespace RitualOS.ViewModels
         public ObservableCollection<MagicSchool> FilteredSchools { get; } = new();
         public RelayCommand OpenDocCommand { get; }
         private readonly Action<string>? _openDocAction;
-        public RelayCommand<string> FilterCommand { get; }
+        public RelayCommand FilterCommand { get; }
 
         private string _filterText = string.Empty;
         public string FilterText
@@ -60,9 +60,10 @@ namespace RitualOS.ViewModels
                     OpenDoc(path);
                 }
             });
-            FilterCommand = new RelayCommand<string>(keyword =>
+            // RelayCommand without generics - we cast the parameter safely 💫
+            FilterCommand = new RelayCommand(param =>
             {
-                FilterText = keyword ?? string.Empty;
+                FilterText = param as string ?? string.Empty;
             });
             FilteredSchools = new ObservableCollection<MagicSchool>(Schools); // Initial full list
         }
