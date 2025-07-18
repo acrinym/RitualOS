@@ -13,5 +13,6 @@ namespace RitualOS.Models
         public string CommonPractices { get; set; } = string.Empty;
         public string WhoIsItFor { get; set; } = string.Empty;
         public List<string> Keywords { get; set; } = new();
+        public string? InfoPath { get; set; }
     }
 }

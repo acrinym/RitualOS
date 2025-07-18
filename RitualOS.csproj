@@ -36,6 +36,7 @@
     <Compile Include="src\Helpers\ChakraHelper.cs" />
     <Compile Include="src\Helpers\ElementHelper.cs" />
     <Compile Include="src\Helpers\RelayCommand.cs" />
+    <Compile Include="src\Helpers\NullToBoolConverter.cs" />
     <Compile Include="src\Models\Chakra.cs" />
     <Compile Include="src\Models\ClientProfile.cs" />
     <Compile Include="src\Models\DocumentFile.cs" />
@@ -135,6 +136,7 @@
   <ItemGroup>
     <None Include="assets\tarot\tarot_cards.json" CopyToOutputDirectory="PreserveNewest" />
     <AvaloniaResource Include="assets\catface.svg" />
+    <None Include="docs\**\*.md" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

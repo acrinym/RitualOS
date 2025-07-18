@@ -1,15 +1,31 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:RitualOS.ViewModels"
+             xmlns:help="clr-namespace:RitualOS.Helpers"
              x:Class="RitualOS.Views.MagicSchoolsView">
+    <UserControl.Resources>
+        <help:NullToBoolConverter x:Key="NullToBoolConverter" />
+    </UserControl.Resources>
     <UserControl.DataContext>
         <vm:MagicSchoolsViewModel />
     </UserControl.DataContext>
     <DockPanel Margin="10">
-        <TextBox Watermark="Filter magical schools..."
-                 DockPanel.Dock="Top"
-                 Margin="0,0,0,10"
-                 Text="{Binding FilterText, Mode=TwoWay}" />
+        <!-- Filter Controls -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+            <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,10,0" PlaceholderText="Filter by name or keyword..." Watermark="Filter magical schools..."/>
+            <Button Content="Wicca" Command="{Binding FilterCommand}" CommandParameter="wicca" Margin="0,0,5,0"/>
+            <Button Content="Vodou" Command="{Binding FilterCommand}" CommandParameter="vodou" Margin="0,0,5,0"/>
+            <Button Content="Hoodoo" Command="{Binding FilterCommand}" CommandParameter="hoodoo" Margin="0,0,5,0"/>
+            <Button Content="Chaos" Command="{Binding FilterCommand}" CommandParameter="chaos" Margin="0,0,5,0"/>
+            <Button Content="Hermetic" Command="{Binding FilterCommand}" CommandParameter="hermetic" Margin="0,0,5,0"/>
+            <Button Content="Druidry" Command="{Binding FilterCommand}" CommandParameter="druidry" Margin="0,0,5,0"/>
+            <Button Content="Shamanism" Command="{Binding FilterCommand}" CommandParameter="shamanism" Margin="0,0,5,0"/>
+            <Button Content="Santería" Command="{Binding FilterCommand}" CommandParameter="santería" Margin="0,0,5,0"/>
+            <Button Content="Tantra" Command="{Binding FilterCommand}" CommandParameter="tantra" Margin="0,0,5,0"/>
+            <Button Content="Rosicrucian" Command="{Binding FilterCommand}" CommandParameter="rosicrucian" Margin="0,0,5,0"/>
+            <Button Content="Clear" Command="{Binding FilterCommand}" CommandParameter="" Margin="0,0,0,0"/>
+        </StackPanel>
+        <!-- Schools List -->
         <ScrollViewer>
             <ItemsControl ItemsSource="{Binding FilteredSchools}">
                 <ItemsControl.ItemTemplate>
@@ -17,8 +33,13 @@
                         <StackPanel Margin="0,0,0,20">
                             <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Overview}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            <TextBlock Text="Historical Context: {Binding HistoricalContext}" TextWrapping="Wrap" Margin="0,2,0,0"/>
                             <TextBlock Text="Practices: {Binding CommonPractices}" TextWrapping="Wrap" Margin="0,2,0,0"/>
                             <TextBlock Text="Who is it for: {Binding WhoIsItFor}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="Notable Figures: {Binding NotableFigures}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="Recommended Readings: {Binding RecommendedReadings}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Text="Keywords: {Binding Keywords, StringFormat={}{0}}}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <Button Content="More Info" Margin="0,5,0,0" Command="{Binding DataContext.OpenDocCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding InfoPath}" IsVisible="{Binding InfoPath, Converter={StaticResource NullToBoolConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
