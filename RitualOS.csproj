@@ -110,6 +110,7 @@
     <Compile Include="src\Views\SymbolSearch.axaml.cs" />
     <Compile Include="src\Views\DocumentViewer.axaml.cs" />
     <Compile Include="src\Views\ThemeSwitcher.axaml.cs" />
+    <Compile Include="src\Views\ThemePickerWindow.axaml.cs" />
     <Compile Include="src\Views\ExportView.axaml.cs" />
     <Compile Include="src\Views\AnalyticsView.axaml.cs" />
     <Compile Include="src\Views\DreamParserView.axaml.cs" />
