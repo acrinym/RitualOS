@@ -145,6 +145,10 @@
     <Compile Include="src/ViewModels/BookOfShadowsViewModel.cs" />
     <Page Include="src/Views/BookOfShadowsView.axaml" />
     <Compile Include="src/Views/BookOfShadowsView.axaml.cs" />
+    <Compile Include="src/Models/DivinationDraw.cs" />
+    <Compile Include="src/ViewModels/DivinationHubViewModel.cs" />
+    <Page Include="src/Views/DivinationHubView.axaml" />
+    <Compile Include="src/Views/DivinationHubView.axaml.cs" />
   </ItemGroup>
 
   <ItemGroup>

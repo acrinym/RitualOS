@@ -105,6 +105,9 @@
         <TabItem Header="Book of Shadows" AutomationProperties.Name="Book of Shadows Tab">
             <views:BookOfShadowsView DataContext="{Binding BookOfShadowsViewModel}" />
         </TabItem>
+        <TabItem Header="Divination Hub" AutomationProperties.Name="Divination Hub Tab">
+            <views:DivinationHubView DataContext="{Binding DivinationHubViewModel}" />
+        </TabItem>
     </TabControl>
     </DockPanel>
 </UserControl>

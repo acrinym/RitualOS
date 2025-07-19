@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels"
+             x:Class="RitualOS.Views.DivinationHubView">
+    <UserControl.DataContext>
+        <vm:DivinationHubViewModel />
+    </UserControl.DataContext>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="10" Margin="10">
+            <ComboBox SelectedItem="{Binding DrawType, Mode=TwoWay}" Width="120">
+                <ComboBoxItem Content="Single" />
+                <ComboBoxItem Content="ThreeCard" />
+            </ComboBox>
+            <Button Content="Draw" Command="{Binding DrawCardsCommand}" />
+            <Button Content="Save" Command="{Binding SaveDrawCommand}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="20" Margin="10">
+            <ItemsControl ItemsSource="{Binding CurrentDraw}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" />
+                            <TextBlock Text="{Binding MeaningUp}" FontSize="12" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <StackPanel>
+                <TextBlock Text="Journal Entry:" FontWeight="Bold" />
+                <TextBox Text="{Binding JournalEntry, Mode=TwoWay}" AcceptsReturn="True" Height="100" Width="250"/>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Text="History" FontWeight="Bold" Margin="10,20,0,0" />
+        <ListBox ItemsSource="{Binding History}" Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Date, StringFormat='yyyy-MM-dd HH:mm'}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding CardNames}" />
+                        <TextBlock Text="{Binding Journal}" FontStyle="Italic" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl> 
