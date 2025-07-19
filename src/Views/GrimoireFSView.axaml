@@ -4,8 +4,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:RitualOS.ViewModels"
         mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
-        x:Class="RitualOS.Views.GrimoireFSView"
-        x:DataType="vm:GrimoireFSViewModel"
         Title="GrimoireFS - RitualOS"
         Width="1200" Height="800"
         Icon="/assets/icons/grimoire.ico">
@@ -100,7 +98,7 @@
             <Border Grid.Column="0" Background="#252526" BorderBrush="#8B4513" BorderThickness="0,0,1,0">
                 <ScrollViewer>
                     <StackPanel Margin="16" Spacing="16">
-                        <TextBlock Text="🔍 Search & Filters" FontSize="18" FontWeight="Bold" Foreground="#DAA520"/>
+                        <TextBlock Text="🔍 Search &amp; Filters" FontSize="18" FontWeight="Bold" Foreground="#DAA520"/>
 
                         <!-- Search Box -->
                         <StackPanel Spacing="8">
@@ -180,7 +178,7 @@
                 <!-- Loading Overlay -->
                 <Border Grid.Row="0" Background="#80000000" IsVisible="{Binding IsLoading}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
-                        <ProgressRing IsIndeterminate="True" Width="48" Height="48"/>
+                        <ProgressBar IsIndeterminate="True" Width="48" Height="4"/>
                         <TextBlock Text="Loading Grimoire..." Foreground="White" FontSize="16"/>
                     </StackPanel>
                 </Border>
@@ -195,8 +193,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Classes="grimoire-card" Width="300" Height="250"
-                                        IsSelected="{Binding IsSelected}">
+                                <Border Classes="grimoire-card" Width="300" Height="250">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
