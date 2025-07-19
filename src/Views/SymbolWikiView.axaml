@@ -1,14 +1,12 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="using:RitualOS.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
-        Title="SymbolWiki - RitualOS"
-        Width="1200" Height="800"
-        Icon="/assets/icons/symbol_wiki.ico">
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+             x:Class="RitualOS.Views.SymbolWikiView">
 
-    <Window.Styles>
+    <UserControl.Styles>
         <Style Selector="Button.primary">
             <Setter Property="Background" Value="#7B68EE"/>
             <Setter Property="Foreground" Value="White"/>
@@ -45,7 +43,7 @@
             <Setter Property="BorderBrush" Value="#7B68EE"/>
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
-    </Window.Styles>
+    </UserControl.Styles>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -307,4 +305,4 @@
             </Grid>
         </Grid>
     </Grid>
-</Window> 
+</UserControl> 

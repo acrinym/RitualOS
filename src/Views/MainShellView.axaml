@@ -108,6 +108,9 @@
         <TabItem Header="Divination Hub" AutomationProperties.Name="Divination Hub Tab">
             <views:DivinationHubView DataContext="{Binding DivinationHubViewModel}" />
         </TabItem>
+        <TabItem Header="SymbolWiki" AutomationProperties.Name="SymbolWiki Tab">
+            <views:SymbolWikiView DataContext="{Binding SymbolWikiViewModel}" />
+        </TabItem>
     </TabControl>
     </DockPanel>
 </UserControl>

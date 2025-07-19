@@ -149,6 +149,10 @@
     <Compile Include="src/ViewModels/DivinationHubViewModel.cs" />
     <Page Include="src/Views/DivinationHubView.axaml" />
     <Compile Include="src/Views/DivinationHubView.axaml.cs" />
+    <Compile Include="src/Models/SymbolWikiEntry.cs" />
+    <Compile Include="src/ViewModels/SymbolWikiViewModel.cs" />
+    <Page Include="src/Views/SymbolWikiView.axaml" />
+    <Compile Include="src/Views/SymbolWikiView.axaml.cs" />
   </ItemGroup>
 
   <ItemGroup>

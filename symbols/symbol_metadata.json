@@ -1,0 +1,34 @@
+[
+  {
+    "symbol": "🜁",
+    "name": "Air",
+    "tradition": "Alchemy",
+    "wikimedia_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Alchemical_symbol_for_air.svg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Classical_element#Air",
+    "description": "One of the classical elements. Represents intellect, breath, and spirit."
+  },
+  {
+    "symbol": "🜂",
+    "name": "Fire",
+    "tradition": "Alchemy",
+    "wikimedia_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Alchemical_symbol_for_fire.svg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Classical_element#Fire",
+    "description": "One of the classical elements. Represents energy, will, and transformation."
+  },
+  {
+    "symbol": "🜄",
+    "name": "Water",
+    "tradition": "Alchemy",
+    "wikimedia_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Alchemical_symbol_for_water.svg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Classical_element#Water",
+    "description": "One of the classical elements. Represents emotion, intuition, and flow."
+  },
+  {
+    "symbol": "🜃",
+    "name": "Earth",
+    "tradition": "Alchemy",
+    "wikimedia_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Alchemical_symbol_for_earth.svg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Classical_element#Earth",
+    "description": "One of the classical elements. Represents stability, materiality, and foundation."
+  }
+] 

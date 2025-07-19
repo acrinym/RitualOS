@@ -50,6 +50,7 @@ namespace RitualOS.ViewModels
             CalendarViewModel = new CalendarViewModel();
             BookOfShadowsViewModel = new BookOfShadowsViewModel();
             DivinationHubViewModel = new DivinationHubViewModel();
+            SymbolWikiViewModel = new SymbolWikiViewModel();
 
             LoadRecentTemplates();
 
@@ -127,6 +128,7 @@ namespace RitualOS.ViewModels
         public CalendarViewModel CalendarViewModel { get; }
         public BookOfShadowsViewModel BookOfShadowsViewModel { get; }
         public DivinationHubViewModel DivinationHubViewModel { get; }
+        public SymbolWikiViewModel SymbolWikiViewModel { get; }
         private void LoadRecentTemplates()
         {
             try
