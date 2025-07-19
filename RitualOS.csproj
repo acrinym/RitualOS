@@ -135,6 +135,12 @@
     <Compile Include="src\Views\WelcomeView.axaml.cs" />
     <Compile Include="src\ViewModels\WelcomeViewModel.cs" />
     <Compile Include="components\MagicalProgressBar.axaml.cs" />
+    <Compile Include="src/ViewModels/CalendarViewModel.cs" />
+    <Compile Include="src/Models/CalendarEvent.cs" />
+    <Compile Include="src/Converters/BoolToBrushConverter.cs" />
+    <Compile Include="src/Converters/BoolToFontWeightConverter.cs" />
+    <Page Include="src/Views/CalendarView.axaml" />
+    <Compile Include="src/Views/CalendarView.axaml.cs" />
   </ItemGroup>
 
   <ItemGroup>

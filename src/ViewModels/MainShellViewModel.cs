@@ -47,6 +47,7 @@ namespace RitualOS.ViewModels
                 DocumentViewerViewModel.LoadDocumentCommand.Execute(null);
                 SelectedTabIndex = 5; // Switch to Documents tab
             });
+            CalendarViewModel = new CalendarViewModel();
 
             LoadRecentTemplates();
 
@@ -100,6 +101,7 @@ namespace RitualOS.ViewModels
                         10 => DreamParserViewModel,
                         11 => TarotViewModel,
                         12 => MagicSchoolsViewModel,
+                        13 => CalendarViewModel,
                         _ => InventoryViewModel
                     };
                 }
@@ -120,6 +122,7 @@ namespace RitualOS.ViewModels
         public DreamParserViewModel DreamParserViewModel { get; }
         public TarotViewModel TarotViewModel { get; }
         public MagicSchoolsViewModel MagicSchoolsViewModel { get; }
+        public CalendarViewModel CalendarViewModel { get; }
         private void LoadRecentTemplates()
         {
             try

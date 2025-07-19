@@ -99,6 +99,9 @@
         <TabItem Header="Magic Schools" AutomationProperties.Name="Magic Schools Tab">
             <views:MagicSchoolsView DataContext="{Binding MagicSchoolsViewModel}"/>
         </TabItem>
+        <TabItem Header="Calendar" AutomationProperties.Name="Calendar Tab">
+            <views:CalendarView DataContext="{Binding CalendarViewModel}" />
+        </TabItem>
     </TabControl>
     </DockPanel>
 </UserControl>

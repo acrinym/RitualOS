@@ -1,0 +1,12 @@
+using Avalonia.Controls;
+
+namespace RitualOS.Views
+{
+    public partial class CalendarView : UserControl
+    {
+        public CalendarView()
+        {
+            InitializeComponent();
+        }
+    }
+} 

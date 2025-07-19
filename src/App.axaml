@@ -1,9 +1,14 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:fluent="clr-namespace:Avalonia.Themes.Fluent;assembly=Avalonia.Themes.Fluent"
+             xmlns:converters="clr-namespace:RitualOS.Converters"
              x:Class="RitualOS.App">
   <Application.Styles>
     <fluent:FluentTheme />
   </Application.Styles>
+    <Application.Resources>
+        <converters:BoolToBrushConverter x:Key="BoolToBrushConverter" TrueBrush="White" FalseBrush="#EEE" />
+        <converters:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter" />
+    </Application.Resources>
 </Application>
 
