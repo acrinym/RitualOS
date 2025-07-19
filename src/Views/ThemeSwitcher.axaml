@@ -6,6 +6,9 @@
         <vm:ThemeViewModel />
     </UserControl.DataContext>
 
-    <ComboBox ItemsSource="{Binding AvailableThemes}"
-              SelectedItem="{Binding SelectedTheme}" />
+    <StackPanel Spacing="6">
+        <ComboBox ItemsSource="{Binding AvailableThemes}"
+                  SelectedItem="{Binding SelectedTheme}" />
+        <Button Content="Open Theme Picker" Click="OpenPicker_Click" />
+    </StackPanel>
 </UserControl>

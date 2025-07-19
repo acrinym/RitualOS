@@ -47,7 +47,19 @@
         <KeyBinding Gesture="Alt+0" Command="{Binding SetTabCommand}" CommandParameter="9"/>
     </UserControl.KeyBindings>
 
-    <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,10">
+            <TextBlock Text="Recent Templates" FontSize="16" FontWeight="Bold"/>
+            <ItemsControl ItemsSource="{Binding RecentTemplateNames}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <TabControl SelectedIndex="{Binding SelectedTabIndex}">
         <TabItem Header="Inventory" AutomationProperties.Name="Inventory Tab">
             <views:InventoryView DataContext="{Binding InventoryViewModel}"/>
         </TabItem>
@@ -81,5 +93,12 @@
         <TabItem Header="Dream Parser" AutomationProperties.Name="Dream Parser Tab">
             <views:DreamParserView DataContext="{Binding DreamParserViewModel}"/>
         </TabItem>
+        <TabItem Header="Tarot" AutomationProperties.Name="Tarot Tab">
+            <views:TarotView DataContext="{Binding TarotViewModel}"/>
+        </TabItem>
+        <TabItem Header="Magic Schools" AutomationProperties.Name="Magic Schools Tab">
+            <views:MagicSchoolsView DataContext="{Binding MagicSchoolsViewModel}"/>
+        </TabItem>
     </TabControl>
+    </DockPanel>
 </UserControl>

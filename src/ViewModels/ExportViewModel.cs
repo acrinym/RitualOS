@@ -39,7 +39,10 @@ namespace RitualOS.ViewModels
             {
                 "markdown",
                 "html",
-                "json"
+                "json",
+                "pdf",
+                "epub",
+                "website"
             };
 
             LoadRitualsAsync().ConfigureAwait(false);
@@ -140,7 +143,7 @@ namespace RitualOS.ViewModels
                 ExportSuccess = false;
                 ExportStatus = $"Exporting {SelectedRitual.Name} to {SelectedFormat}...";
 
-                string result;
+                string result = string.Empty;
                 switch (SelectedFormat.ToLower())
                 {
                     case "markdown":
@@ -152,11 +155,20 @@ namespace RitualOS.ViewModels
                     case "json":
                         result = await _exportService.ExportToJsonAsync(SelectedRitual);
                         break;
+                    case "pdf":
+                        await _exportService.ExportToPdfAsync(SelectedRitual, OutputPath);
+                        ExportStatus = $"Successfully exported to {OutputPath}";
+                        ExportSuccess = true;
+                        return;
+                    case "epub":
+                        await _exportService.ExportToEpubAsync(SelectedRitual, OutputPath);
+                        ExportStatus = $"Successfully exported to {OutputPath}";
+                        ExportSuccess = true;
+                        return;
                     default:
                         throw new ArgumentException($"Unsupported format: {SelectedFormat}");
                 }
 
-                // Save to file if output path is specified
                 if (!string.IsNullOrEmpty(OutputPath))
                 {
                     await System.IO.File.WriteAllTextAsync(OutputPath, result);
@@ -219,6 +231,9 @@ namespace RitualOS.ViewModels
                 "markdown" => "md",
                 "html" => "html",
                 "json" => "json",
+                "pdf" => "pdf",
+                "epub" => "epub",
+                "website" => "site",
                 _ => "txt"
             };
         }

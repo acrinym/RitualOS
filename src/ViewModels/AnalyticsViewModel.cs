@@ -34,6 +34,7 @@ namespace RitualOS.ViewModels
             {
                 "html",
                 "markdown",
+                "csv",
                 "json"
             };
 
@@ -96,6 +97,8 @@ namespace RitualOS.ViewModels
         public ObservableCollection<KeyValuePair<string, int>> ChakraUsage { get; } = new();
         public ObservableCollection<KeyValuePair<string, int>> ThemePreferences { get; } = new();
         public ObservableCollection<KeyValuePair<string, int>> FeatureUsage { get; } = new();
+        public ObservableCollection<KeyValuePair<string, int>> MoonPhaseFrequency { get; } = new();
+        public ObservableCollection<KeyValuePair<string, int>> IngredientUsage { get; } = new();
 
         private async Task LoadAnalyticsAsync()
         {
@@ -112,6 +115,8 @@ namespace RitualOS.ViewModels
                 UpdateChakraUsage();
                 UpdateThemePreferences();
                 UpdateFeatureUsage();
+                UpdateMoonPhaseFrequency();
+                UpdateIngredientUsage();
 
                 StatusMessage = "Analytics data loaded successfully";
             }
@@ -185,6 +190,30 @@ namespace RitualOS.ViewModels
             }
         }
 
+        private void UpdateMoonPhaseFrequency()
+        {
+            MoonPhaseFrequency.Clear();
+            if (AnalyticsData?.MoonPhaseFrequency != null)
+            {
+                foreach (var phase in AnalyticsData.MoonPhaseFrequency.OrderByDescending(x => x.Value))
+                {
+                    MoonPhaseFrequency.Add(phase);
+                }
+            }
+        }
+
+        private void UpdateIngredientUsage()
+        {
+            IngredientUsage.Clear();
+            if (AnalyticsData?.IngredientUsage != null)
+            {
+                foreach (var ing in AnalyticsData.IngredientUsage.OrderByDescending(x => x.Value).Take(10))
+                {
+                    IngredientUsage.Add(ing);
+                }
+            }
+        }
+
         private async Task ExportAnalyticsAsync()
         {
             if (string.IsNullOrEmpty(ExportPath)) return;
@@ -222,6 +251,7 @@ namespace RitualOS.ViewModels
             {
                 "html" => "html",
                 "markdown" => "md",
+                "csv" => "csv",
                 "json" => "json",
                 _ => "txt"
             };

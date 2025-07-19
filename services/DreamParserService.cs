@@ -145,7 +145,7 @@ namespace RitualOS.Services
             return analysis;
         }
 
-        public async Task<List<RitualSuggestion>> SuggestRitualsAsync(DreamAnalysis analysis)
+        public Task<List<RitualSuggestion>> SuggestRitualsAsync(DreamAnalysis analysis)
         {
             var suggestions = new List<RitualSuggestion>();
             
@@ -215,10 +215,10 @@ namespace RitualOS.Services
             }
             
             // Sort by relevance and return top suggestions
-            return suggestions.OrderByDescending(x => x.Relevance).Take(5).ToList();
+            return Task.FromResult(suggestions.OrderByDescending(x => x.Relevance).Take(5).ToList());
         }
 
-        public async Task<List<string>> ExtractSymbolsAsync(string dreamContent)
+        public Task<List<string>> ExtractSymbolsAsync(string dreamContent)
         {
             var symbols = new List<string>();
             var content = dreamContent.ToLower();
@@ -254,10 +254,10 @@ namespace RitualOS.Services
                 }
             }
             
-            return symbols.Distinct().ToList();
+            return Task.FromResult(symbols.Distinct().ToList());
         }
 
-        public async Task<Dictionary<string, double>> CalculateElementalAffinitiesAsync(List<string> symbols)
+        public Task<Dictionary<string, double>> CalculateElementalAffinitiesAsync(List<string> symbols)
         {
             var affinities = new Dictionary<string, double>
             {
@@ -289,10 +289,10 @@ namespace RitualOS.Services
                 }
             }
             
-            return affinities;
+            return Task.FromResult(affinities);
         }
 
-        public async Task<Dictionary<string, double>> CalculateChakraAffinitiesAsync(List<string> symbols)
+        public Task<Dictionary<string, double>> CalculateChakraAffinitiesAsync(List<string> symbols)
         {
             var affinities = new Dictionary<string, double>
             {
@@ -326,10 +326,10 @@ namespace RitualOS.Services
                 }
             }
             
-            return affinities;
+            return Task.FromResult(affinities);
         }
 
-        public async Task<string> GenerateRitualIntentAsync(DreamAnalysis analysis)
+        public Task<string> GenerateRitualIntentAsync(DreamAnalysis analysis)
         {
             var intent = new List<string>();
             
@@ -367,10 +367,10 @@ namespace RitualOS.Services
             if (analysis.ExtractedSymbols.Contains("air"))
                 intent.Add("clarity and communication");
             
-            return string.Join(", ", intent.Distinct());
+            return Task.FromResult(string.Join(", ", intent.Distinct()));
         }
 
-        public async Task<List<string>> ExtractEmotionsAsync(string dreamContent)
+        public Task<List<string>> ExtractEmotionsAsync(string dreamContent)
         {
             var emotions = new List<string>();
             var content = dreamContent.ToLower();
@@ -405,13 +405,13 @@ namespace RitualOS.Services
                 }
             }
             
-            return emotions.Distinct().ToList();
+            return Task.FromResult(emotions.Distinct().ToList());
         }
 
-        public async Task<DreamPattern> IdentifyPatternsAsync(List<DreamAnalysis> dreamHistory)
+        public Task<DreamPattern> IdentifyPatternsAsync(List<DreamAnalysis> dreamHistory)
         {
             if (dreamHistory.Count < 3)
-                return new DreamPattern();
+                return Task.FromResult(new DreamPattern());
             
             var pattern = new DreamPattern();
             
@@ -453,8 +453,8 @@ namespace RitualOS.Services
             // Determine pattern type
             pattern.PatternType = DeterminePatternType(pattern);
             pattern.Description = GeneratePatternDescription(pattern);
-            
-            return pattern;
+
+            return Task.FromResult(pattern);
         }
 
         public async Task SaveDreamAnalysisAsync(DreamAnalysis analysis)

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using RitualOS.Models;
@@ -72,10 +73,20 @@ namespace RitualOS.ViewModels
                 mainWindow = desktop.MainWindow;
             }
 
-            var result = await TopLevel.GetTopLevel(mainWindow)?.StorageProvider.OpenFilePickerAsync(options);
+            IReadOnlyList<IStorageFile>? result = null;
+            var topLevel = TopLevel.GetTopLevel(mainWindow);
+            if (topLevel?.StorageProvider != null)
+            {
+                result = await topLevel.StorageProvider.OpenFilePickerAsync(options);
+            }
+
             if (result != null && result.Count > 0)
             {
-                DocumentPath = result[0].Path.LocalPath;
+                var item = result[0];
+                if (item.Path != null)
+                {
+                    DocumentPath = item.Path.LocalPath;
+                }
             }
         }
 

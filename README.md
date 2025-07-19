@@ -2,7 +2,27 @@
 
 RitualOS is a comprehensive, offline-first magical practice management system designed for serious practitioners. It provides secure, encrypted storage for all aspects of magical work, from ritual logs and dream journals to symbol libraries and media management.
 
-## 🌟 Core Features
+## Core Features
+- Structured ritual logs with moon phases, steps, and outcomes
+- Inventory tracking with expiration and reorder alerts
+- Dream journal with symbolic tagging
+- Basic client CRM for session notes and ritual history
+- File-backed **ClientDatabase** service for storing and searching clients
+- Timeline view to review past rituals chronologically
+- Offline-first JSON storage with simple import/export
+- Ritual creation wizard for step-by-step template building
+- Symbol index editor with chakra tagging
+- Codex rewrite preview tool
+- Dashboard view for client profiles
+- Embedded document viewer for common formats (PDF, Markdown, JSON, EPUB, HTML)
+- Keyboard shortcuts for tab navigation
+- Screen reader labels on major controls
+- Plugin loader for community extensions
+- Drag-and-drop step reordering in the ritual builder
+- Dream dictionary integration in the Dream Parser
+- Offline Tarot spread viewer with full deck
+- Theme picker dialog for previewing visual styles
+- Asynchronous document loading for large files
 
 ### **🔐 GrimoireFS - Encrypted Magical Data Storage**
 - **AES-256 Encryption** - Military-grade encryption for all magical data
@@ -70,12 +90,23 @@ dotnet run
 
 ### **Basic Usage**
 
-#### **GrimoireFS - Store Your Magical Work**
-```csharp
-// Initialize with secure master key
-var masterKey = "your-secure-master-key-here";
-var grimoireFS = new GrimoireFS(masterKey);
-await grimoireFS.InitializeAsync();
+## Documentation
+Schema references live in the `docs` folder:
+- [Ritual Schema](docs/ritual_schema.md)
+- [Inventory Schema](docs/inventory_schema.md)
+- [Client CRM Schema](docs/crm_schema.md)
+- [Dream Schema](docs/dream_schema.md)
+- [Dream Dictionary](docs/DreamDictionary/RitualOS_Dream_Dictionary.md)
+- [Ritual Timeline](docs/ritual_timeline.md)
+- [Plugin System](docs/plugin_system.md)
+- [Sample Plugins](plugins/)
+- [Custom Theme Guide](docs/custom_theme_guide.md)
+- [Offline Roadmap](docs/offline_roadmap.md)
+- [Sample Data Overview](docs/samples_overview.md)
+- Tarot Spread Viewer (new tab)
+- [Magic Schools Library](docs/magic_schools_library.md)
+- [Magical Titles](docs/magical_titles.md)
+- [Talking About Magic](docs/talking_about_magic.md)
 
 // Create a ritual log
 var ritualEntry = await grimoireFS.CreateEntryAsync(

@@ -9,7 +9,7 @@ RitualOS is your comprehensive digital grimoire and ritual management system. Th
 ### First Launch
 1. **Installation**: Download and install RitualOS from the official repository
 2. **Initial Setup**: The app will create necessary directories and sample data
-3. **Theme Selection**: Choose your preferred theme from the available options
+3. **Theme Selection**: Choose your preferred theme (including **HighContrast** for accessibility) from the available options
 4. **User Profile**: Set up your practitioner profile and preferences
 
 ### Main Interface Overview
@@ -134,6 +134,7 @@ Each codex entry includes:
 - **Storage**: Monitor disk space for logs and data
 - **Performance**: Close unused tabs for better performance
 - **Customization**: Adjust themes and settings to your preference
+- **Keyboard Shortcuts**: Use Alt+1 through Alt+0 to switch tabs quickly
 
 ## Troubleshooting
 
@@ -163,7 +164,7 @@ Each codex entry includes:
 ## Next Steps
 
 ### Explore Advanced Features
-- **Plugin System**: Install additional functionality
+- **Plugin System**: Drop plugin folders into `/plugins` (see [Plugin System](../plugin_system.md)) for extra functionality
 - **Export Options**: Create PDFs, websites, or printed grimoires
 - **Cloud Sync**: Backup and sync across devices
 - **Community Features**: Share and discover rituals
