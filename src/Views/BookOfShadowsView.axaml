@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:RitualOS.ViewModels"
+             xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
+             x:Class="RitualOS.Views.BookOfShadowsView">
+    <UserControl.DataContext>
+        <vm:BookOfShadowsViewModel />
+    </UserControl.DataContext>
+    <DockPanel>
+        <!-- Sidebar: Tree of pages -->
+        <controls:TreeView ItemsSource="{Binding RootPages}" SelectedItem="{Binding SelectedPage, Mode=TwoWay}" DockPanel.Dock="Left" Width="220">
+            <controls:TreeView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </controls:TreeView.ItemsPanel>
+            <controls:TreeView.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Title}" />
+                </TreeDataTemplate>
+            </controls:TreeView.ItemTemplate>
+        </controls:TreeView>
+        <!-- Main: Editor -->
+        <StackPanel Margin="16" Spacing="8">
+            <TextBox Text="{Binding SelectedPage.Title, Mode=TwoWay}" Watermark="Page Title" FontWeight="Bold" FontSize="18"/>
+            <TextBox Text="{Binding SelectedPage.Content, Mode=TwoWay}" Watermark="Write your magic..." AcceptsReturn="True" Height="200"/>
+            <TextBox Text="{Binding SelectedPage.Tags, Mode=TwoWay}" Watermark="Tags (comma separated)"/>
+            <TextBlock Text="Attachments:" FontWeight="Bold"/>
+            <ItemsControl ItemsSource="{Binding SelectedPage.Attachments}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <TextBlock Text="{Binding Type}"/>
+                            <TextBlock Text="{Binding FilePath}"/>
+                            <TextBlock Text="{Binding Description}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="Add Page" Command="{Binding AddPageCommand}"/>
+                <Button Content="Delete Page" Command="{Binding DeletePageCommand}"/>
+                <Button Content="Save" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</UserControl> 

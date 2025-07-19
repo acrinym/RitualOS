@@ -48,6 +48,7 @@ namespace RitualOS.ViewModels
                 SelectedTabIndex = 5; // Switch to Documents tab
             });
             CalendarViewModel = new CalendarViewModel();
+            BookOfShadowsViewModel = new BookOfShadowsViewModel();
 
             LoadRecentTemplates();
 
@@ -123,6 +124,7 @@ namespace RitualOS.ViewModels
         public TarotViewModel TarotViewModel { get; }
         public MagicSchoolsViewModel MagicSchoolsViewModel { get; }
         public CalendarViewModel CalendarViewModel { get; }
+        public BookOfShadowsViewModel BookOfShadowsViewModel { get; }
         private void LoadRecentTemplates()
         {
             try

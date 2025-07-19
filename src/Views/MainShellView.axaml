@@ -102,6 +102,9 @@
         <TabItem Header="Calendar" AutomationProperties.Name="Calendar Tab">
             <views:CalendarView DataContext="{Binding CalendarViewModel}" />
         </TabItem>
+        <TabItem Header="Book of Shadows" AutomationProperties.Name="Book of Shadows Tab">
+            <views:BookOfShadowsView DataContext="{Binding BookOfShadowsViewModel}" />
+        </TabItem>
     </TabControl>
     </DockPanel>
 </UserControl>

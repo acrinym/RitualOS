@@ -141,6 +141,10 @@
     <Compile Include="src/Converters/BoolToFontWeightConverter.cs" />
     <Page Include="src/Views/CalendarView.axaml" />
     <Compile Include="src/Views/CalendarView.axaml.cs" />
+    <Compile Include="src/Models/BoSPage.cs" />
+    <Compile Include="src/ViewModels/BookOfShadowsViewModel.cs" />
+    <Page Include="src/Views/BookOfShadowsView.axaml" />
+    <Compile Include="src/Views/BookOfShadowsView.axaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
