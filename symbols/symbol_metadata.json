@@ -30,5 +30,45 @@
     "wikimedia_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Alchemical_symbol_for_earth.svg",
     "wikipedia_url": "https://en.wikipedia.org/wiki/Classical_element#Earth",
     "description": "One of the classical elements. Represents stability, materiality, and foundation."
+  },
+  {
+    "symbol": "🦁",
+    "name": "Sphinx",
+    "tradition": "Egyptian, Greek",
+    "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_-_20080716a.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Sphinx",
+    "description": "A mythical creature with the body of a lion and the head of a human, the sphinx is a guardian figure symbolizing mystery, wisdom, and riddles. In Egypt, it represents royal power and protection; in Greece, it is known for posing challenging questions."
+  },
+  {
+    "symbol": "🌀",
+    "name": "Spiral",
+    "tradition": "Universal, Celtic",
+    "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Triskele-Symbol-spiral.svg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Spiral",
+    "description": "The spiral is an ancient motif found in nature and art, symbolizing growth, evolution, and the journey inward or outward. It often represents cycles, spiritual development, and the unfolding of life."
+  },
+  {
+    "symbol": "◼️",
+    "name": "Square",
+    "tradition": "Universal, Alchemy",
+    "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Square_-_black_simple.svg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Square_(geometry)",
+    "description": "The square stands for stability, order, and the material world. Its four equal sides represent balance, the four elements, and the foundation of physical reality."
+  },
+  {
+    "symbol": "🦢",
+    "name": "Swan",
+    "tradition": "Celtic, Greek",
+    "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Mute_swan_Vrhnika.jpg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Swan",
+    "description": "The swan is a symbol of grace, transformation, and the soul’s journey. Associated with poetry and love, it often represents purity and the connection between the earthly and the divine."
+  },
+  {
+    "symbol": "卐",
+    "name": "Swastika",
+    "tradition": "Hindu, Buddhist, Ancient European",
+    "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Swastika.svg",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Swastika",
+    "description": "An ancient symbol of good fortune, the swastika represents well-being, prosperity, and the movement of the sun. Its meaning varies across cultures, but it is often linked to cycles, luck, and the eternal."
   }
 ] 

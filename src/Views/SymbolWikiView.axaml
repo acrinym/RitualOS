@@ -213,6 +213,14 @@
                             <DataTemplate>
                                 <Border Classes="symbol-card" Width="280" Height="200">
                                     <Grid>
+                                        <ToolTip.Tip>
+                                            <StackPanel Spacing="6" Width="220">
+                                                <Image Source="{Binding WikimediaUrl}" Height="80" Stretch="Uniform"/>
+                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="White" FontSize="14"/>
+                                                <TextBlock Text="{Binding Description}" Foreground="#CCC" FontSize="12" TextWrapping="Wrap" MaxLines="3"/>
+                                                <TextBlock Text="Wikipedia" Foreground="#7B68EE" FontSize="12" Cursor="Hand" TextDecorations="Underline" Tag="{Binding WikipediaUrl}"/>
+                                            </StackPanel>
+                                        </ToolTip.Tip>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="*"/>
