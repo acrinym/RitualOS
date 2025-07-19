@@ -312,6 +312,7 @@ namespace RitualOS.Services
 
         public async Task RestoreFromBackupAsync(string backupName)
         {
+            await Task.Yield();
             var backupPath = Path.Combine(GrimoireDirectory, BackupDirectory, backupName);
             
             if (!Directory.Exists(backupPath))
@@ -350,6 +351,7 @@ namespace RitualOS.Services
 
         public async Task<List<string>> GetBackupListAsync()
         {
+            await Task.Yield();
             var backupDir = Path.Combine(GrimoireDirectory, BackupDirectory);
             
             if (!Directory.Exists(backupDir))
@@ -381,7 +383,7 @@ namespace RitualOS.Services
                 TotalEntries = allEntries.Count,
                 TotalSize = allEntries.Sum(e => e.FileSize),
                 AllTags = allEntries.SelectMany(e => e.Tags).Distinct().OrderBy(t => t).ToList(),
-                AllSymbolIds = allEntries.SelectMany(e => e.SymbolIds).Distinct().OrderBy(s => s).ToList()
+                AllSymbolIds = allEntries.SelectMany(e => e.SymbolIds).Where(s => s != null).Distinct().OrderBy(s => s).ToList() as List<string>
             };
 
             // Count entries by type
@@ -461,7 +463,7 @@ namespace RitualOS.Services
 
         private byte[] DeriveKey()
         {
-            using var deriveBytes = new Rfc2898DeriveBytes(_masterKey, Encoding.UTF8.GetBytes(_salt), 10000);
+            using var deriveBytes = new Rfc2898DeriveBytes(_masterKey, Encoding.UTF8.GetBytes(_salt), 100000, System.Security.Cryptography.HashAlgorithmName.SHA256);
             return deriveBytes.GetBytes(32); // 256-bit key
         }
 

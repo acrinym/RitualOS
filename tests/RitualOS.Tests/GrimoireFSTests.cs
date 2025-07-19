@@ -140,7 +140,7 @@ namespace RitualOS.Tests
 
             // Assert
             Assert.Equal(2, ritualEntries.Count);
-            Assert.Equal(1, dreamEntries.Count);
+            Assert.Single(dreamEntries);
             Assert.All(ritualEntries, e => Assert.Equal(GrimoireFS.GrimoireEntryType.RitualLog, e.Type));
             Assert.All(dreamEntries, e => Assert.Equal(GrimoireFS.GrimoireEntryType.DreamEntry, e.Type));
         }

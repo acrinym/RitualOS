@@ -63,7 +63,7 @@ namespace RitualOS.Services
                     
                     _allSymbols = JsonSerializer.Deserialize<List<Symbol>>(json, options) ?? new List<Symbol>();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // Log error and start with empty database
                     _allSymbols = new List<Symbol>();
@@ -95,7 +95,7 @@ namespace RitualOS.Services
                     _allSymbols = JsonSerializer.Deserialize<List<Symbol>>(json, options) ?? new List<Symbol>();
                     await SaveSymbolsAsync(); // Save to the main database
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _allSymbols = new List<Symbol>();
                 }
@@ -130,7 +130,7 @@ namespace RitualOS.Services
                     
                     _goeticSpirits = JsonSerializer.Deserialize<List<Symbol>>(json, options) ?? new List<Symbol>();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _goeticSpirits = new List<Symbol>();
                 }

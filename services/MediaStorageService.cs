@@ -678,6 +678,7 @@ namespace RitualOS.Services
 
         private async Task ExtractMediaPropertiesAsync(MediaFile mediaFile, byte[] data)
         {
+            await Task.Yield();
             // TODO: Implement media property extraction
             // This would use libraries like ImageSharp for images, NAudio for audio, etc.
             // For now, we'll set basic properties
@@ -791,7 +792,7 @@ namespace RitualOS.Services
 
         private byte[] DeriveKey()
         {
-            using var deriveBytes = new Rfc2898DeriveBytes(_masterKey, Encoding.UTF8.GetBytes(_salt), 10000);
+            using var deriveBytes = new Rfc2898DeriveBytes(_masterKey, Encoding.UTF8.GetBytes(_salt), 100000, System.Security.Cryptography.HashAlgorithmName.SHA256);
             return deriveBytes.GetBytes(32); // 256-bit key
         }
 
