@@ -4,8 +4,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:RitualOS.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-        x:Class="RitualOS.Views.GrimoireEntryEditor"
-        x:DataType="vm:GrimoireEntryEditorViewModel"
         Title="Grimoire Entry Editor"
         Width="800" Height="600"
         Icon="/assets/icons/grimoire.ico"
@@ -131,7 +129,7 @@
                 <!-- Tags and Symbols -->
                 <Border Classes="section-card">
                     <StackPanel Spacing="12">
-                        <TextBlock Text="🏷️ Tags & Symbols" FontSize="16" FontWeight="Bold" Foreground="#DAA520"/>
+                        <TextBlock Text="🏷️ Tags &amp; Symbols" FontSize="16" FontWeight="Bold" Foreground="#DAA520"/>
                         
                         <!-- Tags -->
                         <StackPanel Spacing="8">
@@ -196,8 +194,7 @@
                                 <ComboBox Grid.Column="0" ItemsSource="{Binding AvailableSymbols}"
                                           SelectedItem="{Binding SelectedSymbol}"
                                           Background="#3E3E42" Foreground="White"
-                                          BorderBrush="#8B4513" CornerRadius="4"
-                                          Watermark="Select a symbol...">
+                                          BorderBrush="#8B4513" CornerRadius="4">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding}" Foreground="White"/>
@@ -269,8 +266,7 @@
                                 <ComboBox ItemsSource="{Binding MoonPhases}"
                                           SelectedItem="{Binding MoonPhase}"
                                           Background="#3E3E42" Foreground="White"
-                                          BorderBrush="#8B4513" CornerRadius="4"
-                                          Watermark="Select moon phase...">
+                                          BorderBrush="#8B4513" CornerRadius="4">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding}" Foreground="White"/>

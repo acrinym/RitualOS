@@ -4,8 +4,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:RitualOS.ViewModels"
         mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="900"
-        x:Class="RitualOS.Views.MediaStorageView"
-        x:DataType="vm:MediaStorageViewModel"
         Title="Media Storage - RitualOS"
         Width="1400" Height="900"
         Icon="/assets/icons/media.ico">
@@ -58,7 +56,6 @@
             <Setter Property="Background" Value="#1E1E1E"/>
             <Setter Property="BorderBrush" Value="#DAA520"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderDashArray" Value="5,5"/>
             <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="Padding" Value="20"/>
         </Style>
@@ -114,7 +111,7 @@
             <Border Grid.Column="0" Background="#252526" BorderBrush="#8B4513" BorderThickness="0,0,1,0">
                 <ScrollViewer>
                     <StackPanel Margin="16" Spacing="16">
-                        <TextBlock Text="🔍 Search & Filters" FontSize="18" FontWeight="Bold" Foreground="#DAA520"/>
+                        <TextBlock Text="🔍 Search &amp; Filters" FontSize="18" FontWeight="Bold" Foreground="#DAA520"/>
 
                         <!-- Search Box -->
                         <StackPanel Spacing="8">
@@ -210,7 +207,7 @@
                 <!-- Loading Overlay -->
                 <Border Grid.Row="0" Background="#80000000" IsVisible="{Binding IsLoading}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
-                        <ProgressRing IsIndeterminate="True" Width="48" Height="48"/>
+                        <ProgressBar IsIndeterminate="True" Width="48" Height="4"/>
                         <TextBlock Text="Loading Media Library..." Foreground="White" FontSize="16"/>
                     </StackPanel>
                 </Border>
@@ -225,8 +222,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Classes="media-card" Width="280" Height="320"
-                                        IsSelected="{Binding IsSelected}">
+                                <Border Classes="media-card" Width="280" Height="320">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="120"/>
