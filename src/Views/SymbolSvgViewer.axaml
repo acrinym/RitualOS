@@ -1,0 +1,160 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+             x:Class="RitualOS.Views.SymbolSvgViewer"
+             x:DataType="vm:SymbolSvgViewerViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Button.control-button">
+            <Setter Property="Background" Value="#3E3E42"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        
+        <Style Selector="Button.control-button:pointerover">
+            <Setter Property="Background" Value="#5A5A5A"/>
+        </Style>
+        
+        <Style Selector="Border.viewer-container">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="BorderBrush" Value="#3E3E42"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar -->
+        <Border Grid.Row="0" Background="#252526" BorderBrush="#3E3E42" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal" Margin="8" Spacing="4">
+                <Button Content="🔍+" Classes="control-button" Command="{Binding ZoomInCommand}" 
+                        ToolTip.Tip="Zoom In"/>
+                <Button Content="🔍-" Classes="control-button" Command="{Binding ZoomOutCommand}" 
+                        ToolTip.Tip="Zoom Out"/>
+                <Button Content="🔄" Classes="control-button" Command="{Binding ResetZoomCommand}" 
+                        ToolTip.Tip="Reset Zoom"/>
+                <Separator/>
+                <Button Content="🔄" Classes="control-button" Command="{Binding RotateCommand}" 
+                        ToolTip.Tip="Rotate 90°"/>
+                <Button Content="↔" Classes="control-button" Command="{Binding FlipHorizontalCommand}" 
+                        ToolTip.Tip="Flip Horizontal"/>
+                <Button Content="↕" Classes="control-button" Command="{Binding FlipVerticalCommand}" 
+                        ToolTip.Tip="Flip Vertical"/>
+                <Separator/>
+                <Button Content="📋" Classes="control-button" Command="{Binding CopySvgCommand}" 
+                        ToolTip.Tip="Copy SVG"/>
+                <Button Content="💾" Classes="control-button" Command="{Binding SaveSvgCommand}" 
+                        ToolTip.Tip="Save SVG"/>
+                <Button Content="🖼️" Classes="control-button" Command="{Binding ExportPngCommand}" 
+                        ToolTip.Tip="Export as PNG"/>
+                
+                <Separator/>
+                <TextBlock Text="{Binding ZoomLevel, StringFormat='{}{0:F0}%'}" 
+                           Foreground="White" VerticalAlignment="Center" Margin="8,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- SVG Viewer -->
+        <Border Grid.Row="1" Classes="viewer-container" Margin="8">
+            <ScrollViewer Name="ScrollViewer" 
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Auto"
+                          Background="Transparent">
+                <Canvas Name="SvgCanvas" 
+                        Width="{Binding CanvasWidth}" 
+                        Height="{Binding CanvasHeight}"
+                        Background="Transparent">
+                    
+                    <!-- SVG Content -->
+                    <Border Canvas.Left="{Binding SvgX}" 
+                            Canvas.Top="{Binding SvgY}"
+                            Width="{Binding SvgWidth}" 
+                            Height="{Binding SvgHeight}"
+                            Background="Transparent">
+                        
+                        <!-- SVG Image -->
+                        <Image Name="SvgImage" 
+                               Source="{Binding SvgSource}"
+                               Stretch="Uniform"
+                               RenderOptions.BitmapInterpolationMode="HighQuality"/>
+                        
+                        <!-- Selection Rectangle -->
+                        <Rectangle Name="SelectionRect" 
+                                   Stroke="#7B68EE" 
+                                   StrokeThickness="2" 
+                                   StrokeDashArray="5,5"
+                                   Fill="Transparent"
+                                   IsVisible="{Binding IsSelected}"/>
+                    </Border>
+                    
+                    <!-- Grid Overlay (optional) -->
+                    <Canvas Name="GridOverlay" 
+                            IsVisible="{Binding ShowGrid}"
+                            Background="Transparent">
+                        <!-- Grid lines would be drawn here -->
+                    </Canvas>
+                </Canvas>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2" Background="#252526" BorderBrush="#3E3E42" BorderThickness="0,1,0,0">
+            <Grid Margin="8,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="16">
+                    <TextBlock Text="{Binding SymbolName}" 
+                               Foreground="White" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding SvgDimensions, StringFormat='{}{0} × {1}'}" 
+                               Foreground="#CCC"/>
+                    <TextBlock Text="{Binding FileSize, StringFormat='{}{0} KB'}" 
+                               Foreground="#CCC"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                    <ToggleButton Content="📐" Classes="control-button" 
+                                  IsChecked="{Binding ShowGrid}"
+                                  ToolTip.Tip="Show Grid"/>
+                    <ToggleButton Content="🎯" Classes="control-button" 
+                                  IsChecked="{Binding ShowCenterLines}"
+                                  ToolTip.Tip="Show Center Lines"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Loading Overlay -->
+        <Border Grid.Row="1" Background="#80000000" IsVisible="{Binding IsLoading}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
+                <ProgressRing IsIndeterminate="True" Width="32" Height="32"/>
+                <TextBlock Text="Loading Symbol..." Foreground="White"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Error Overlay -->
+        <Border Grid.Row="1" Background="#80FF0000" IsVisible="{Binding HasError}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
+                <TextBlock Text="⚠️" FontSize="48" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding ErrorMessage}" 
+                           Foreground="White" 
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"/>
+                <Button Content="Retry" Classes="control-button" Command="{Binding RetryCommand}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl> 

@@ -1,0 +1,412 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:RitualOS.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+        x:Class="RitualOS.Views.GrimoireEntryEditor"
+        x:DataType="vm:GrimoireEntryEditorViewModel"
+        Title="Grimoire Entry Editor"
+        Width="800" Height="600"
+        Icon="/assets/icons/grimoire.ico"
+        CanResize="True">
+
+    <Window.Styles>
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="#8B4513"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+        
+        <Style Selector="Button.secondary">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#DAA520"/>
+            <Setter Property="BorderBrush" Value="#DAA520"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+        
+        <Style Selector="Border.section-card">
+            <Setter Property="Background" Value="#2D2D30"/>
+            <Setter Property="BorderBrush" Value="#8B4513"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+        
+        <Style Selector="Border.tag-chip">
+            <Setter Property="Background" Value="#8B4513"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#1E1E1E" Padding="20,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="16">
+                    <TextBlock Text="📝 Grimoire Entry Editor" FontSize="20" FontWeight="Bold" Foreground="#DAA520"/>
+                    <TextBlock Text="{Binding IsNewEntry, Converter={x:Static BoolConverters.Not}, 
+                               ConverterParameter='Editing|Creating New'}" 
+                               Foreground="#CCC" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                    <Button Content="💾 Save" Classes="primary" Command="{Binding SaveCommand}"/>
+                    <Button Content="❌ Cancel" Classes="secondary" Command="{Binding CancelCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="20" Spacing="16">
+                
+                <!-- Basic Information -->
+                <Border Classes="section-card">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="📋 Basic Information" FontSize="16" FontWeight="Bold" Foreground="#DAA520"/>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Title -->
+                            <StackPanel Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Title *" Foreground="#CCC" FontSize="12"/>
+                                <TextBox Text="{Binding Title}" 
+                                         Watermark="Enter entry title..."
+                                         Background="#3E3E42" Foreground="White" 
+                                         BorderBrush="#8B4513" CornerRadius="4"/>
+                            </StackPanel>
+                            
+                            <!-- Entry Type -->
+                            <StackPanel Grid.Column="1" Spacing="8" Margin="16,0,0,0">
+                                <TextBlock Text="Entry Type *" Foreground="#CCC" FontSize="12"/>
+                                <ComboBox ItemsSource="{Binding AvailableTypes}"
+                                          SelectedItem="{Binding SelectedType}"
+                                          Background="#3E3E42" Foreground="White"
+                                          BorderBrush="#8B4513" CornerRadius="4">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" Foreground="White"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Content -->
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Content *" Foreground="#CCC" FontSize="12"/>
+                            <TextBox Text="{Binding Content}" 
+                                     Watermark="Enter your entry content..."
+                                     Background="#3E3E42" Foreground="White" 
+                                     BorderBrush="#8B4513" CornerRadius="4"
+                                     AcceptsReturn="True" TextWrapping="Wrap"
+                                     Height="120"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Tags and Symbols -->
+                <Border Classes="section-card">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="🏷️ Tags & Symbols" FontSize="16" FontWeight="Bold" Foreground="#DAA520"/>
+                        
+                        <!-- Tags -->
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Tags" Foreground="#CCC" FontSize="12"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBox Grid.Column="0" Text="{Binding NewTag}" 
+                                         Watermark="Add a tag..."
+                                         Background="#3E3E42" Foreground="White" 
+                                         BorderBrush="#8B4513" CornerRadius="4"/>
+                                <Button Grid.Column="1" Content="+" Classes="secondary" 
+                                        Command="{Binding AddTagCommand}" Margin="8,0,0,0"/>
+                            </Grid>
+                            
+                            <!-- Tag Display -->
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                <WrapPanel>
+                                    <ItemsControl ItemsSource="{Binding Tags}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Classes="tag-chip">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding}" 
+                                                                   Foreground="White" FontSize="11"/>
+                                                        <Button Grid.Column="1" Content="×" 
+                                                                Foreground="White" Background="Transparent"
+                                                                BorderThickness="0" Padding="4,0" Margin="4,0,0,0"
+                                                                Command="{Binding DataContext.RemoveTagCommand, 
+                                                                          RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                CommandParameter="{Binding}"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </WrapPanel>
+                            </ScrollViewer>
+                        </StackPanel>
+                        
+                        <!-- Symbols -->
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Symbols" Foreground="#CCC" FontSize="12"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <ComboBox Grid.Column="0" ItemsSource="{Binding AvailableSymbols}"
+                                          SelectedItem="{Binding SelectedSymbol}"
+                                          Background="#3E3E42" Foreground="White"
+                                          BorderBrush="#8B4513" CornerRadius="4"
+                                          Watermark="Select a symbol...">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" Foreground="White"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Button Grid.Column="1" Content="+" Classes="secondary" 
+                                        Command="{Binding AddSymbolCommand}" Margin="8,0,0,0"/>
+                            </Grid>
+                            
+                            <!-- Symbol Display -->
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                <WrapPanel>
+                                    <ItemsControl ItemsSource="{Binding SymbolIds}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Classes="tag-chip">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding}" 
+                                                                   Foreground="White" FontSize="11"/>
+                                                        <Button Grid.Column="1" Content="×" 
+                                                                Foreground="White" Background="Transparent"
+                                                                BorderThickness="0" Padding="4,0" Margin="4,0,0,0"
+                                                                Command="{Binding DataContext.RemoveSymbolCommand, 
+                                                                          RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                CommandParameter="{Binding}"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </WrapPanel>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Ritual Information -->
+                <Border Classes="section-card">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="🌙 Ritual Information" FontSize="16" FontWeight="Bold" Foreground="#DAA520"/>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Left Column -->
+                            <StackPanel Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Ritual Date" Foreground="#CCC" FontSize="12"/>
+                                <DatePicker SelectedDate="{Binding RitualDate}"
+                                           Background="#3E3E42" Foreground="White"
+                                           BorderBrush="#8B4513" CornerRadius="4"/>
+                            </StackPanel>
+                            
+                            <!-- Right Column -->
+                            <StackPanel Grid.Column="1" Spacing="8" Margin="16,0,0,0">
+                                <TextBlock Text="Moon Phase" Foreground="#CCC" FontSize="12"/>
+                                <ComboBox ItemsSource="{Binding MoonPhases}"
+                                          SelectedItem="{Binding MoonPhase}"
+                                          Background="#3E3E42" Foreground="White"
+                                          BorderBrush="#8B4513" CornerRadius="4"
+                                          Watermark="Select moon phase...">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" Foreground="White"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Planetary Influences -->
+                            <StackPanel Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Planetary Influences" Foreground="#CCC" FontSize="12"/>
+                                <TextBox Text="{Binding PlanetaryInfluences}" 
+                                         Watermark="e.g., Moon in Cancer, Venus rising..."
+                                         Background="#3E3E42" Foreground="White" 
+                                         BorderBrush="#8B4513" CornerRadius="4"/>
+                            </StackPanel>
+                            
+                            <!-- Weather -->
+                            <StackPanel Grid.Column="1" Spacing="8" Margin="16,0,0,0">
+                                <TextBlock Text="Weather" Foreground="#CCC" FontSize="12"/>
+                                <TextBox Text="{Binding Weather}" 
+                                         Watermark="e.g., Clear, Full moon visible..."
+                                         Background="#3E3E42" Foreground="White" 
+                                         BorderBrush="#8B4513" CornerRadius="4"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Location -->
+                            <StackPanel Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Location" Foreground="#CCC" FontSize="12"/>
+                                <TextBox Text="{Binding Location}" 
+                                         Watermark="e.g., Sacred grove, Home altar..."
+                                         Background="#3E3E42" Foreground="White" 
+                                         BorderBrush="#8B4513" CornerRadius="4"/>
+                            </StackPanel>
+                            
+                            <!-- Participants -->
+                            <StackPanel Grid.Column="1" Spacing="8" Margin="16,0,0,0">
+                                <TextBlock Text="Participants" Foreground="#CCC" FontSize="12"/>
+                                <TextBox Text="{Binding Participants}" 
+                                         Watermark="e.g., Solo, Circle of 3..."
+                                         Background="#3E3E42" Foreground="White" 
+                                         BorderBrush="#8B4513" CornerRadius="4"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Custom Metadata -->
+                <Border Classes="section-card">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="⚙️ Custom Metadata" FontSize="16" FontWeight="Bold" Foreground="#DAA520"/>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBox Grid.Column="0" Text="{Binding NewMetadataKey}" 
+                                     Watermark="Key..."
+                                     Background="#3E3E42" Foreground="White" 
+                                     BorderBrush="#8B4513" CornerRadius="4"/>
+                            <TextBox Grid.Column="1" Text="{Binding NewMetadataValue}" 
+                                     Watermark="Value..."
+                                     Background="#3E3E42" Foreground="White" 
+                                     BorderBrush="#8B4513" CornerRadius="4" Margin="8,0"/>
+                            <Button Grid.Column="2" Content="+" Classes="secondary" 
+                                    Command="{Binding AddMetadataCommand}"/>
+                        </Grid>
+                        
+                        <!-- Metadata Display -->
+                        <ItemsControl ItemsSource="{Binding Metadata}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#3E3E42" CornerRadius="4" Padding="8" Margin="0,2">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding Key}" 
+                                                       Foreground="#DAA520" FontSize="11"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding Value}" 
+                                                       Foreground="White" FontSize="11"/>
+                                            <Button Grid.Column="2" Content="×" 
+                                                    Foreground="White" Background="Transparent"
+                                                    BorderThickness="0" Padding="4,0"
+                                                    Command="{Binding DataContext.RemoveMetadataCommand, 
+                                                              RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    CommandParameter="{Binding}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2" Background="#1E1E1E" BorderBrush="#8B4513" BorderThickness="0,1,0,0">
+            <Grid Margin="20,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                           Text="{Binding StatusMessage}" 
+                           Foreground="#CCC" VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="🔒 Encrypted" Foreground="#8B4513" FontSize="10" FontWeight="Bold" 
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding CreatedDate, StringFormat='Created: {0:g}'}" 
+                               Foreground="#CCC" FontSize="10" VerticalAlignment="Center"
+                               IsVisible="{Binding IsNewEntry, Converter={x:Static BoolConverters.Not}}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window> 
