@@ -81,6 +81,9 @@
     <Compile Include="services\BackupService.cs" />
     <Compile Include="services\DataImportExportService.cs" />
     <Compile Include="services\PluginLoader.cs" />
+    <Compile Include="services\GrimoireFS.cs" />
+    <Compile Include="services\MediaStorageService.cs" />
+    <Compile Include="services\SymbolWikiService.cs" />
     <Compile Include="services\TarotService.cs" />
     <Compile Include="src\Behaviors\ListBoxReorderBehavior.cs" />
     <Compile Include="src\ViewModels\ClientViewModel.cs" />
